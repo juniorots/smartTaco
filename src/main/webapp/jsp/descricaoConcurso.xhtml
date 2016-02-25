@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/WEB-INF/template/mestre.xhtml">
+        <ui:define name="centro">
+            <h:form id="form" target="_top">
+                
+                <span id="tituloTela">Comprar pacote</span>
+                <br />
+                <h:panelGrid columns="2" cellpadding="10" style="padding-left: 30px;">
+                    <p:graphicImage name="#{concursoMB.concurso.urlImagem}" library="images"/>
+                    <h:panelGrid bodyrows="2" cellpadding="4">
+                        <h:outputText value="#{concursoMB.concurso.nomeConcurso}" class="fontePadrao"/> 
+                        <p:separator/>
+                        <span class="fontePadrao">
+                            Receba notificações sobre atualização deste concurso.<br />
+                            Inclua seu nome na lista com uma pequena taxa para manutenção do serviço.<br /><br />
+                        </span>
+                        <span class="fontePadrao" style="padding-left: 25px; position:fixed;"><b>R$ 1,99</b></span><br /><br />
+                        
+                        <!-- Codigo customizado do paypal -->
+                        <c:if test="#{not empty usuarioMB.usuario.id}">
+                            <h:commandLink actionListener="#{concursoMB.computarCompra}">
+                                <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" 
+                                       border="0" 
+                                       alt="PayPal - A maneira fácil e segura de enviar pagamentos online!" />
+                                <f:param name="cmd" value="_s-xclick"/>
+                                <f:param name="hosted_button_id" value="RA3RQTRXBS77W"/>
+                                <f:param name="currency_code" value="BRL"/>
+                            </h:commandLink>
+                        </c:if>
+                        
+                        <c:if test="#{empty usuarioMB.usuario.id}">
+                            <span class="alertaLogin">
+                                Ops...! Amigo, identificamos que você não entrou no sistema,<br />
+                                isso é necessário para comprar o pacote de atualização apresentado. <br /> <br />
+                                Por favor entre no sistema.
+                            </span>
+                        </c:if>
+                        
+                        <!-- fim da secao de codigo do paypal -->
+                    </h:panelGrid>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>    
+    </ui:composition>
+</html>

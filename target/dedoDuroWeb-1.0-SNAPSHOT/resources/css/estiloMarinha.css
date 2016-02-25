@@ -1,0 +1,90 @@
+/*
+    -x- Customizando Menu da Janela principal -x-
+*/
+.fonteMarinha {
+    font-weight: bold;
+    color: #445058;
+    margin-left: -5px;
+}
+
+.stackMarinha { 
+    position: fixed; 
+    display: table;
+    
+    /* campos a serem customizados a cada banca */
+    margin-top: 300px;
+    padding-left:850px;
+}
+.stackMarinha > img { 
+    position: relative; 
+    cursor: pointer; 
+    z-index: 2;
+    
+    /* campos a serem customizados a cada banca */
+    /*margin-top: 25px;*/ 
+}
+.stackMarinha ul { 
+    list-style: none; 
+    position: fixed; 
+    cursor: pointer; 
+    z-index: 1; 
+    width: 45px;
+
+    /* campos a serem customizados a cada banca */
+    margin: -65px -35px auto;
+}
+
+.stackMarinha ul > li > a > img { 
+    width: 45px;
+    margin-left: 12px;
+}
+
+.stackMarinha ul li a:link {
+    text-decoration: none;
+}
+
+.stackMarinha ul li { 
+    position: absolute; 
+}
+.stackMarinha ul li img { 
+    border: 0; 
+}
+.stackMarinha ul li span { 
+    display: none; 
+}
+
+.stackMarinha .openStack li span:hover {
+    color: #ffffff;
+}
+
+.stackMarinha .openStack li span { 
+    font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+    display:block;
+    position:relative;
+    border: 0;
+/*    background-color:#445058; */
+    background-color:black;
+    padding: 4px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    color: #dddddd;
+    text-align: center;
+    text-shadow: #000 1px 1px 1px;
+    opacity: .85;
+    filter: alpha(opacity = 85);
+    line-height: 14px;
+    
+    /* campos a serem customizados a cada banca */
+    width:550%;
+    height: 15px;
+    margin-left: -220px;
+    top: 30px;
+    right:60px;
+    margin-right: 50px;
+}
+ 
+/* IE Fixes */
+.stackMarinha { _position: absolute; }
+.stackMarinha ul { _z-index:-1; _top:-15px; }
+.stackMarinha ul li { *right:5px; }

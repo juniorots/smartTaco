@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/WEB-INF/template/mestre.xhtml">
+        
+        <!--
+         NOTA: para capturar o caminho relativo do projeto, usa-se:
+            #[request.contextPath}/<DIRETORIO/..
+        -->
+        <ui:define name="centro">
+            <div class="conteudo">
+                <ui:include src="cespe.xhtml"/>
+                <ui:include src="quadrix.xhtml"/>
+                <ui:include src="fcc.xhtml"/>
+                <ui:include src="cesgranrio.xhtml"/>
+                <ui:include src="exercito.xhtml"/>
+                <ui:include src="marinha.xhtml"/>
+                <ui:include src="aeronautica.xhtml"/>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
