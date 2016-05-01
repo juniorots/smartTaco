@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <p:growl id="growl" showDetail="true" /> 
+        <div id='cssmenu'>
+        <ul>
+           <li class='active'><span class="iconeMenu"/><a href='#'>Menu</a>
+               <ul>
+                   <li><a href="#{request.contextPath}/jsp/principal.xhtml">Início</a></li>
+                   <c:if test="#{empty usuarioMB.usuario.id}">
+                        <li><a href="#{request.contextPath}/jsp/cadastrarUsuario.xhtml">Cadastrar-se</a></li>
+                   </c:if>
+                   <c:if test="#{not empty usuarioMB.usuario.id}">
+                        <li><a href="#{request.contextPath}/jsp/cadastrarUsuario.xhtml">Altere seus dados</a></li>
+                   </c:if>
+               </ul>
+           </li>
+            
+           <!-- USUARIO NAO IDENTIFICADO -->
+           <c:if test="#{empty usuarioMB.usuario.id}">
+                <li style='padding-top: 9px; float: right;'>
+                    <!--
+                     Tratando janela de login
+                     -->                    
+                     <div id="loginContainer" >
+                         <a href="#" id="loginButton"><span>Entrar</span><em></em></a>
+                         <div style="clear:both"></div>
+                         <div id="loginBox">                
+                             <h:form id="loginForm">
+                                 <fieldset id="body">
+                                     <fieldset>
+                                         <label for="email">E-mail</label>
+                                         <p:inputText id="email" value="#{usuarioMB.usuario.email}" required="true" 
+                                                      requiredMessage="Campo obrigatório" maxlength="70" tabindex="1" />
+                                     </fieldset>
+                                     <fieldset>
+                                         <label for="password">Senha</label>
+                                         <p:password id="senha" value="#{usuarioMB.usuario.senha}" required="true" 
+                                                     requiredMessage="Campo obrigatório" maxlength="50" tabindex="2"/>
+                                     </fieldset>
+                                     <p:commandButton value="Entrar" id="login" actionListener="#{usuarioMB.validarUsuario}" 
+                                                      ajax="false" update="growl" style="width: 50%;" />
+                                 </fieldset>
+                                 <span><a href="#{request.contextPath}/jsp/recuperarSenha.xhtml" class="linkJanelaLogin">Esqueci minha senha!</a></span>
+                             </h:form>
+                         </div>
+                     </div>
+                </li>
+           </c:if>
+            
+           <!-- USUARIO IDENTIFICADO -->
+           <c:if test="#{not empty usuarioMB.usuario.id}">
+                <li style='float: right;'>  
+                    <h:form>
+                        <h:commandLink value="Sair" action="#{usuarioMB.sairSistema}" class="linkTituloMenu" style="padding: 17px 40px 9px 10px;"/>
+                    </h:form>
+                </li>
+           </c:if>
+           
+           <!-- IDENTIFICADO USUARIO LOGADO -->
+           <li style="float: right;">
+                <h:outputText value="#{usuarioMB.usuario.nomeTitulo}" class="fonteTituloMenu"/>
+           </li> 
+        </ul>
+            
+        </div>
+        
+    </h:body>
+</html>
