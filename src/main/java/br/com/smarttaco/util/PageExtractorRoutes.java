@@ -11,7 +11,7 @@ import org.apache.camel.builder.RouteBuilder;
 
 /**
  *
- * @author junior
+ * @author Jose Alves
  */
 public class PageExtractorRoutes extends RouteBuilder {
     

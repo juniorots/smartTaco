@@ -1,5 +1,3 @@
-br/com/dedoduro/negocio/BancaDAOTest.class
-br/com/dedoduro/negocio/ConcursoDAOTest.class
-br/com/dedoduro/negocio/TratarPaginaTest.class
-br/com/dedoduro/negocio/UtilTest.class
-br/com/dedoduro/negocio/UsuarioDAOTest.class
+br/com/smarttaco/negocio/TratarPaginaTest.class
+br/com/smarttaco/negocio/UsuarioDAOTest.class
+br/com/smarttaco/negocio/UtilTest.class

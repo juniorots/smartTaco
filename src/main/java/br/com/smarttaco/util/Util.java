@@ -6,7 +6,6 @@
 
 package br.com.smarttaco.util;
 
-import br.com.smarttaco.modelo.Concurso;
 import br.com.smarttaco.modelo.Usuario;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -161,7 +160,7 @@ public class Util {
     
     /*
     * Gravando o usuario na sessao
-    */
+    
     public static void gravarConcursoSessao(Concurso concurso) {
         FacesContext fc =   FacesContext.getCurrentInstance();
         HttpSession sessao = (HttpSession) fc.getExternalContext().getSession(false);
@@ -170,10 +169,11 @@ public class Util {
         sessao.setAttribute( "URL_IMAGEM", concurso.getUrlImagem());
         sessao.setAttribute( "URL", concurso.getUrl() );
     }
+    */
     
    /*
     * Captando o usuário da sessao
-    */
+    
     public static Concurso captarConcursoSessao() {
         Concurso concurso = null;
         ExternalContext external =  FacesContext.getCurrentInstance().getExternalContext();
@@ -189,6 +189,7 @@ public class Util {
         
         return concurso;
     }
+    */
     
     /*
      * Util para limpar dados da sessao

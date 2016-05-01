@@ -62,8 +62,8 @@ public class UsuarioDAOTest {
         Usuario usuario = new Usuario();    
         UsuarioDAO dao = new UsuarioDAO(entityManager);
         
-        usuario.setEmail("juniorots@gmail.com");
-        usuario.setSenha("12345");
+//        usuario.setEmail("juniorots@gmail.com");
+//        usuario.setSenha("12345");
 //        usuario.setReceberEmail("S");
         
         Usuario usInserido = dao.insert(usuario);

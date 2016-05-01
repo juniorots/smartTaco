@@ -6,7 +6,6 @@
 
 package br.com.smarttaco.negocio;
 
-import br.com.smarttaco.leituraPaginas.ProcessarCespe;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,8 +45,6 @@ public class TratarPaginaTest {
     
     @Test
     public void tratarPagina() {
-        ProcessarCespe p = new ProcessarCespe();
-        p.tratarPagina("http://www.cespe.unb.br/concursos/mp_15_enap/");
     }
     
 }

@@ -1,5 +1,3 @@
-/home/junior/workspace/dedoDuro/src/test/java/br/com/dedoduro/negocio/TratarPaginaTest.java
-/home/junior/workspace/dedoDuro/src/test/java/br/com/dedoduro/negocio/UsuarioDAOTest.java
-/home/junior/workspace/dedoDuro/src/test/java/br/com/dedoduro/negocio/BancaDAOTest.java
-/home/junior/workspace/dedoDuro/src/test/java/br/com/dedoduro/negocio/UtilTest.java
-/home/junior/workspace/dedoDuro/src/test/java/br/com/dedoduro/negocio/ConcursoDAOTest.java
+/home/junior/workspace/smartTaco/src/test/java/br/com/smarttaco/negocio/TratarPaginaTest.java
+/home/junior/workspace/smartTaco/src/test/java/br/com/smarttaco/negocio/UtilTest.java
+/home/junior/workspace/smartTaco/src/test/java/br/com/smarttaco/negocio/UsuarioDAOTest.java
