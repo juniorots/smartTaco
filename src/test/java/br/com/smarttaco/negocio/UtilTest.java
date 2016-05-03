@@ -6,7 +6,6 @@
 
 package br.com.smarttaco.negocio;
 
-import br.com.smarttaco.controller.AcidosGraxosMB;
 import br.com.smarttaco.util.EnviarEmail;
 import br.com.smarttaco.util.Util;
 import java.util.ArrayList;

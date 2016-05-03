@@ -171,19 +171,12 @@
             <artifactId>camel-tagsoup</artifactId>
             <version>${camel.version}</version>
         </dependency>
-        
-        <dependency>
-            <groupId>org.icefaces</groupId>
-            <artifactId>icefaces</artifactId>
-            <version>4.1.1</version>
-        </dependency>
 
         <dependency>
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces-ace</artifactId>
-            <version>4.0.0</version>
-    </dependency>
-
+            <version>4.1.1</version>
+        </dependency>
 
         <!--
         <dependency>
