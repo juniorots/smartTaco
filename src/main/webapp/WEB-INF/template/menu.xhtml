@@ -12,7 +12,7 @@
                <ul>
                    <li><a href="#{request.contextPath}/jsp/principal.xhtml">Início</a></li>
                    <c:if test="#{empty usuarioMB.usuario.id}">
-                        <li><a href="#{request.contextPath}/jsp/cadastrarUsuario.xhtml">Cadastrar-se</a></li>
+                        <li><a href="#{request.contextPath}/jsp/cadastrarUsuario.xhtml">Cadastre-se</a></li>
                    </c:if>
                    <c:if test="#{not empty usuarioMB.usuario.id}">
                         <li><a href="#{request.contextPath}/jsp/cadastrarUsuario.xhtml">Altere seus dados</a></li>
