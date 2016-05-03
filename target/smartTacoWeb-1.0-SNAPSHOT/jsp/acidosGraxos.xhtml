@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/WEB-INF/template/mestre.xhtml">
+        <ui:define name="centro">
+            <h:form id="frmAcidosGraxos">
+                <style>
+                    .checkboxes {
+                        width:35%;
+                        border:1px solid black;
+                        margin-bottom:1em;
+                        padding:.5em;
+                    }
+                    .checkboxes tr, .checkboxes td{
+                        display:inline-block;
+                        /* IE7 inline block hack */
+                        *display:inline;
+                        zoom:1;
+                    }
+                    .checkboxes td {
+                        width:32%;
+                    }
+                </style>
+                
+                <h:selectManyCheckbox id="checkbox" value="#{acidosGraxosMB.selectedCheckBoxes}"
+                                  valueChangeListener="#{acidosGraxosMB.checkboxChange}"
+                                  styleClass="checkboxes">
+                    <f:ajax render="@form" execute="@this"/>
+                    <f:selectItems value="#{acidosGraxosMB.checkBoxes}"/>
+                </h:selectManyCheckbox>
+                
+                <ace:dataTable id="dataTable" value="#{acidosGraxosMB.listaAcido}" var="acido">
+                    <c:forEach items="#{acidosGraxosMB.listaColuna}" var="item">
+                        <ace:column headerText="#{item.headerText}">#{acido[item.value]}</ace:column>
+                    </c:forEach>
+                </ace:dataTable>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
