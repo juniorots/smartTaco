@@ -25,6 +25,19 @@
                     .checkboxes td {
                         width:32%;
                     }
+                    
+                    .group-header {
+                        font-weight:bold;
+                        background-color:lightgray;
+                    }
+                    
+                    .group-header td {
+                        text-align:left !important;
+                    }
+                    
+                    .linha {
+                        text-align:center !important;
+                    }
                 </style>
                 
                 <h:selectManyCheckbox id="checkbox" value="#{acidosGraxosMB.selectedCheckBoxes}"
@@ -43,11 +56,21 @@
                                paginator="true"
                                paginatorPosition="bottom"
                                reorderableColumns="true">
+                    <ace:row 
+                        condition="group" 
+                        groupBy="#{acido.grupo}" 
+                        pos="before" 
+                        styleClass="group-header">
+                        <ace:column colspan="${acidosGraxosMB.totalColunas}">
+                            <h:outputText value="#{acido.grupo}"/>
+                        </ace:column>
+                    </ace:row>
                     <c:forEach items="#{acidosGraxosMB.listaColuna}" var="item">
                         <ace:column 
                             sortBy="#{acido[item.value]}"
                             filterBy="#{acido[item.value]}"
                             filterMatchMode="contains"
+                            styleClass="linha"
                             headerText="#{item.headerText}">
                             <h:outputText id="#{item.value}" value="#{acido[item.value]}"/>
                         </ace:column>
