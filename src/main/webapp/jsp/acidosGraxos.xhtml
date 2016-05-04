@@ -34,7 +34,12 @@
                     <f:selectItems value="#{acidosGraxosMB.checkBoxes}"/>
                 </h:selectManyCheckbox>
                 
-                <ace:dataTable id="dataTable" value="#{acidosGraxosMB.listaAcido}" var="acido">
+                <ace:dataTable id="dataTable" 
+                               value="#{acidosGraxosMB.listaItens}" 
+                               var="acido"
+                               rows="20"
+                               stateMap="#{acidosGraxosMB.stateMap}"
+                               selectionMode="single">
                     <c:forEach items="#{acidosGraxosMB.listaColuna}" var="item">
                         <ace:column headerText="#{item.headerText}">#{acido[item.value]}</ace:column>
                     </c:forEach>

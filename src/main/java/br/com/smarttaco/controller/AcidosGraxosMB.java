@@ -17,6 +17,7 @@ import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
+import org.icefaces.ace.model.table.RowStateMap;
 
 /**
  *
@@ -26,13 +27,15 @@ import javax.faces.model.SelectItem;
 @CustomScoped(value = "#{window}")
 public class AcidosGraxosMB implements Serializable {
     
-    private List<AcidoGraxo> listaAcido;
+    private static final Integer LIMITE_COLUNAS = 2;
+    private List<AcidoGraxo> listaItens;
     private List<Integer> ordenando = new ArrayList<Integer>();
     private List<ColunaDinamica> listaColuna;
     
     private List<SelectItem> checkBoxes = new ArrayList<SelectItem>();
     private List<String> selectedCheckBoxes = new ArrayList<String>();
     private Class<AcidoGraxo> classe = AcidoGraxo.class;
+    private RowStateMap stateMap = new RowStateMap();
     
     public AcidosGraxosMB() {
         this.listaColuna = new ArrayList<ColunaDinamica>();
@@ -47,7 +50,7 @@ public class AcidosGraxosMB implements Serializable {
                 String valor = (String) method.invoke( new AcidoGraxo() );
                 this.checkBoxes.add (new SelectItem(atributo.getName(), valor ) );
                 
-                if ( i <= 2) {
+                if ( i <= LIMITE_COLUNAS) {
                     this.listaColuna.add (new ColunaDinamica(atributo.getName(), valor ) );
                     this.selectedCheckBoxes.add( atributo.getName() );
                 }
@@ -64,16 +67,16 @@ public class AcidosGraxosMB implements Serializable {
         /*
          * Trabalhando no conteudo
          */
-        this.listaAcido = new ArrayList();
+        this.listaItens = new ArrayList();
         AcidoGraxo a1 = new AcidoGraxo();
         a1.setCampo01("Linha 01");
         AcidoGraxo a2 = new AcidoGraxo();
         a2.setCampo01("Linha 02");
         AcidoGraxo a3 = new AcidoGraxo();
         a3.setCampo01("Linha 03");
-        this.listaAcido.add( a1 );
-        this.listaAcido.add( a2 );
-        this.listaAcido.add( a3 );
+        this.listaItens.add( a1 );
+        this.listaItens.add( a2 );
+        this.listaItens.add( a3 );
     }
 
     /*
@@ -90,6 +93,7 @@ public class AcidosGraxosMB implements Serializable {
      */
     public void addColumn(String name) {
         String valor;
+
         try {
             Method method = AcidoGraxo.class.getMethod( montarNomeMetodo(name) );
             valor = (String) method.invoke( new AcidoGraxo() );
@@ -127,15 +131,23 @@ public class AcidosGraxosMB implements Serializable {
             removeColumn(s.toLowerCase());
         }
     }
+
+    public RowStateMap getStateMap() {
+        return stateMap;
+    }
+
+    public void setStateMap(RowStateMap stateMap) {
+        this.stateMap = stateMap;
+    }
+
+    public List<AcidoGraxo> getListaItens() {
+        return listaItens;
+    }
+
+    public void setListaItens(List<AcidoGraxo> listaItens) {
+        this.listaItens = listaItens;
+    }
     
-    public List<AcidoGraxo> getListaAcido() {
-        return listaAcido;
-    }
-
-    public void setListaAcido(List<AcidoGraxo> listaAcido) {
-        this.listaAcido = listaAcido;
-    }
-
     public List<Integer> getOrdenando() {
         return ordenando;
     }
