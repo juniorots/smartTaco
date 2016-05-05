@@ -13,7 +13,7 @@
         <ui:define name="centro">
             <div class="conteudo">
                 <h:form>
-                    <p:mindmap value="#{principalMB.raiz}" style="margin-left: 15px;width:97%;height:600px;border:1px solid black;">
+                    <p:mindmap value="#{principalMB.raiz}" style="margin-left: 11px;width:98%;height:520px;border:1px solid black;">
                         <p:ajax event="select" listener="#{principalMB.onNodeSelect}" />
                         <p:ajax event="dblselect" listener="#{principalMB.onNodeDblselect}" update="output" oncomplete="PF('details').show();" />
                     </p:mindmap>

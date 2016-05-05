@@ -18,13 +18,14 @@
                         font-family: Montserrat, sans-serif;
                     }
                     .checkboxes tr, .checkboxes td{
+                        width: 100%;
                         display:inline-block;
                         /* IE7 inline block hack */
                         *display:inline;
                         zoom:1;
                     }
                     .checkboxes td {
-                        width:32%;
+                        width:18%;
                     }
                     
                     .group-header {
@@ -57,6 +58,9 @@
                         font-family: Montserrat, sans-serif;
                     }
                     
+                    .titulo {
+                        color: #0000CD; /* MediumBlue */
+                    }
                 </style>
                 <div class="titulo">Ácidos Graxos</div>
                 <div class="botoes">
@@ -75,8 +79,7 @@
                                    rows="8"
                                    stateMap="#{acidosGraxosMB.stateMap}"
                                    selectionMode="single"
-                                   style="margin-left: 11px; width: 98%"
-                                   
+                                   style="margin-left: 11px; margin-bottom: 0px; width: 98%"
                                    paginator="true"
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
@@ -94,6 +97,7 @@
                                 sortBy="#{acido[item.value]}"
                                 filterBy="#{acido[item.value]}"
                                 filterMatchMode="contains"
+                                style="text-align: left"
                                 headerText="#{item.headerText}">
                                 <h:outputText id="#{item.value}" value="#{acido[item.value]}"/>
                             </ace:column>

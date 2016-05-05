@@ -15,33 +15,23 @@ import javax.persistence.Entity;
  */
 @Entity
 public class AcidoGraxo extends DomainObject {
-    private String campo01;
-    private String campo02;
-    private String campo03;
-    private String campo04;
-    private String campo05;
+    private String acidosGraxos;
+    private String nomeSistematico;
+    private String nomeComum;
     private String grupo; 
 
-    public String getCampo01Label() {
-        return "Teste campo 01";
+    public String getAcidosGraxosLabel() {
+        return "Ácidos Graxos";
     }
 
-    public String getCampo02Label() {
-        return "Teste campo 02";
+    public String getNomeSistematicoLabel() {
+        return "Nome Sistemático";
     }
 
-    public String getCampo03Label() {
-        return "Teste campo 03";
+    public String getNomeComumLabel() {
+        return "Nome Comum";
     }
     
-    public String getCampo04Label() {
-        return "Teste campo 04";
-    }
-    
-    public String getCampo05Label() {
-        return "Teste campo 05";
-    }
-
     public String getGrupo() {
         return grupo;
     }
@@ -50,45 +40,27 @@ public class AcidoGraxo extends DomainObject {
         this.grupo = grupo;
     }
 
-    public String getCampo05() {
-        return campo05;
+    public String getAcidosGraxos() {
+        return acidosGraxos;
     }
 
-    public void setCampo05(String campo05) {
-        this.campo05 = campo05;
+    public void setAcidosGraxos(String acidosGraxos) {
+        this.acidosGraxos = acidosGraxos;
     }
 
-    public String getCampo04() {
-        return campo04;
+    public String getNomeSistematico() {
+        return nomeSistematico;
     }
 
-    public void setCampo04(String campo04) {
-        this.campo04 = campo04;
+    public void setNomeSistematico(String nomeSistematico) {
+        this.nomeSistematico = nomeSistematico;
     }
 
-    public String getCampo01() {
-        return campo01;
+    public String getNomeComum() {
+        return nomeComum;
     }
 
-    public void setCampo01(String campo01) {
-        this.campo01 = campo01;
+    public void setNomeComum(String nomeComum) {
+        this.nomeComum = nomeComum;
     }
-
-    public String getCampo02() {
-        return campo02;
-    }
-
-    public void setCampo02(String campo02) {
-        this.campo02 = campo02;
-    }
-
-    public String getCampo03() {
-        return campo03;
-    }
-
-    public void setCampo03(String campo03) {
-        this.campo03 = campo03;
-    }
-    
-    
 }

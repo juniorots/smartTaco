@@ -76,7 +76,8 @@ public class AcidosGraxosMB implements Serializable {
         this.listaItens = new ArrayList();
         for (int j = 1; j <= 200; j++) {
             AcidoGraxo tmp = new AcidoGraxo();
-            tmp.setCampo01("Linha "+j);
+            tmp.setAcidosGraxos("Linha "+j);
+            tmp.setNomeSistematico("Sistematico "+j);
             
             if ( j < 30) {
                 tmp.setGrupo("Alfa");

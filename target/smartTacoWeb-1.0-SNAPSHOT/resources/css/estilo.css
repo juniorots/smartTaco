@@ -163,7 +163,7 @@ body {
 
 .botoes{
     overflow-x: auto;
-    height: 120px;
+    height: 110px;
     margin-bottom: 10px;
     border:1px solid black;
     margin-left: 10px;
@@ -178,7 +178,6 @@ body {
     margin-bottom: 5px;
     font-family: Montserrat, sans-serif;
     text-align: center;
-    color: #0000CD; /* MediumBlue */
     font-size: 30px;
     font-weight: bold;
 }
@@ -187,4 +186,15 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     border:0px solid red;
+}
+
+.publicidade {
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 10px;
+    margin-left: 11px;
+    margin-right: 10px;
+    height: 75px;
+    border:1px solid gray;
+    width: 98%;
+    color: #696969; /* DimGrey */
 }
