@@ -160,3 +160,31 @@ body {
     font-size: 20px;
     color: #363636;
 }
+
+.botoes{
+    overflow-x: auto;
+    height: 120px;
+    margin-bottom: 10px;
+    border:1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.titulo {
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border:0px solid black;
+    margin-bottom: 5px;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    color: #0000CD; /* MediumBlue */
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.tabelaCentral{
+    margin-left: 10px;
+    margin-right: 10px;
+    border:0px solid red;
+}

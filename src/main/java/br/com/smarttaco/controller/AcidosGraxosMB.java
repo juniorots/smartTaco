@@ -8,6 +8,7 @@ package br.com.smarttaco.controller;
 
 import br.com.smarttaco.modelo.AcidoGraxo;
 import br.com.smarttaco.modelo.ColunaDinamica;
+import br.com.smarttaco.util.Constantes;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -27,7 +28,6 @@ import org.icefaces.ace.model.table.RowStateMap;
 @CustomScoped(value = "#{window}")
 public class AcidosGraxosMB implements Serializable {
     
-    private static final Integer LIMITE_COLUNAS = 2;
     private List<AcidoGraxo> listaItens;
     private List<Integer> ordenando = new ArrayList<Integer>();
     private List<ColunaDinamica> listaColuna;
@@ -54,7 +54,7 @@ public class AcidosGraxosMB implements Serializable {
                 if (!"grupo".equalsIgnoreCase( atributo.getName() )) {
                     this.checkBoxes.add (new SelectItem(atributo.getName(), valor ) );
 
-                    if ( i <= LIMITE_COLUNAS) {
+                    if ( i <= Constantes.LIMITE_COLUNAS) {
                         this.listaColuna.add (new ColunaDinamica(atributo.getName(), valor ) );
                         this.selectedCheckBoxes.add( atributo.getName() );
                     }
@@ -74,22 +74,17 @@ public class AcidosGraxosMB implements Serializable {
          * Trabalhando no conteudo
          */
         this.listaItens = new ArrayList();
-        AcidoGraxo a1 = new AcidoGraxo();
-        a1.setCampo01("Linha 01");
-        a1.setGrupo("Alfa");
-        AcidoGraxo a2 = new AcidoGraxo();
-        a2.setCampo01("Linha 02");
-        a2.setGrupo("Alfa");
-        AcidoGraxo a3 = new AcidoGraxo();
-        a3.setCampo01("Linha 03");
-        a3.setGrupo("Lambda");
-        AcidoGraxo a4 = new AcidoGraxo();
-        a4.setCampo01("Linha 04");
-        a4.setGrupo("Lambda");
-        this.listaItens.add( a1 );
-        this.listaItens.add( a2 );
-        this.listaItens.add( a3 );
-        this.listaItens.add( a4 );
+        for (int j = 1; j <= 200; j++) {
+            AcidoGraxo tmp = new AcidoGraxo();
+            tmp.setCampo01("Linha "+j);
+            
+            if ( j < 30) {
+                tmp.setGrupo("Alfa");
+            } else {
+                tmp.setGrupo("Lambda");
+            }
+            this.listaItens.add(tmp);
+        }
     }
 
     /*

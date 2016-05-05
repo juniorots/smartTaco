@@ -11,10 +11,11 @@
             <h:form id="frmAcidosGraxos">
                 <style>
                     .checkboxes {
-                        width:35%;
-                        border:1px solid black;
-                        margin-bottom:1em;
-                        padding:.5em;
+                        width:100%;
+                        
+                        /* definindo fonte padrao */    
+                        color: #445058;
+                        font-family: Montserrat, sans-serif;
                     }
                     .checkboxes tr, .checkboxes td{
                         display:inline-block;
@@ -28,55 +29,74 @@
                     
                     .group-header {
                         font-weight:bold;
-                        background-color:lightgray;
+                        background-color:#4682B4; // SteelBlue
                     }
                     
                     .group-header td {
                         text-align:left !important;
                     }
-                    
-                    .linha {
+                    /* Cursor sobre a linha */
+                    .ui-state-hover {
                         text-align:center !important;
+                        background-color: #87CEEB !important; // SkyBlue 
+                        font-family: Montserrat, sans-serif;
                     }
+                    
+                    /* Efeito de zebrinha */
+                    .ui-datatable-odd {
+                        background-color: #F8F8FF !important; // GhostWhite 
+                        font-family: Montserrat, sans-serif important!;
+                    }
+                    ui-datatable-even{
+                        font-family: Montserrat, sans-serif;
+                    }
+                    
+                    /* Linha selecionada */
+                    .ui-state-active {
+                        background-color: #87CEFF !important; // SkyBlue1
+                        font-family: Montserrat, sans-serif;
+                    }
+                    
                 </style>
-                
+                <div class="titulo">Ácidos Graxos</div>
+                <div class="botoes">
                 <h:selectManyCheckbox id="checkbox" value="#{acidosGraxosMB.selectedCheckBoxes}"
                                   valueChangeListener="#{acidosGraxosMB.checkboxChange}"
                                   styleClass="checkboxes">
                     <f:ajax render="@form" execute="@this"/>
-                    <f:selectItems value="#{acidosGraxosMB.checkBoxes}"/>
+                    <f:selectItems value="#{acidosGraxosMB.checkBoxes}" />
                 </h:selectManyCheckbox>
+                </div>
                 
-                <ace:dataTable id="dataTable" 
-                               value="#{acidosGraxosMB.listaItens}" 
-                               var="acido"
-                               rows="20"
-                               stateMap="#{acidosGraxosMB.stateMap}"
-                               selectionMode="single"
-                               paginator="true"
-                               paginatorPosition="bottom"
-                               reorderableColumns="true">
-                    <ace:row 
-                        condition="group" 
-                        groupBy="#{acido.grupo}" 
-                        pos="before" 
-                        styleClass="group-header">
-                        <ace:column colspan="${acidosGraxosMB.totalColunas}">
-                            <h:outputText value="#{acido.grupo}"/>
-                        </ace:column>
-                    </ace:row>
-                    <c:forEach items="#{acidosGraxosMB.listaColuna}" var="item">
-                        <ace:column 
-                            sortBy="#{acido[item.value]}"
-                            filterBy="#{acido[item.value]}"
-                            filterMatchMode="contains"
-                            styleClass="linha"
-                            headerText="#{item.headerText}">
-                            <h:outputText id="#{item.value}" value="#{acido[item.value]}"/>
-                        </ace:column>
-                    </c:forEach>
-                </ace:dataTable>
                 
+                    <ace:dataTable id="dataTable"
+                                   value="#{acidosGraxosMB.listaItens}" 
+                                   var="acido"
+                                   rows="8"
+                                   stateMap="#{acidosGraxosMB.stateMap}"
+                                   selectionMode="single"
+                                   paginator="true"
+                                   paginatorPosition="bottom"
+                                   reorderableColumns="true">
+                        <ace:row 
+                            condition="group" 
+                            groupBy="#{acido.grupo}" 
+                            pos="before" 
+                            styleClass="group-header">
+                            <ace:column colspan="${acidosGraxosMB.totalColunas}">
+                                <h:outputText value="#{acido.grupo}"/>
+                            </ace:column>
+                        </ace:row>
+                        <c:forEach items="#{acidosGraxosMB.listaColuna}" var="item">
+                            <ace:column 
+                                sortBy="#{acido[item.value]}"
+                                filterBy="#{acido[item.value]}"
+                                filterMatchMode="contains"
+                                headerText="#{item.headerText}">
+                                <h:outputText id="#{item.value}" value="#{acido[item.value]}"/>
+                            </ace:column>
+                        </c:forEach>
+                    </ace:dataTable>
             </h:form>
         </ui:define>
     </ui:composition>

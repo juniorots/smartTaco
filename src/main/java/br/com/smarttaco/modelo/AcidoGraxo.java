@@ -18,6 +18,8 @@ public class AcidoGraxo extends DomainObject {
     private String campo01;
     private String campo02;
     private String campo03;
+    private String campo04;
+    private String campo05;
     private String grupo; 
 
     public String getCampo01Label() {
@@ -31,6 +33,14 @@ public class AcidoGraxo extends DomainObject {
     public String getCampo03Label() {
         return "Teste campo 03";
     }
+    
+    public String getCampo04Label() {
+        return "Teste campo 04";
+    }
+    
+    public String getCampo05Label() {
+        return "Teste campo 05";
+    }
 
     public String getGrupo() {
         return grupo;
@@ -38,6 +48,22 @@ public class AcidoGraxo extends DomainObject {
 
     public void setGrupo(String grupo) {
         this.grupo = grupo;
+    }
+
+    public String getCampo05() {
+        return campo05;
+    }
+
+    public void setCampo05(String campo05) {
+        this.campo05 = campo05;
+    }
+
+    public String getCampo04() {
+        return campo04;
+    }
+
+    public void setCampo04(String campo04) {
+        this.campo04 = campo04;
     }
 
     public String getCampo01() {
