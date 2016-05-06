@@ -71,6 +71,7 @@
                     }
                 </style>
                 <div class="titulo">Ácidos Graxos</div>
+
                 <div class="botoes">
                 <h:selectManyCheckbox id="checkbox" value="#{acidosGraxosMB.selectedCheckBoxes}"
                                   valueChangeListener="#{acidosGraxosMB.checkboxChange}"
@@ -79,7 +80,6 @@
                     <f:selectItems value="#{acidosGraxosMB.checkBoxes}" />
                 </h:selectManyCheckbox>
                 </div>
-                
                 
                     <ace:dataTable id="dataTable"
                                    value="#{acidosGraxosMB.listaItens}" 

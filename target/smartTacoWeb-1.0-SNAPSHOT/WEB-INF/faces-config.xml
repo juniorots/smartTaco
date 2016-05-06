@@ -16,8 +16,8 @@
             <to-view-id>/jsp/cadastrarUsuario.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>descricaoConcurso</from-outcome>
-            <to-view-id>/jsp/descricaoConcurso.xhtml</to-view-id>
+            <from-outcome>acidosGraxos</from-outcome>
+            <to-view-id>/jsp/acidosGraxos.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
