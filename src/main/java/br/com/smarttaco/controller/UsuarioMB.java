@@ -175,6 +175,7 @@ public class UsuarioMB implements Serializable {
             getUsuario().setEmail("");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "E-mail ou Senha inválidos.") );
+            context.getExternalContext().getFlash().setKeepMessages(true);
         }
     }
     
