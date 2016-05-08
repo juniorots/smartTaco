@@ -7,6 +7,8 @@
 package br.com.smarttaco.modelo;
 
 import br.com.smarttaco.framework.persistence.DomainObject;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import javax.persistence.Entity;
 
 /**
@@ -62,5 +64,47 @@ public class AcidoGraxo extends DomainObject {
 
     public void setNomeComum(String nomeComum) {
         this.nomeComum = nomeComum;
+    }
+    
+    /*
+     * Captando o descritivo legivel do campo...
+     */
+    public String getLabelCorrente(String nome) {
+        Class<AcidoGraxo> classe = AcidoGraxo.class;
+        String valor = "";
+        for ( Field atributo: classe.getDeclaredFields() ) {
+            if ( nome.equalsIgnoreCase( atributo.getName() )) {
+                try {
+                    Method method = AcidoGraxo.class.getMethod( montarNomeMetodo( atributo.getName() ) );
+                    valor = (String) method.invoke( new AcidoGraxo() );
+                } catch (Exception e) {
+                    valor = "error...";
+                    e.printStackTrace();
+                }
+            }
+        }
+        return valor;
+    }
+    
+    /*
+     * Captando o nome definitivo do atributo
+     */
+    public String getNomeAtributo(String nome) {
+        Class<AcidoGraxo> classe = AcidoGraxo.class;
+        String valor = "";
+        for ( Field atributo: classe.getDeclaredFields() ) {
+            if ( nome.equalsIgnoreCase( atributo.getName() )) {
+                valor = atributo.getName();
+            }
+        }
+        return valor;
+    }
+    
+    /*
+     * Descrevendo o nome do metodo...
+     */
+    private String montarNomeMetodo( String nome ) {
+        return "get"+ nome.substring(0, 1).toUpperCase()+
+            nome.substring(1, nome.length() )+"Label";
     }
 }

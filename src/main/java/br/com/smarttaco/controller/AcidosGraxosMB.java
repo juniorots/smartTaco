@@ -38,7 +38,9 @@ public class AcidosGraxosMB implements Serializable {
     private List<SelectItem> checkBoxes = new ArrayList<SelectItem>();
     private List<String> selectedCheckBoxes = new ArrayList<String>();
     private Class<AcidoGraxo> classe = AcidoGraxo.class;
+    
     private RowStateMap stateMap = new RowStateMap();
+    private AcidoGraxo obj = new AcidoGraxo();
     
     private int totalColunas;
     
@@ -48,27 +50,20 @@ public class AcidosGraxosMB implements Serializable {
         /*
          * Definindo a estrutura da tabela 
          */
-        int i = 1;
+        int i = 0;
         try {
             for ( Field atributo: classe.getDeclaredFields() ) {
-                Method method = classe.getMethod( montarNomeMetodo( atributo.getName() ) );    
-                String valor = (String) method.invoke( new AcidoGraxo() );
-             
                 if (!"grupo".equalsIgnoreCase( atributo.getName() )) {
-                    this.checkBoxes.add (new SelectItem(atributo.getName(), valor ) );
+                    this.checkBoxes.add (new SelectItem(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
 
                     if ( i <= Constantes.LIMITE_COLUNAS) {
-                        this.listaColuna.add (new ColunaDinamica(atributo.getName(), valor ) );
+                        this.listaColuna.add (new ColunaDinamica(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
                         this.selectedCheckBoxes.add( atributo.getName() );
                     }
                     i++;
                 }
             }
             this.totalColunas = i;
-        } catch (NoSuchMethodException me) {
-            me.printStackTrace();
-        } catch (IllegalAccessException ae) {
-            ae.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,7 +91,7 @@ public class AcidosGraxosMB implements Serializable {
      */
     public void removeColumn(String name) {
         for (int i = 0; i < listaColuna.size(); i++)
-            if (listaColuna.get(i).getValue().equals(name))
+            if (listaColuna.get(i).getValue().equalsIgnoreCase( name ))
                 listaColuna.remove(i);
     }
     
@@ -104,24 +99,7 @@ public class AcidosGraxosMB implements Serializable {
      * Re-adicionando colunas
      */
     public void addColumn(String name) {
-        String valor;
-
-        try {
-            Method method = AcidoGraxo.class.getMethod( montarNomeMetodo(name) );
-            valor = (String) method.invoke( new AcidoGraxo() );
-        } catch (Exception e) {
-            valor = "error...";
-            e.printStackTrace();
-        }
-        listaColuna.add( new ColunaDinamica( name, valor ) );
-    }
-    
-    /*
-     * Descrevendo o nome do metodo...
-     */
-    private String montarNomeMetodo( String nome ) {
-        return "get"+ nome.substring(0, 1).toUpperCase()+
-            nome.substring(1, nome.length() )+"Label";
+        listaColuna.add( new ColunaDinamica( obj.getNomeAtributo( name ), obj.getLabelCorrente( name ) ) );
     }
     
     /*
