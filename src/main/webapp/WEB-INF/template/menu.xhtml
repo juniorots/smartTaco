@@ -6,7 +6,7 @@
        xmlns:ace="http://www.icefaces.org/icefaces/components"
        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:body>
-        <p:growl id="growl" showDetail="true" /> 
+        <ace:growlMessages id="alert" position="bottom-right"/>
         <div id='cssmenu'>
         <ul>
            <li class='active'><span class="iconeMenu"/><a href='#'>Menu</a>
@@ -44,7 +44,7 @@
                                                      requiredMessage="Campo obrigatório" maxlength="50" tabindex="2"/>
                                      </fieldset>
                                      <p:commandButton value="Entrar" id="login" actionListener="#{usuarioMB.validarUsuario}" 
-                                        ajax="false" update="growl" style="width: 50%;" >
+                                        ajax="false" update=":growl" style="width: 50%;" >
                                      </p:commandButton>
                                  </fieldset>
                                  <span><a href="#{request.contextPath}/jsp/recuperarSenha.xhtml" class="linkJanelaLogin">Esqueci minha senha!</a></span>

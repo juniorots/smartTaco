@@ -2,7 +2,6 @@ package br.com.smarttaco.controller;
 
 import br.com.smarttaco.base.UsuarioDAO;
 import br.com.smarttaco.modelo.Usuario;
-import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.EnviarEmail;
 import br.com.smarttaco.util.Util;
 import java.io.IOException;

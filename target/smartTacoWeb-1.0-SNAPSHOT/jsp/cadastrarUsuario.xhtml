@@ -8,13 +8,22 @@
     <ui:composition template="/WEB-INF/template/mestre.xhtml">
         <ui:define name="centro">
             <h:form>
+                <style>
+                    .ui-datepicker {
+                        display: none !important;
+                    }
+                    .ui-inputfield hasDatepicker {
+                        display: block !important;
+                    }
+                </style>
+                
                 <!--<p:messages/>-->
                 
                 <c:if test="#{empty usuarioMB.usuario.id}">
-                    <span id="tituloTela">Cadastrar novo usuário</span>
+                    <span id="tituloTela">Cadastre-se!</span>
                 </c:if>
                 <c:if test="#{not empty usuarioMB.usuario.id}">
-                    <span id="tituloTela">Alterar dados pessoais</span>
+                    <span id="tituloTela">Altere seus dados...</span>
                 </c:if>
                 
                 <h:panelGrid columns="3" cellpadding="2">

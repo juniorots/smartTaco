@@ -11,17 +11,13 @@ import br.com.smarttaco.modelo.ColunaDinamica;
 import br.com.smarttaco.util.Constantes;
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import org.icefaces.ace.model.table.RowStateMap;
-import org.primefaces.context.RequestContext;
 
 /**
  *
