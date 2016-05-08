@@ -5,6 +5,7 @@ import br.com.smarttaco.modelo.Usuario;
 import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.EnviarEmail;
 import br.com.smarttaco.util.Util;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,9 +15,12 @@ import java.util.Random;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.http.HttpServletRequest;
 import lombok.Cleanup;
 import org.primefaces.context.RequestContext;
 
@@ -232,12 +236,18 @@ public class UsuarioMB implements Serializable {
     }
     
     /**
-     * Tratando do fechamento da sessao aberta perlo usuario
+     * Tratando do fechamento da sessao aberta pelo usuario
      * @return 
      */
-    public String sairSistema() {
+    public void sairSistema() {
         setUsuario( new Usuario() );
         Util.gravarUsuarioSessao( getUsuario() );
-        return Constantes.CADASTRAR_USUARIO;
+        
+        try {
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 }
