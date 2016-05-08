@@ -2,6 +2,7 @@ package br.com.smarttaco.controller;
 
 import br.com.smarttaco.base.UsuarioDAO;
 import br.com.smarttaco.modelo.Usuario;
+import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.EnviarEmail;
 import br.com.smarttaco.util.Util;
 import java.io.Serializable;
@@ -13,7 +14,6 @@ import java.util.Random;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -96,7 +96,8 @@ public class UsuarioMB implements Serializable {
         
         if ( !continuarRegistro( getUsuario() ) ) {
             mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no cadastro. E-mail já registrado no sistema.", "");
-            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+//            FacesContext.getCurrentInstance().addMessage(null, mensagem);
             return;
         }
         
@@ -173,9 +174,13 @@ public class UsuarioMB implements Serializable {
             setUsuario( retornoUsuario );
         } else {
             getUsuario().setEmail("");
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "E-mail ou Senha inválidos.") );
-            context.getExternalContext().getFlash().setKeepMessages(true);
+            
+            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "E-mail ou Senha inválidos.");
+            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+            
+//            FacesContext context = FacesContext.getCurrentInstance();
+//            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "E-mail ou Senha inválidos.") );
+//            context.getExternalContext().getFlash().setKeepMessages(true);
         }
     }
     
@@ -228,9 +233,11 @@ public class UsuarioMB implements Serializable {
     
     /**
      * Tratando do fechamento da sessao aberta perlo usuario
+     * @return 
      */
-    public void sairSistema() {
+    public String sairSistema() {
         setUsuario( new Usuario() );
         Util.gravarUsuarioSessao( getUsuario() );
+        return Constantes.CADASTRAR_USUARIO;
     }
 }

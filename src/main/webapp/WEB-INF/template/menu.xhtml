@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:p="http://primefaces.org/ui"
+       xmlns:ace="http://www.icefaces.org/icefaces/components"
        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:body>
         <p:growl id="growl" showDetail="true" /> 
@@ -43,7 +44,8 @@
                                                      requiredMessage="Campo obrigatório" maxlength="50" tabindex="2"/>
                                      </fieldset>
                                      <p:commandButton value="Entrar" id="login" actionListener="#{usuarioMB.validarUsuario}" 
-                                                      ajax="false" update="growl" style="width: 50%;" />
+                                        ajax="false" update="growl" style="width: 50%;" >
+                                     </p:commandButton>
                                  </fieldset>
                                  <span><a href="#{request.contextPath}/jsp/recuperarSenha.xhtml" class="linkJanelaLogin">Esqueci minha senha!</a></span>
                              </h:form>
@@ -56,7 +58,9 @@
            <c:if test="#{not empty usuarioMB.usuario.id}">
                 <li style='float: right;'>  
                     <h:form>
-                        <h:commandLink value="Sair" action="#{usuarioMB.sairSistema}" class="linkTituloMenu" style="padding: 17px 40px 9px 10px;"/>
+                        <h:commandLink id="sair" value="Sair" action="#{usuarioMB.sairSistema}" 
+                            class="linkTituloMenu" style="padding: 17px 40px 9px 10px;" >
+                        </h:commandLink>
                     </h:form>
                 </li>
            </c:if>

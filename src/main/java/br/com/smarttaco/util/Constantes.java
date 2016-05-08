@@ -11,6 +11,13 @@ package br.com.smarttaco.util;
  * @author Jose Alves
  */
 public class Constantes {
+    /*
+     * Util - navegacao
+     */
+    public static String INICIO_SISTEMA = "inicio";
+    public static String CADASTRAR_USUARIO = "inicio";
+    public static String ACIDOS_GRAXOS = "inicio";
+    
     public static String HOST_NAME_GMAIL = "smtp.gmail.com";
     public static String HOST_NAME_HOTMAIL = "smtp.live.com";
     public static String ADMINISTRADOR_1 = "juniorots@gmail.com";
