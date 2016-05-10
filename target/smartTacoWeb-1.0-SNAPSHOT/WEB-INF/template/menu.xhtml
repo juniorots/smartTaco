@@ -6,7 +6,12 @@
        xmlns:ace="http://www.icefaces.org/icefaces/components"
        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:body>
-        <ace:growlMessages id="alert" position="bottom-right"/>
+        <ace:growlMessages id="alert" position="top-right"/>
+        <style>
+            .ui-datepicker {
+               border: 0;
+            }
+        </style>
         <div id='cssmenu'>
         <ul>
            <li class='active'><span class="iconeMenu"/><a href='#'>Menu</a>

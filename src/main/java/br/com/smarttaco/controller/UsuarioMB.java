@@ -70,6 +70,8 @@ public class UsuarioMB implements Serializable {
     public void alterarUsuario() {
         FacesMessage mensagem = null;
         
+        if ( !validarDados() ) return;
+        
         @Cleanup
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
         
@@ -96,6 +98,8 @@ public class UsuarioMB implements Serializable {
     public void salvarUsuario() {
         
         FacesMessage mensagem = null;
+        
+        if ( !validarDados() ) return;
         
         if ( !continuarRegistro( getUsuario() ) ) {
             mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no cadastro. E-mail já registrado no sistema.", "");
@@ -125,6 +129,25 @@ public class UsuarioMB implements Serializable {
             mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Status", "Falha no cadastro. Operação cancelada.");
         }
         RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+    }
+    
+    /*
+     * Validando dados inseridos
+     */
+    public boolean validarDados() {
+        if ( !getUsuario().getSenha().equalsIgnoreCase( getUsuario().getConfirmaSenha() )) {
+            try {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no cadastro. Senhas diferentes", "") );
+                context.getExternalContext().getFlash().setKeepMessages(true);
+                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+            return false; // fail! :-(
+        } 
+        return true; // passou! :-)
     }
     
     /**
