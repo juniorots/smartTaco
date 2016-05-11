@@ -138,7 +138,7 @@ public class UsuarioMB implements Serializable {
         if ( !getUsuario().getSenha().equalsIgnoreCase( getUsuario().getConfirmaSenha() )) {
             try {
                 FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no cadastro. Senhas diferentes", "") );
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no processo. Senhas diferentes", "") );
                 context.getExternalContext().getFlash().setKeepMessages(true);
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
@@ -146,8 +146,31 @@ public class UsuarioMB implements Serializable {
                 io.printStackTrace();
             }
             return false; // fail! :-(
-        } 
+        }
+        
+        if ( !validarEmail() ) return false; // fail! :-(
+        
         return true; // passou! :-)
+    }
+    
+    /**
+     * Tratando da validacao de emails...
+     * @return 
+     */
+    public boolean validarEmail() {
+        if ( !Util.validarEmail( getUsuario().getEmail() ) ) {
+            try {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no processo. E-mail incorreto...", "") );
+                context.getExternalContext().getFlash().setKeepMessages(true);
+                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+            return false; // fail! :-(
+        }
+        return true; // acerto! :-)
     }
     
     /**
@@ -216,6 +239,8 @@ public class UsuarioMB implements Serializable {
     public void recuperarConta() {
         
         FacesMessage mensagem = null;
+        
+        if ( !validarEmail() ) return;
         
         @Cleanup
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");

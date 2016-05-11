@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -105,6 +107,22 @@ public class Util {
         
         return sb.toString();
     }
+    
+    /**
+     * Tratando da valicao de e-mail
+     * @param email
+     * @return 
+     */
+    public static boolean validarEmail( String email ) {
+        String regex = "^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(email);
+        if ( !m.find() ) {
+            return false; // fail! :-(
+        }
+        return true; // acerto! :-)
+    }
+    
     
     /**
      * Verificando objeto nulo
