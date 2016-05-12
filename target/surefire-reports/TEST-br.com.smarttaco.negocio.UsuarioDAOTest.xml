@@ -20,7 +20,7 @@
     <property name="basedir" value="/home/junior/workspace/smartTaco"/>
     <property name="java.endorsed.dirs" value="/var/opt/jdk7/jre/lib/endorsed"/>
     <property name="os.arch" value="i386"/>
-    <property name="surefire.real.class.path" value="/tmp/surefirebooter7517635423100781874.jar"/>
+    <property name="surefire.real.class.path" value="/tmp/surefirebooter1843107978587434358.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="/var/opt/jdk7/jre"/>
-    <property name="sun.java.command" value="/tmp/surefirebooter7517635423100781874.jar /tmp/surefire2896683863619382428tmp /tmp/surefire8925211072902580960tmp"/>
+    <property name="sun.java.command" value="/tmp/surefirebooter1843107978587434358.jar /tmp/surefire6400813655793758899tmp /tmp/surefire416709283337118157tmp"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -62,5 +62,5 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.001" classname="br.com.smarttaco.negocio.UsuarioDAOTest" name="example"/>
+  <testcase time="0" classname="br.com.smarttaco.negocio.UsuarioDAOTest" name="example"/>
 </testsuite>

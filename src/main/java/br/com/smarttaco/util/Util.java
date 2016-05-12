@@ -114,13 +114,8 @@ public class Util {
      * @return 
      */
     public static boolean validarEmail( String email ) {
-        String regex = "^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(email);
-        if ( !m.find() ) {
-            return false; // fail! :-(
-        }
-        return true; // acerto! :-)
+        String regex = "[a-z._-]+@[a-z.]+";
+        return email.matches(regex);
     }
     
     

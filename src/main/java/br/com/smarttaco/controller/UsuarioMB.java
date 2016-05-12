@@ -160,9 +160,11 @@ public class UsuarioMB implements Serializable {
     public boolean validarEmail() {
         if ( !Util.validarEmail( getUsuario().getEmail() ) ) {
             try {
+                
                 FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no processo. E-mail incorreto...", "") );
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no processo. E-mail invalido", "") );
                 context.getExternalContext().getFlash().setKeepMessages(true);
+
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
             } catch (IOException io) {
