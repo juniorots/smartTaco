@@ -8,12 +8,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(AcidoGraxo.class)
 public abstract class AcidoGraxo_ extends br.com.smarttaco.framework.persistence.DomainObject_ {
 
-	public static volatile SingularAttribute<AcidoGraxo, String> campo02;
-	public static volatile SingularAttribute<AcidoGraxo, String> campo03;
-	public static volatile SingularAttribute<AcidoGraxo, String> campo03Label;
-	public static volatile SingularAttribute<AcidoGraxo, String> campo01Label;
-	public static volatile SingularAttribute<AcidoGraxo, String> campo02Label;
-	public static volatile SingularAttribute<AcidoGraxo, String> campo01;
+	public static volatile SingularAttribute<AcidoGraxo, String> grupo;
+	public static volatile SingularAttribute<AcidoGraxo, String> acidosGraxos;
+	public static volatile SingularAttribute<AcidoGraxo, String> nomeComum;
+	public static volatile SingularAttribute<AcidoGraxo, String> nomeSistematico;
 
 }
 

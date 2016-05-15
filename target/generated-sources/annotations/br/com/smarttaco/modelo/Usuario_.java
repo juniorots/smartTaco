@@ -15,6 +15,7 @@ public abstract class Usuario_ extends br.com.smarttaco.framework.persistence.Do
 	public static volatile SingularAttribute<Usuario, String> nome;
 	public static volatile SingularAttribute<Usuario, Date> dtNascimento;
 	public static volatile SingularAttribute<Usuario, String> senha;
+	public static volatile SingularAttribute<Usuario, String> confirmaSenha;
 
 }
 

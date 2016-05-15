@@ -177,8 +177,25 @@
             <artifactId>icefaces-ace</artifactId>
             <version>4.1.1</version>
         </dependency>
+        
+        <!-- http://mvnrepository.com/artifact/org.icefaces/icefaces 
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        -->
+        
+        <!-- http://mvnrepository.com/artifact/org.icefaces/icefaces-compat -->
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces-compat</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
 
         <!--
+
         <dependency>
             <groupId>edu.uci.ics</groupId>
             <artifactId>crawler4j</artifactId>

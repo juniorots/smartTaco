@@ -17,7 +17,7 @@ import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
-import org.icefaces.ace.model.table.RowStateMap;
+//import org.icefaces.ace.model.table.RowStateMap;
 
 /**
  *
@@ -35,7 +35,7 @@ public class AcidosGraxosMB implements Serializable {
     private List<String> selectedCheckBoxes = new ArrayList<String>();
     private Class<AcidoGraxo> classe = AcidoGraxo.class;
     
-    private RowStateMap stateMap = new RowStateMap();
+//    private RowStateMap stateMap = new RowStateMap();
     private AcidoGraxo obj = new AcidoGraxo();
     
     private int totalColunas;
@@ -126,13 +126,13 @@ public class AcidosGraxosMB implements Serializable {
         this.totalColunas = totalColunas;
     }
 
-    public RowStateMap getStateMap() {
-        return stateMap;
-    }
-
-    public void setStateMap(RowStateMap stateMap) {
-        this.stateMap = stateMap;
-    }
+//    public RowStateMap getStateMap() {
+//        return stateMap;
+//    }
+//
+//    public void setStateMap(RowStateMap stateMap) {
+//        this.stateMap = stateMap;
+//    }
 
     public List<AcidoGraxo> getListaItens() {
         return listaItens;
