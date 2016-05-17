@@ -6,12 +6,9 @@
 
 package br.com.smarttaco.controller;
 
-import java.io.IOException;
+import br.com.smarttaco.util.Constantes;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.mindmap.DefaultMindmapNode;
 import org.primefaces.model.mindmap.MindmapNode;
@@ -26,14 +23,14 @@ public class PrincipalMB implements Serializable {
     private MindmapNode folhaSelecionada;
     
     public PrincipalMB() {
-        raiz = new DefaultMindmapNode("TACO", "Tabela Brasileira de Composição de Alimentos", "66CDAA", false);
-        MindmapNode acidosGraxos = new DefaultMindmapNode("Ácidos Graxos", "Nomes Sistemáticos e comuns dos ácidos graxos", 
+        raiz = new DefaultMindmapNode(Constantes.ELIPSE_TACO, "Tabela Brasileira de Composição de Alimentos", "66CDAA", false);
+        MindmapNode acidosGraxos = new DefaultMindmapNode(Constantes.ELIPSE_ACIDOS, "Nomes Sistemáticos e comuns dos ácidos graxos", 
                 "87CEFA", true);
-        MindmapNode tagnames = new DefaultMindmapNode("Tagnames segundo INFOODS e USDA", "Tagnames segundo INFOODS e USDA", 
+        MindmapNode tagnames = new DefaultMindmapNode(Constantes.ELIPSE_TAGNAMES, "Tagnames segundo INFOODS e USDA", 
                 "FAEBD7", true);
-        MindmapNode nomesCientificos = new DefaultMindmapNode("Nomes Científicos", "Nomes científicos dos alimentos contemplados na Tabela", 
+        MindmapNode nomesCientificos = new DefaultMindmapNode(Constantes.ELIPSE_CIENTIFICOS, "Nomes científicos dos alimentos contemplados na Tabela", 
                 "FA8072", true);
-        MindmapNode tabelasCentesimais = new DefaultMindmapNode("Tabelas Centesimais", "Composição de alimentos por 100 gramas de parte comestível", 
+        MindmapNode tabelasCentesimais = new DefaultMindmapNode(Constantes.ELIPSE_CENTESIMAIS, "Composição de alimentos por 100 gramas de parte comestível", 
                 "FFB5C5", true);
         
         raiz.addNode( acidosGraxos );
@@ -42,26 +39,27 @@ public class PrincipalMB implements Serializable {
         raiz.addNode( tabelasCentesimais );
     }
     
-    public void onNodeSelect(SelectEvent event) {
+    public String onNodeSelect(SelectEvent event) {
         MindmapNode node = (MindmapNode) event.getObject();
         
         String label = node.getLabel();
-        if ( "Tabelas Centesimais".equalsIgnoreCase( label ) ) {
-             node.addNode(new DefaultMindmapNode("Centesimal, minerais, vitaminas e colesterol", 
+        if ( Constantes.ELIPSE_CENTESIMAIS.equalsIgnoreCase( label ) ) {
+             node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ELEMENTOS, 
                      "Centesimal, minerais, vitaminas e colesterol", "FFE4E1", false));
              
-             node.addNode(new DefaultMindmapNode("Ácidos graxos", 
+             node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ACIDOS, 
                      "Ácidos graxos", "FFE4E1", false));
              
-             node.addNode(new DefaultMindmapNode("Aminoácidos", 
+             node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_AMINOACIDOS, 
                      "Aminoácidos", "FFE4E1", false));
         }
-//        try {
-//            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-//            ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-//        } catch (IOException io) {
-//            io.printStackTrace();
-//        }
+        
+        if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
+            return Constantes.ACIDOS_GRAXOS;
+        }
+
+        // default return...
+        return Constantes.INICIO_SISTEMA;
     }
      
     public void onNodeDblselect(SelectEvent event) {
@@ -83,6 +81,4 @@ public class PrincipalMB implements Serializable {
     public void setFolhaSelecionada(MindmapNode folhaSelecionada) {
         this.folhaSelecionada = folhaSelecionada;
     }
-    
-    
 }

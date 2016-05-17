@@ -15,8 +15,8 @@ public class Constantes {
      * Util - navegacao
      */
     public static String INICIO_SISTEMA = "inicio";
-    public static String CADASTRAR_USUARIO = "inicio";
-    public static String ACIDOS_GRAXOS = "inicio";
+    public static String CADASTRAR_USUARIO = "cadastrarUsuario";
+    public static String ACIDOS_GRAXOS = "acidosGraxos";
     
     public static String HOST_NAME_GMAIL = "smtp.gmail.com";
     public static String HOST_NAME_HOTMAIL = "smtp.live.com";
@@ -39,4 +39,13 @@ public class Constantes {
     public static int UMA_HORA = 60 * UM_MINUTO;
     
     public static final Integer LIMITE_COLUNAS = 10;
+    
+    public static String ELIPSE_TACO = "TACO";
+    public static String ELIPSE_ACIDOS = "Ácidos Graxos";
+    public static String ELIPSE_TAGNAMES = "Tagnames segundo INFOODS e USDA";
+    public static String ELIPSE_CIENTIFICOS = "Nomes Científicos";
+    
+    public static String ELIPSE_CENTESIMAIS = "Tabelas Centesimais";
+    public static String ELIPSE_AMINOACIDOS = "Aminoácidos";
+    public static String ELIPSE_ELEMENTOS = "Centesimal, minerais, vitaminas e colesterol";
 }
