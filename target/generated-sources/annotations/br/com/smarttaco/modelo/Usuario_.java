@@ -9,7 +9,6 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Usuario.class)
 public abstract class Usuario_ extends br.com.smarttaco.framework.persistence.DomainObject_ {
 
-	public static volatile SingularAttribute<Usuario, String> nomeTitulo;
 	public static volatile SingularAttribute<Usuario, String> email;
 	public static volatile SingularAttribute<Usuario, String> telefone;
 	public static volatile SingularAttribute<Usuario, String> nome;

@@ -17,6 +17,7 @@ public class Constantes {
     public static String INICIO_SISTEMA = "/index.xhtml";
     public static String CADASTRAR_USUARIO = "/jsp/cadastrarUsuario.xhtml";
     public static String ACIDOS_GRAXOS = "/jsp/acidosGraxos.xhtml";
+    public static String TAGNAMES = "/jsp/tagnames.xhtml";
     
     public static String HOST_NAME_GMAIL = "smtp.gmail.com";
     public static String HOST_NAME_HOTMAIL = "smtp.live.com";

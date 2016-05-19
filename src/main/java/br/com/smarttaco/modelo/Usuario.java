@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -18,6 +19,7 @@ public class Usuario extends DomainObject {
     private String nome;
     
     // Utilizado para ser exibido na barra de navegacao principal
+    @Transient
     private String nomeTitulo = "<< Usuário >>";
     
     @NotNull

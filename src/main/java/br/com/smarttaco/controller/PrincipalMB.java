@@ -58,11 +58,15 @@ public class PrincipalMB implements Serializable {
                      "Aminoácidos", "FFE4E1", true));
         }
         
-        if ( !isUsuarioLogado() ) return;
+//        if ( !isUsuarioLogado() ) return;
         
+        // select your destiny! MK
         if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.ACIDOS_GRAXOS );
+        } else if ( Constantes.ELIPSE_TAGNAMES.equalsIgnoreCase( label ) ) {
+            Util.forward( Constantes.TAGNAMES );
         }
+        
     }
 
     /*
