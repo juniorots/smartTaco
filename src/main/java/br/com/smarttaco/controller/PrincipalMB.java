@@ -7,8 +7,14 @@
 package br.com.smarttaco.controller;
 
 import br.com.smarttaco.util.Constantes;
+import br.com.smarttaco.util.Util;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.mindmap.DefaultMindmapNode;
 import org.primefaces.model.mindmap.MindmapNode;
@@ -21,6 +27,7 @@ import org.primefaces.model.mindmap.MindmapNode;
 public class PrincipalMB implements Serializable {
     private MindmapNode raiz;
     private MindmapNode folhaSelecionada;
+    UsuarioMB usuario = new UsuarioMB();
     
     public PrincipalMB() {
         raiz = new DefaultMindmapNode(Constantes.ELIPSE_TACO, "Tabela Brasileira de Composição de Alimentos", "66CDAA", false);
@@ -54,14 +61,33 @@ public class PrincipalMB implements Serializable {
                      "Aminoácidos", "FFE4E1", false));
         }
         
-        if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
-            return Constantes.ACIDOS_GRAXOS;
+        if ( !Util.isEmpty( Util.captarUsuarioSessao() ) ) {
+            if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
+                forward( Constantes.ACIDOS_GRAXOS );
+            }
+        } else {
+            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "É porque não dá mesmo!", 
+                    "Ops... Identifiquei que você não entrou no sistema!!<br /> "
+                            + "Preciso que você faça isso, para liberar a consulta!!");
+            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
         }
-
         // default return...
         return Constantes.INICIO_SISTEMA;
     }
-     
+
+    /*
+    * redirecionando...
+    */
+    public void forward( String caminho ) {
+        try {
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect( ((HttpServletRequest) ec.getRequest()).getContextPath() + caminho );            
+//            ec.redirect( ((HttpServletRequest) ec.getRequest()).getRequestURI() );            
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void onNodeDblselect(SelectEvent event) {
         this.folhaSelecionada = (MindmapNode) event.getObject();        
     }
