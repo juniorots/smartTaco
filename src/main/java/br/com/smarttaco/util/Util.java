@@ -19,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -44,6 +45,19 @@ public class Util {
         }
         sb.append( formato.format(data) );
         return sb.toString();
+    }
+    
+    /*
+     * redirecionando...
+     */
+    public static void forward( String caminho ) {
+        try {
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect( ((HttpServletRequest) ec.getRequest()).getContextPath() + caminho );            
+            ec.redirect( ((HttpServletRequest) ec.getRequest()).getRequestURI() );            
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
     }
     
     /**

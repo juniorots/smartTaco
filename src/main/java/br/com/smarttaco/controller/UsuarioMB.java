@@ -2,6 +2,7 @@ package br.com.smarttaco.controller;
 
 import br.com.smarttaco.base.UsuarioDAO;
 import br.com.smarttaco.modelo.Usuario;
+import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.EnviarEmail;
 import br.com.smarttaco.util.Util;
 import java.io.IOException;
@@ -121,12 +122,12 @@ public class UsuarioMB implements Serializable {
         entityManager.getTransaction().commit();
         
         if ( !Util.isEmpty( usInserido.getId() ) ) {
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Status", "Usuário cadastrado com sucesso.");
+            mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", "Usuário cadastrado com sucesso.");
             usInserido.setNomeTitulo( usInserido.getNome() );
             Util.gravarUsuarioSessao( usInserido );
             setUsuario( Util.captarUsuarioSessao() );
         } else {
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Status", "Falha no cadastro. Operação cancelada.");
+            mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Hum...", "Falha no cadastro. Operação cancelada.");
         }
         RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
     }
@@ -226,7 +227,7 @@ public class UsuarioMB implements Serializable {
         } else {
             getUsuario().setEmail("");
             
-            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "E-mail ou Senha inválidos.");
+            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vixi...", "E-mail ou Senha inválidos.");
             RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
             
 //            FacesContext context = FacesContext.getCurrentInstance();
@@ -274,10 +275,10 @@ public class UsuarioMB implements Serializable {
             
             EnviarEmail.recuperarSenha(emails, novaSenha);
             
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Status", "Uma senha automática fora enviado para o e-mail informado, <br />"
+            mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", "Uma senha automática fora enviado para o e-mail informado, <br />"
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;após a sua validação procure alterá-la.");
         } else {
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Informações inexistentes em nossa base de dados, favor tentar novamente.");            
+            mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vixi...", "Informações inexistentes em nossa base de dados, favor tentar novamente.");            
         }
         usuario = new Usuario();
         
@@ -291,12 +292,6 @@ public class UsuarioMB implements Serializable {
     public void sairSistema() {
         setUsuario( new Usuario() );
         Util.gravarUsuarioSessao( getUsuario() );
-        
-        try {
-            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-            ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
+        Util.forward( Constantes.INICIO_SISTEMA );
     }
 }

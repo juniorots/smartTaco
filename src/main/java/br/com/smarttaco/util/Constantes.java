@@ -14,7 +14,7 @@ public class Constantes {
     /*
      * Util - navegacao
      */
-    public static String INICIO_SISTEMA = "index.xhtml";
+    public static String INICIO_SISTEMA = "/index.xhtml";
     public static String CADASTRAR_USUARIO = "/jsp/cadastrarUsuario.xhtml";
     public static String ACIDOS_GRAXOS = "/jsp/acidosGraxos.xhtml";
     

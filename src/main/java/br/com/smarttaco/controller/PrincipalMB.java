@@ -46,45 +46,41 @@ public class PrincipalMB implements Serializable {
         raiz.addNode( tabelasCentesimais );
     }
     
-    public String onNodeSelect(SelectEvent event) {
+    public void onNodeSelect(SelectEvent event) {
         MindmapNode node = (MindmapNode) event.getObject();
         
         String label = node.getLabel();
         if ( Constantes.ELIPSE_CENTESIMAIS.equalsIgnoreCase( label ) ) {
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ELEMENTOS, 
-                     "Centesimal, minerais, vitaminas e colesterol", "FFE4E1", false));
+                     "Centesimal, minerais, vitaminas e colesterol", "FFE4E1", true));
              
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ACIDOS, 
-                     "Ácidos graxos", "FFE4E1", false));
+                     "Ácidos graxos", "FFE4E1", true));
              
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_AMINOACIDOS, 
-                     "Aminoácidos", "FFE4E1", false));
+                     "Aminoácidos", "FFE4E1", true));
         }
         
-        if ( !Util.isEmpty( Util.captarUsuarioSessao() ) ) {
-            if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
-                forward( Constantes.ACIDOS_GRAXOS );
-            }
-        } else {
-            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "É porque não dá mesmo!", 
-                    "Ops... Identifiquei que você não entrou no sistema!!<br /> "
-                            + "Preciso que você faça isso, para liberar a consulta!!");
-            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+        if ( !isUsuarioLogado() ) return;
+        
+        if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
+            Util.forward( Constantes.ACIDOS_GRAXOS );
         }
-        // default return...
-        return Constantes.INICIO_SISTEMA;
     }
 
     /*
-    * redirecionando...
+    * Verificando se o usuario esta logado no sistema.
     */
-    public void forward( String caminho ) {
-        try {
-            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-            ec.redirect( ((HttpServletRequest) ec.getRequest()).getContextPath() + caminho );            
-//            ec.redirect( ((HttpServletRequest) ec.getRequest()).getRequestURI() );            
-        } catch ( Exception e) {
-            e.printStackTrace();
+    public boolean isUsuarioLogado() {
+        if ( Util.isEmpty( Util.captarUsuarioSessao() ) ) {
+            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "É porque não dá mesmo!", 
+                    "Ops... Identifiquei que você não entrou no sistema!!<br /> "
+                            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                            + "Preciso que você faça isso, para liberar a consulta!!");
+            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+            return false;
+        } else {
+            return true;
         }
     }
     
