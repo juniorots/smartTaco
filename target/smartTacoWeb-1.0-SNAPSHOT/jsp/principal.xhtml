@@ -9,21 +9,15 @@
         
         <!--
          NOTA: para capturar o caminho relativo do projeto, usa-se:
-            #[request.contextPath}/<DIRETORIO/..
+            #[request.contextPath}/<DIRETORIO>/..
         -->
         <ui:define name="centro">
             <div class="conteudo">
                 <h:form id="form">
-                    <icecore:config render="#{principalMB.bloquearConsulta}"/>
+                    <icecore:config render="false"/>
                     <p:mindmap value="#{principalMB.raiz}" style="margin-left: 11px;width:98%;height:520px;border:1px solid black;">
                         <p:ajax event="select" listener="#{principalMB.onNodeSelect}" immediate="true" rendered="@form"/>
-                        <p:ajax event="dblselect" listener="#{principalMB.onNodeDblselect}" update="output" 
-                                oncomplete="PF('details').show();" />
                     </p:mindmap>
-                    
-                    <p:dialog widgetVar="details" header="Detalhamento..." resizable="false" modal="true" showEffect="fade" hideEffect="fade">
-                        <h:outputText id="output" value="#{principalMB.folhaSelecionada.label}" />
-                    </p:dialog> 
                 </h:form>
             </div>
         </ui:define>

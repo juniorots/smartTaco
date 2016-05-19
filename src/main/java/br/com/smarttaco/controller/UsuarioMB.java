@@ -85,7 +85,7 @@ public class UsuarioMB implements Serializable {
         Usuario usAlterado = dao.update( getUsuario() );
         entityManager.getTransaction().commit();
         
-        mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Status", "Dados alterados com sucesso.");
+        mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", "Dados alterados com sucesso.");
         usAlterado.setNomeTitulo( getUsuario().getNome() );
         Util.gravarUsuarioSessao( usAlterado );
         setUsuario ( Util.captarUsuarioSessao() );
