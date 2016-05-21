@@ -19,6 +19,11 @@ public class Constantes {
     public static String ACIDOS_GRAXOS = "/jsp/acidosGraxos.xhtml";
     public static String TAGNAMES = "/jsp/tagnames.xhtml";
     
+    public static String NOMES_CIENTIFICOS = "/jsp/nomesCientificos.xhtml";
+    public static String COMPOSICAO_ELEMENTOS = "/jsp/composicaoElementos.xhtml";
+    public static String COMPOSICAO_ACIDOS = "/jsp/composicaoAcidos.xhtml";
+    public static String COMPOSICAO_AMINOACIDOS = "/jsp/composicaoAminoacidos.xhtml";
+    
     public static String HOST_NAME_GMAIL = "smtp.gmail.com";
     public static String HOST_NAME_HOTMAIL = "smtp.live.com";
     public static String ADMINISTRADOR_1 = "juniorots@gmail.com";
