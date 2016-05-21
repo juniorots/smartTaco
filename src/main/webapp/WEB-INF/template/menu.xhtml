@@ -47,16 +47,16 @@
                                  <fieldset id="body">
                                      <fieldset>
                                          <label for="email">E-mail</label>
-                                         <p:inputText id="email" value="#{usuarioMB.usuario.email}" required="true" 
+                                         <p:inputText id="email" value="#{usuarioMB.usuario.email}" required="false" 
                                                       requiredMessage="Campo obrigatório" maxlength="70" tabindex="1" />
                                      </fieldset>
                                      <fieldset>
                                          <label for="password">Senha</label>
-                                         <p:password id="senha" value="#{usuarioMB.usuario.senha}" required="true" 
+                                         <p:password id="senha" value="#{usuarioMB.usuario.senha}" required="false" 
                                                      requiredMessage="Campo obrigatório" maxlength="50" tabindex="2"/>
                                      </fieldset>
                                      <p:commandButton value="Entrar" id="login" actionListener="#{usuarioMB.validarUsuario}" 
-                                        ajax="false" update=":growl" style="width: 50%;" >
+                                        ajax="false" style="width: 50%;" >
                                      </p:commandButton>
                                  </fieldset>
                                  <span><a href="#{request.contextPath}/jsp/recuperarSenha.xhtml" class="linkJanelaLogin">Esqueci minha senha!</a></span>
