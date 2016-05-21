@@ -11,6 +11,7 @@ import br.com.smarttaco.util.Util;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.mindmap.DefaultMindmapNode;
@@ -21,6 +22,7 @@ import org.primefaces.model.mindmap.MindmapNode;
  * @author Jose Alves
  */
 @ManagedBean
+@SessionScoped
 public class PrincipalMB implements Serializable {
     private MindmapNode raiz;
     private MindmapNode folhaSelecionada;
@@ -35,7 +37,7 @@ public class PrincipalMB implements Serializable {
         MindmapNode nomesCientificos = new DefaultMindmapNode(Constantes.ELIPSE_CIENTIFICOS, "Nomes científicos dos alimentos contemplados na Tabela", 
                 "FA8072", true);
         MindmapNode tabelasCentesimais = new DefaultMindmapNode(Constantes.ELIPSE_CENTESIMAIS, "Composição de alimentos por 100 gramas de parte comestível", 
-                "FFB5C5", true);
+                "FFA500", true);
         
         raiz.addNode( acidosGraxos );
         raiz.addNode( tagnames );
@@ -48,14 +50,15 @@ public class PrincipalMB implements Serializable {
         
         String label = node.getLabel();
         if ( Constantes.ELIPSE_CENTESIMAIS.equalsIgnoreCase( label ) ) {
+             node.getChildren().clear();
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ELEMENTOS, 
-                     "Centesimal, minerais, vitaminas e colesterol", "FFE4E1", true));
+                     "Centesimal, minerais, vitaminas e colesterol", "FFDEAD", true));
              
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ACIDOS, 
-                     "Ácidos graxos", "FFE4E1", true));
+                     "Ácidos graxos", "FFDEAD", true));
              
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_AMINOACIDOS, 
-                     "Aminoácidos", "FFE4E1", true));
+                     "Aminoácidos", "FFDEAD", true));
         }
         
 //        if ( !isUsuarioLogado() ) return;
@@ -67,8 +70,9 @@ public class PrincipalMB implements Serializable {
             Util.forward( Constantes.TAGNAMES );
         } else if ( Constantes.ELIPSE_CIENTIFICOS.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.NOMES_CIENTIFICOS );
+        } else if ( Constantes.ELIPSE_ELEMENTOS.equalsIgnoreCase( label ) ) {
+            Util.forward( Constantes.COMPOSICAO_ELEMENTOS );
         }
-        
     }
 
     /*

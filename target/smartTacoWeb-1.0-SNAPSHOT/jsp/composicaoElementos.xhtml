@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/WEB-INF/template/mestre.xhtml">
+        <ui:define name="centro">
+            <h:form id="frmComposicaoElementos">
+                <style>
+                    .checkboxes {
+                        width:100%;
+                        
+                        /* definindo fonte padrao */    
+                        color: #445058;
+                        font-family: Montserrat, sans-serif;
+                    }
+                    .checkboxes tr, .checkboxes td{
+                        width: 100%;
+                        display:inline-block;
+                        /* IE7 inline block hack */
+                        *display:inline;
+                        zoom:1;
+                    }
+                    .ui-header-column {
+                        text-align:center !important;
+                    }
+                    .checkboxes td {
+                        width:18%;
+                    }
+                    
+                    .group-header td {
+                        text-align:left !important;
+                    }
+                    
+                    /*
+                     * SECAO DINAMICA - SEMPRE ALTERAVEL - DE CADA MODULO DO SISTEMA
+                     */
+                    
+                    .group-header {
+                        font-weight:bold;
+                        background-color:#FFA54F; // Tan1
+                    }
+                        
+                    /* Cursor sobre a linha */
+                    .ui-state-hover {
+                        text-align:center !important;
+                        background-color: #FFA500 !important; // Orange1 
+                        font-family: Montserrat, sans-serif;
+                    }
+                    
+                    /* Efeito de zebrinha */
+                    .ui-datatable-odd {
+                        background-color: #FFFFF0 !important; // OldLace 
+                        font-family: Montserrat, sans-serif;
+                    }
+                    ui-datatable-even{
+                        font-family: Montserrat, sans-serif;
+                    }
+                    
+                    /* Linha selecionada */
+                    .ui-state-active {
+                        background-color: #FFA500 !important; // Orange
+                        font-family: Montserrat, sans-serif;
+                    }
+                    
+                    .titulo {
+                        color: #CD6600; /* DarkOrange3 */
+                        font-size: 25px;
+                    }
+                </style>
+                <div class="titulo">Composição de alimentos: Centesimais, minerais, vitaminas e colesterol</div>
+
+                <div class="botoes">
+                <h:selectManyCheckbox id="checkbox" value="#{composicaoElementosMB.selectedCheckBoxes}"
+                                  valueChangeListener="#{composicaoElementosMB.checkboxChange}"
+                                  styleClass="checkboxes">
+                    <f:ajax render="@form" execute="@this"/>
+                    <f:selectItems value="#{composicaoElementosMB.checkBoxes}" />
+                </h:selectManyCheckbox>
+                </div>
+                
+                    <ace:dataTable id="dataTable"
+                                   value="#{composicaoElementosMB.listaItens}" 
+                                   var="linha"
+                                   rows="8"
+                                   stateMap="#{composicaoElementosMB.stateMap}"
+                                   selectionMode="single"
+                                   style="margin-left: 11px; margin-bottom: 0px; width: 98%"
+                                   paginator="true"
+                                   paginatorPosition="bottom"
+                                   reorderableColumns="true">
+                        <ace:row 
+                            condition="group" 
+                            groupBy="#{linha.grupo}" 
+                            pos="before" 
+                            styleClass="group-header">
+                            <ace:column colspan="${composicaoElementosMB.totalColunas}">
+                                <h:outputText value="#{linha.grupo}"/>
+                            </ace:column>
+                        </ace:row>
+                        <c:forEach items="#{composicaoElementosMB.listaColuna}" var="item">
+                            <ace:column 
+                                sortBy="#{linha[item.value]}"
+                                filterBy="#{linha[item.value]}"
+                                filterMatchMode="contains"
+                                style="text-align: left"
+                                headerText="#{item.headerText}">
+                                <h:outputText id="#{item.value}" value="#{linha[item.value]}"/>
+                            </ace:column>
+                        </c:forEach>
+                    </ace:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
