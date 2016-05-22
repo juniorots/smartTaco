@@ -149,7 +149,7 @@ public class UsuarioMB implements Serializable {
             return false; // fail! :-(
         }
         
-        if ( !validarEmail() ) return false; // fail! :-(
+//        if ( !validarEmail() ) return false; // fail! :-(
         
         return true; // passou! :-)
     }
