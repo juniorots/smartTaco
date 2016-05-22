@@ -61,7 +61,7 @@ public class PrincipalMB implements Serializable {
                      "Centesimal Aminoácidos", "FFDEAD", true));
         }
         
-//        if ( !isUsuarioLogado() ) return;
+        if ( !isUsuarioLogado() ) return;
         
         // select your destiny! MK
         if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {

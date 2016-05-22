@@ -23,6 +23,7 @@
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/controller/UsuarioMB.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/controller/TagnamesMB.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/base/UsuarioDAO.java
+/home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/modelo/ComposicaoAminoacidos.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/controller/AcidosGraxosMB.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/framework/persistence/DaoJpa2.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/threads/ThreadQuadrix.java
@@ -36,4 +37,5 @@
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/threads/ThreadExercito.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/framework/persistence/EntityListener.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/modelo/ColunaDinamica.java
+/home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/controller/ComposicaoAminoacidosMB.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/modelo/Usuario.java
