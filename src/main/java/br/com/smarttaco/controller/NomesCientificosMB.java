@@ -50,7 +50,7 @@ public class NomesCientificosMB implements Serializable {
                 if (!"grupo".equalsIgnoreCase( atributo.getName() )) {
                     this.checkBoxes.add (new SelectItem(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
 
-                    if ( i <= Constantes.LIMITE_COLUNAS) {
+                    if ( i < Constantes.LIMITE_COLUNAS) {
                         this.listaColuna.add (new ColunaDinamica(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
                         this.selectedCheckBoxes.add( atributo.getName() );
                     }

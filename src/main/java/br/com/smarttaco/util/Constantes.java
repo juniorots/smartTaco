@@ -44,7 +44,7 @@ public class Constantes {
     public static int UM_MINUTO = 60 * UM_SEGUNDO;
     public static int UMA_HORA = 60 * UM_MINUTO;
     
-    public static final Integer LIMITE_COLUNAS = 10;
+    public static final Integer LIMITE_COLUNAS = 7;
     
     public static String ELIPSE_TACO = "TACO";
     public static String ELIPSE_ACIDOS = "Ácidos Graxos";

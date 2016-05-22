@@ -66,12 +66,26 @@ public class PrincipalMB implements Serializable {
         // select your destiny! MK
         if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.ACIDOS_GRAXOS );
-        } else if ( Constantes.ELIPSE_TAGNAMES.equalsIgnoreCase( label ) ) {
+        }
+        
+        if ( Constantes.ELIPSE_TAGNAMES.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.TAGNAMES );
-        } else if ( Constantes.ELIPSE_CIENTIFICOS.equalsIgnoreCase( label ) ) {
+        } 
+        
+        if ( Constantes.ELIPSE_CIENTIFICOS.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.NOMES_CIENTIFICOS );
-        } else if ( Constantes.ELIPSE_ELEMENTOS.equalsIgnoreCase( label ) ) {
+        } 
+        
+        if ( Constantes.ELIPSE_ELEMENTOS.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.COMPOSICAO_ELEMENTOS );
+        } 
+        
+        if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
+            Util.forward( Constantes.COMPOSICAO_ACIDOS );
+        } 
+        
+        if ( Constantes.ELIPSE_AMINOACIDOS.equalsIgnoreCase( label ) ) {
+            Util.forward( Constantes.COMPOSICAO_AMINOACIDOS );
         }
     }
 
