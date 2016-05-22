@@ -52,6 +52,7 @@ public class Constantes {
     public static String ELIPSE_CIENTIFICOS = "Nomes Científicos";
     
     public static String ELIPSE_CENTESIMAIS = "Tabelas Centesimais";
-    public static String ELIPSE_AMINOACIDOS = "Aminoácidos";
+    public static String ELIPSE_AMINOACIDOS = "Centesimal Aminoácidos";
     public static String ELIPSE_ELEMENTOS = "Centesimal, minerais, vitaminas e colesterol";
+    public static String ELIPSE_CENTESIMAL_ACIDOS = "Centesimal Ácidos Graxos";
 }

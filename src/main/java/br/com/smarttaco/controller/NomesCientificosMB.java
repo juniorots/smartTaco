@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import org.icefaces.ace.model.table.RowStateMap;
@@ -23,6 +24,7 @@ import org.icefaces.ace.model.table.RowStateMap;
  * @author Jose Alves
  */
 @ManagedBean
+@SessionScoped
 public class NomesCientificosMB implements Serializable {
     
     private List<NomesCientificos> listaItens;

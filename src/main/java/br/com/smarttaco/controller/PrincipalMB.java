@@ -54,11 +54,11 @@ public class PrincipalMB implements Serializable {
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ELEMENTOS, 
                      "Centesimal, minerais, vitaminas e colesterol", "FFDEAD", true));
              
-             node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ACIDOS, 
-                     "Ácidos graxos", "FFDEAD", true));
+             node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_CENTESIMAL_ACIDOS, 
+                     "Centesimal Ácidos graxos", "FFDEAD", true));
              
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_AMINOACIDOS, 
-                     "Aminoácidos", "FFDEAD", true));
+                     "Centesimal Aminoácidos", "FFDEAD", true));
         }
         
 //        if ( !isUsuarioLogado() ) return;
@@ -80,7 +80,7 @@ public class PrincipalMB implements Serializable {
             Util.forward( Constantes.COMPOSICAO_ELEMENTOS );
         } 
         
-        if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
+        if ( Constantes.ELIPSE_CENTESIMAL_ACIDOS.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.COMPOSICAO_ACIDOS );
         } 
         
