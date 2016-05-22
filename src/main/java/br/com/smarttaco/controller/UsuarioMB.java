@@ -149,7 +149,7 @@ public class UsuarioMB implements Serializable {
             return false; // fail! :-(
         }
         
-//        if ( !validarEmail() ) return false; // fail! :-(
+        if ( !validarEmail() ) return false; // fail! :-(
         
         return true; // passou! :-)
     }
@@ -161,7 +161,6 @@ public class UsuarioMB implements Serializable {
     public boolean validarEmail() {
         if ( !Util.validarEmail( getUsuario().getEmail() ) ) {
             try {
-                
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no processo. E-mail invalido", "") );
                 context.getExternalContext().getFlash().setKeepMessages(true);

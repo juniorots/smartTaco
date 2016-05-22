@@ -128,7 +128,7 @@ public class Util {
      * @return 
      */
     public static boolean validarEmail( String email ) {
-        String regex = "[a-z._-]+@[a-z.]+";
+        String regex = "[a-z._-].+@[a-z.]+";
         return email.matches(regex);
     }
     
