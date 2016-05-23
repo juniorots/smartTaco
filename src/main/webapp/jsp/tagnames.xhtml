@@ -82,14 +82,14 @@
                     <f:selectItems value="#{tagnamesMB.checkBoxes}" />
                 </h:selectManyCheckbox>
                 </div>
-                
+                <div class="tabelaFoco">
                     <ace:dataTable id="dataTable"
                                    value="#{tagnamesMB.listaItens}" 
                                    var="linha"
-                                   rows="8"
+                                   rows="9"
                                    stateMap="#{tagnamesMB.stateMap}"
                                    selectionMode="single"
-                                   style="margin-left: 11px; margin-bottom: 0px; width: 98%"
+                                   style="width: 100%;"
                                    paginator="true"
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
@@ -113,6 +113,7 @@
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

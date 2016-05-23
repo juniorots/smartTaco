@@ -81,14 +81,14 @@
                     <f:selectItems value="#{acidosGraxosMB.checkBoxes}" />
                 </h:selectManyCheckbox>
                 </div>
-                
+                <div class="tabelaFoco">
                     <ace:dataTable id="dataTable"
                                    value="#{acidosGraxosMB.listaItens}" 
                                    var="acido"
-                                   rows="8"
+                                   rows="9"
                                    stateMap="#{acidosGraxosMB.stateMap}"
                                    selectionMode="single"
-                                   style="margin-left: 11px; margin-bottom: 0px; width: 98%"
+                                   style="width: 100%;"
                                    paginator="true"
                                    scrollWidthIE7="false"
                                    resizableColumns="true"
@@ -114,6 +114,7 @@
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>
