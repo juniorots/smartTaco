@@ -17,10 +17,12 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -45,6 +47,22 @@ public class Util {
         }
         sb.append( formato.format(data) );
         return sb.toString();
+    }
+    
+        /*
+    * Verificando se o usuario esta logado no sistema.
+    */
+    public static boolean isUsuarioLogado() {
+        if ( Util.isEmpty( Util.captarUsuarioSessao() ) ) {
+            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "É porque não dá mesmo!", 
+                    "Ops... Identifiquei que você não entrou no sistema!!<br /> "
+                            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                            + "Preciso que você faça isso, para liberar a consulta!!");
+            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+            return false;
+        } else {
+            return true;
+        }
     }
     
     /*

@@ -91,9 +91,6 @@
                                    selectionMode="single"
                                    style="margin-left: 11px; margin-bottom: 0px; width: 98%"
                                    paginator="true"
-                                   resizableColumns="true"
-                                   rendered="true"
-                                   rendererType="true"
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
                         <ace:row 
@@ -110,7 +107,7 @@
                                 sortBy="#{linha[item.value]}"
                                 filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
-                                style="text-align: left; width:50%;"
+                                style="text-align: left; width:100px;"
                                 headerText="#{item.headerText}">
                                 <h:outputText id="#{item.value}" value="#{linha[item.value]}"/>
                             </ace:column>

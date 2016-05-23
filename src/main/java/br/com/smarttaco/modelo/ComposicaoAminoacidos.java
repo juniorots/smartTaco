@@ -29,7 +29,7 @@ public class ComposicaoAminoacidos extends DomainObject {
     private String fenilalanina;
     private String tirosina;
     private String valina;
-    private String Arginina;
+    private String arginina;
     private String histidina;
     private String alanina;
     private String acidoAspartico;
@@ -201,11 +201,11 @@ public class ComposicaoAminoacidos extends DomainObject {
     }
 
     public String getArginina() {
-        return Arginina;
+        return arginina;
     }
 
-    public void setArginina(String Arginina) {
-        this.Arginina = Arginina;
+    public void setArginina(String arginina) {
+        this.arginina = arginina;
     }
 
     public String getHistidina() {

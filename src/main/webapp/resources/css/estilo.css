@@ -165,7 +165,16 @@ body {
     overflow-x: auto;
     height: 110px;
     margin-bottom: 10px;
-    border:1px solid black;
+    border:1px solid gray;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.tabelaFoco{
+    overflow-y: auto;
+    height: 380px;
+    margin-bottom: 0px;
+    border:0px solid red;
     margin-left: 10px;
     margin-right: 10px;
 }

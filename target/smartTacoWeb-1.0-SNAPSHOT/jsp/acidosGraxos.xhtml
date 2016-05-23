@@ -90,9 +90,8 @@
                                    selectionMode="single"
                                    style="margin-left: 11px; margin-bottom: 0px; width: 98%"
                                    paginator="true"
+                                   scrollWidthIE7="false"
                                    resizableColumns="true"
-                                   rendered="true"
-                                   rendererType="true"
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
                         <ace:row 
@@ -109,7 +108,7 @@
                                 sortBy="#{acido[item.value]}"
                                 filterBy="#{acido[item.value]}"
                                 filterMatchMode="contains"
-                                style="text-align: left; width:50%;"
+                                style="text-align: left; width:100px;"
                                 headerText="#{item.headerText}">
                                 <h:outputText id="#{item.value}" value="#{acido[item.value]}"/>
                             </ace:column>

@@ -9,6 +9,7 @@ package br.com.smarttaco.controller;
 import br.com.smarttaco.modelo.ComposicaoElementos;
 import br.com.smarttaco.modelo.ColunaDinamica;
 import br.com.smarttaco.util.Constantes;
+import br.com.smarttaco.util.Util;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -42,6 +43,9 @@ public class ComposicaoElementosMB implements Serializable {
     
     public ComposicaoElementosMB() {
         this.listaColuna = new ArrayList<ColunaDinamica>();
+        
+        if ( Util.isEmpty( Util.captarUsuarioSessao() ) ) 
+            Util.forward( Constantes.INICIO_SISTEMA );
         
         /*
          * Definindo a estrutura da tabela 

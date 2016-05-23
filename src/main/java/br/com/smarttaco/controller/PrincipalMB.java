@@ -61,7 +61,7 @@ public class PrincipalMB implements Serializable {
                      "Centesimal Aminoácidos", "FFDEAD", true));
         }
         
-        if ( !isUsuarioLogado() ) return;
+        if ( !Util.isUsuarioLogado() ) return;
         
         // select your destiny! MK
         if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
@@ -89,22 +89,6 @@ public class PrincipalMB implements Serializable {
         }
     }
 
-    /*
-    * Verificando se o usuario esta logado no sistema.
-    */
-    public boolean isUsuarioLogado() {
-        if ( Util.isEmpty( Util.captarUsuarioSessao() ) ) {
-            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "É porque não dá mesmo!", 
-                    "Ops... Identifiquei que você não entrou no sistema!!<br /> "
-                            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                            + "Preciso que você faça isso, para liberar a consulta!!");
-            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
     public void onNodeDblselect(SelectEvent event) {
         this.folhaSelecionada = (MindmapNode) event.getObject();        
     }

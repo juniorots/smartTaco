@@ -82,18 +82,20 @@
                     <f:selectItems value="#{composicaoAcidosMB.checkBoxes}" />
                 </h:selectManyCheckbox>
                 </div>
-                
+                <div class="tabelaFoco">
                     <ace:dataTable id="dataTable"
                                    value="#{composicaoAcidosMB.listaItens}" 
                                    var="linha"
                                    rows="8"
                                    stateMap="#{composicaoAcidosMB.stateMap}"
                                    selectionMode="single"
-                                   style="margin-left: 11px; margin-bottom: 0px; width: 98%"
+                                   style="width: 100%;"
                                    paginator="true"
                                    resizableColumns="true"
                                    rendered="true"
+                                   scrollWidthIE7="false"
                                    rendererType="true"
+                                   
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
                         <ace:row 
@@ -111,12 +113,13 @@
                                 sortBy="#{linha[item.value]}"
                                 filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
-                                style="text-align: left; width:50%;"
+                                style="text-align: left; width:100px;"
                                 headerText="#{item.headerText}">
                                 <h:outputText id="#{item.value}" value="#{linha[item.value]}"/>
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>
