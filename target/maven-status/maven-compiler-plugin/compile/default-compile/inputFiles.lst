@@ -17,6 +17,7 @@
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/controller/PrincipalMB.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/modelo/AcidoGraxo.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/framework/persistence/DomainObject.java
+/home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/controller/ContatoMB.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/threads/ThreadFcc.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/modelo/NomesCientificos.java
 /home/junior/workspace/smartTaco/src/main/java/br/com/smarttaco/util/PageExtractorRoutes.java

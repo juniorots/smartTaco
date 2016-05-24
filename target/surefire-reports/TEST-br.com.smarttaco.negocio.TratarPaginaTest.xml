@@ -20,7 +20,7 @@
     <property name="basedir" value="/home/junior/workspace/smartTaco"/>
     <property name="java.endorsed.dirs" value="/var/opt/jdk7/jre/lib/endorsed"/>
     <property name="os.arch" value="i386"/>
-    <property name="surefire.real.class.path" value="/tmp/surefirebooter8681101899231936180.jar"/>
+    <property name="surefire.real.class.path" value="/tmp/surefirebooter3452790044663389702.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="/var/opt/jdk7/jre"/>
-    <property name="sun.java.command" value="/tmp/surefirebooter8681101899231936180.jar /tmp/surefire7620852959934131205tmp /tmp/surefire4736682606457186033tmp"/>
+    <property name="sun.java.command" value="/tmp/surefirebooter3452790044663389702.jar /tmp/surefire8734153714460142925tmp /tmp/surefire2761002317195946551tmp"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>

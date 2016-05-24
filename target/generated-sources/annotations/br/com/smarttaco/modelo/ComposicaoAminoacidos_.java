@@ -11,7 +11,7 @@ public abstract class ComposicaoAminoacidos_ extends br.com.smarttaco.framework.
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> grupo;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> acidoGlutamico;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> acidoAspartico;
-	public static volatile SingularAttribute<ComposicaoAminoacidos, String> Arginina;
+	public static volatile SingularAttribute<ComposicaoAminoacidos, String> arginina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> leucina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> numeroAlimento;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> tirosina;
@@ -20,11 +20,11 @@ public abstract class ComposicaoAminoacidos_ extends br.com.smarttaco.framework.
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> alanina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> metionina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> fenilalanina;
-	public static volatile SingularAttribute<ComposicaoAminoacidos, String> Isoleucina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> lisina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> serina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> cistina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> glicina;
+	public static volatile SingularAttribute<ComposicaoAminoacidos, String> isoleucina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> histidina;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> descricaoAlimento;
 	public static volatile SingularAttribute<ComposicaoAminoacidos, String> triptofano;
