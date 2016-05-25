@@ -23,13 +23,13 @@ public class EnviarEmail {
      * @param assunto
      * @param conteudo 
      */
-    private static void tratarEnvio(ArrayList<String> emails, String assunto, String conteudo) {
+    public static void tratarEnvio(ArrayList<String> emails, String assunto, String conteudo) {
         HtmlEmail email = new HtmlEmail();
         
         try {
             email.setHostName(Constantes.HOST_NAME_GMAIL);
             email.addTo(Constantes.ADMINISTRADOR_1);
-            email.setFrom(Constantes.EMAIL_REMETENTE_GMAIL, "Administrador");
+            email.setFrom(Constantes.EMAIL_REMETENTE_GMAIL, "SmartTaco - Administrador");
 
             for (String tmp : emails) {
                 email.addBcc(tmp);
@@ -64,13 +64,14 @@ public class EnviarEmail {
      */
     public static void recuperarSenha(ArrayList<String> emails, String adicionalConteudo) {
         
-        String assunto = "[DedoDuro] - Recuperação de Senha.";
-        String conteudo = "<html><head><title>Recuperação de senha - Dedoduro.</title></head>"
+        String assunto = "[SmartTaco] - Recuperação de Senha.";
+        String conteudo = "<html><head><title>Recuperação de senha - Smart Taco.</title></head>"
                 + "<body><br /><br />Olá! Recebemos uma solicitação de alteração de senha.<br /><br />"
                 + "Assim acreditamos que sendo uma petição realizada por você, geramos uma nova senha! <br />"
                 + "No entanto, caso essa solicitação não tenha sido gerada por favor,<br />" 
                 + "solicitamos o quanto antes que altere-a, prezando pela segurança dos seus dados. <br /><br /><br />"
-                + "Tome nota da sua nova senha: <h1><b>" +adicionalConteudo+ "</b></h1>"
+                + "Tome nota da sua nova senha: <h1>"
+                + "<strong><span style='background-color: #DCDCDC'" +adicionalConteudo+ "</span></strongs></h1><br />"
                 + "<b>[ - POR FAVOR, NÃO RESPONDA ESSE E-MAIL. - ]</b><br />"
                 + "</body></html>";
         

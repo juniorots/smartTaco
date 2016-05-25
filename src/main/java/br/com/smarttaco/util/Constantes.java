@@ -33,9 +33,16 @@ public class Constantes {
     * Nota: tal usuario somente sera utilizado para envio automatico
     * de senhas, assim nao deve ser utilizado para responder qualquer questionamento
     * ou item relacionado a correspondencia que nao seja destinado ao sistema Dedoduro.
+    *
+    * Para configurar o servico de envio automatico de email, faca por meio do link abaixo:
+    *
+    * https://www.google.com/settings/security/lesssecureapps
+    *
     */
-    public static String EMAIL_REMETENTE_GMAIL = "dedoduro.default.user@gmail.com";
-    public static String SENHA_REMETENTE_GMAIL = "d3d0Dur0123";
+//    public static String EMAIL_REMETENTE_GMAIL = "dedoduro.default.user@gmail.com";
+//    public static String SENHA_REMETENTE_GMAIL = "d3d0Dur0123";
+    public static String EMAIL_REMETENTE_GMAIL = "smarttaco.default@gmail.com";
+    public static String SENHA_REMETENTE_GMAIL = "l@yphy12";
     
     /**
      * Uteis em threads
