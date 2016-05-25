@@ -42,7 +42,7 @@ public class ContatoMB implements Serializable {
             setMensagem("");
             
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", 
-                "OK!!! :-) Em breve entraremos em contato...");
+                "OK!! Em breve entraremos em contato...");
         }
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
