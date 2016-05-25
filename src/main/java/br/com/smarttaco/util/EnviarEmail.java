@@ -71,7 +71,7 @@ public class EnviarEmail {
                 + "No entanto, caso essa solicitação não tenha sido gerada por favor,<br />" 
                 + "solicitamos o quanto antes que altere-a, prezando pela segurança dos seus dados. <br /><br /><br />"
                 + "Tome nota da sua nova senha: <h1>"
-                + "<strong><span style='background-color: #DCDCDC'" +adicionalConteudo+ "</span></strongs></h1><br />"
+                + "<strong><span style='background-color: #F0FFF0'>" +adicionalConteudo+ "</span></strongs></h1><br />"
                 + "<b>[ - POR FAVOR, NÃO RESPONDA ESSE E-MAIL. - ]</b><br />"
                 + "</body></html>";
         
