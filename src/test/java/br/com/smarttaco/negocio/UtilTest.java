@@ -7,8 +7,10 @@
 package br.com.smarttaco.negocio;
 
 import br.com.smarttaco.util.EnviarEmail;
+import br.com.smarttaco.util.Helena;
 import br.com.smarttaco.util.Util;
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertNotNull;
@@ -37,8 +39,22 @@ public class UtilTest {
     public void tearDown() {
     }
 
-    @Test
+//    @Test
     public void model() {
+    }
+    
+    @Test
+    public void carregarDadosPdf(){
+        List<Integer> paginas = new ArrayList<Integer>();
+        try {
+//            for (int i = 19; i<= 164; i++) {
+//                paginas.add(i);
+//            }
+            paginas.add(19);
+            Helena.executar("/home/junior/Downloads/taco.txt", paginas, "/home/junior/Downloads/taco_4_edicao_ampliada_e_revisada.pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 //    @Test
