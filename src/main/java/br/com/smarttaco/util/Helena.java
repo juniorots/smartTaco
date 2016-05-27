@@ -50,7 +50,11 @@ public class Helena {
                 buff.clear();
                 bytes = chanel.read(buff);
             }
-            System.out.println(conteudoArquivo.toString());
+            
+            // Filtrando...
+//            ChuparDados.tratarTabelaNomesSistematicos( conteudoArquivo.toString() );
+            
+            
             fin.close();
         } catch (Exception e) {
             e.printStackTrace();
