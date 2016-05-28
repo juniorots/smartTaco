@@ -52,7 +52,8 @@ public class Helena {
             }
             
             // Filtrando...
-//            ChuparDados.tratarTabelaNomesSistematicos( conteudoArquivo.toString() );
+//          ChuparDados.tratarTabelaNomesSistematicos( conteudoArquivo.toString() );
+            ChuparDados.tratarTabelaTagnames( conteudoArquivo.toString() );
             
             
             fin.close();

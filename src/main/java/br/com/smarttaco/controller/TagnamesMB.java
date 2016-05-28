@@ -28,7 +28,7 @@ import org.icefaces.ace.model.table.RowStateMap;
 @SessionScoped
 public class TagnamesMB implements Serializable {
     
-    private List<Tagnames> listaItens;
+    private List<Tagnames> listaItens = new ArrayList<Tagnames>();
     private List<Integer> ordenando = new ArrayList<Integer>();
     private List<ColunaDinamica> listaColuna;
     

@@ -28,7 +28,7 @@ import org.icefaces.ace.model.table.RowStateMap;
 @SessionScoped
 public class NomesCientificosMB implements Serializable {
     
-    private List<NomesCientificos> listaItens;
+    private List<NomesCientificos> listaItens = new ArrayList<NomesCientificos>();
     private List<Integer> ordenando = new ArrayList<Integer>();
     private List<ColunaDinamica> listaColuna;
     

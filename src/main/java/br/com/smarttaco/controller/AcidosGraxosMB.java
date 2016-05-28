@@ -7,7 +7,6 @@
 package br.com.smarttaco.controller;
 
 import br.com.smarttaco.base.AcidosGraxosDAO;
-import br.com.smarttaco.base.UsuarioDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
 import br.com.smarttaco.modelo.ColunaDinamica;
 import br.com.smarttaco.util.Constantes;
@@ -34,7 +33,7 @@ import org.icefaces.ace.model.table.RowStateMap;
 @SessionScoped
 public class AcidosGraxosMB implements Serializable {
     
-    private List<AcidoGraxo> listaItens;
+    private List<AcidoGraxo> listaItens = new ArrayList<AcidoGraxo>();
     private List<Integer> ordenando = new ArrayList<Integer>();
     private List<ColunaDinamica> listaColuna;
     
@@ -74,6 +73,9 @@ public class AcidosGraxosMB implements Serializable {
             e.printStackTrace();
         }
         
+        /*
+         * Trabalhando no conteudo...
+         */
         @Cleanup
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
         

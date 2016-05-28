@@ -7,9 +7,7 @@
 package br.com.smarttaco.util;
 
 import br.com.smarttaco.base.AcidosGraxosDAO;
-import br.com.smarttaco.base.UsuarioDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
@@ -23,10 +21,36 @@ import lombok.Cleanup;
  */
 public class ChuparDados {
     
+    // Grupos Nomes sistematicos
     private static final String GRUPO_SATURADOS = "Ácidos graxos saturados";
     private static final String GRUPO_MONOINSATURADOS = "Ácidos graxos monoinsaturados";
     private static final String GRUPO_POLI_INSATURADOS = "Ácidos graxos polinsaturados";
     private static final String GRUPO_GRAXOS_TRANS = "Ácidos graxos trans";
+    
+    // Grupos Tagnames
+    private static final String GRUPO_COMPOSICAO_CENTESIMAL = "Composição Centesimal";
+    private static final String GRUPO_MINERAIS = "Minerais";
+    private static final String GRUPO_VITAMINAS = "Vitaminas";
+    private static final String GRUPO_AMINOACIDOS = "Aminoácidos";
+    private static final String GRUPO_ACIDOS_GRAXOS = "Ácidos graxos";
+    
+    /*
+     * Responsavel por identificar os nomes compostos
+     */
+//    private int identificarNomeComposto(String[] lista, String linha,
+//            int inicioAnterior, int inicioProximo) {
+//        int retorno = inicio;
+//        for (int i = 0; i < lista.length; i++) {
+//            if (linha.substring(inicio+1, inicio+3).equalsIgnoreCase(lista[i])) {
+//                while(!linha.substring(inicio, inicio+1).equals(" ")) 
+//                    retorno++;
+//                identificarNomeComposto(lista, linha, retorno);
+//            }
+//        }
+//        
+//        
+//        return retorno;
+//    }
     
     /*
     * Trabalhando com a tabela Quadro 5
@@ -35,6 +59,7 @@ public class ChuparDados {
         try {
             Pattern p = Pattern.compile("(^Quadro 5).+(:?(.|\\n).+$){33}", Pattern.MULTILINE);
             Matcher m = p.matcher(arquivo);
+            String[] colunaSeguinte = {"Tim", "Clu"};
             
             @Cleanup
             final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
@@ -48,14 +73,12 @@ public class ChuparDados {
             Matcher mTmp = null;
             String grupoTmp = GRUPO_SATURADOS;
             if (m.find() == true) {
-                for (int i = 1; i <= 33; i++) {
+                for (int i = 2; i <= 33; i++) {
                     pTmp = Pattern.compile("(?=(\\n.*){"+i+"})");
                     mTmp = pTmp.matcher( m.group() );
                     boolean grupo = false;  
                     if (mTmp.find() == true) {
                         AcidoGraxo acido = new AcidoGraxo();
-                        if (i == 1)
-                            continue;
 //                        System.out.println( mTmp.group(1) );
                         
                         if ( GRUPO_SATURADOS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
@@ -95,6 +118,7 @@ public class ChuparDados {
                         j++;
                         while (!mTmp.group(1).substring(t, t+1).equals(" ")) 
                             t++;    
+                        
 //                        System.out.print("["+mTmp.group(1).substring(j, t)+"] ");
                         acido.setNomeSistematico(mTmp.group(1).substring(j, t));
                         
@@ -112,6 +136,25 @@ public class ChuparDados {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+    }
+    
+    /*
+    * Trabalhando com a tabela Quadro 6
+    */
+    public static void tratarTabelaTagnames(String arquivo) {
+        try {
+            Pattern p = Pattern.compile("(^Quadro 6).+(:?(.|\\n).+$){111}", Pattern.MULTILINE);
+            Matcher m = p.matcher(arquivo);
+            
+            Pattern pTmp = null;
+            Matcher mTmp = null;
+            String grupoTmp = GRUPO_SATURADOS;
+            
+            if (m.find() == true) {
+                System.out.println(m.group());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

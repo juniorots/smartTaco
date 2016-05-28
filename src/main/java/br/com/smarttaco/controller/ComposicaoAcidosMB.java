@@ -28,7 +28,7 @@ import org.icefaces.ace.model.table.RowStateMap;
 @SessionScoped
 public class ComposicaoAcidosMB implements Serializable {
     
-    private List<ComposicaoAcidos> listaItens;
+    private List<ComposicaoAcidos> listaItens = new ArrayList<ComposicaoAcidos>();
     private List<Integer> ordenando = new ArrayList<Integer>();
     private List<ColunaDinamica> listaColuna;
     
