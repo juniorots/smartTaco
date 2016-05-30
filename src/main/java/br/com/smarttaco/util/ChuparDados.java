@@ -8,6 +8,7 @@ package br.com.smarttaco.util;
 
 import br.com.smarttaco.base.AcidosGraxosDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
+import br.com.smarttaco.modelo.Tagnames;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -70,7 +71,8 @@ public class ChuparDados {
     */
     public static void tratarTabelaNomesSistematicos(String arquivo) {
         try {
-            Pattern p = Pattern.compile("(^Quadro 5).+(:?(.|\\n).+$){33}", Pattern.MULTILINE);
+            int linhas = 33;
+            Pattern p = Pattern.compile("(^Quadro 5).+(:?(.|\\n).+$){"+linhas+"}", Pattern.MULTILINE);
             Matcher m = p.matcher(arquivo);
             
             /*
@@ -94,7 +96,7 @@ public class ChuparDados {
             Matcher mTmp = null;
             String grupoTmp = GRUPO_SATURADOS;
             if (m.find() == true) {
-                for (int i = 2; i <= 33; i++) {
+                for (int i = 2; i <= linhas; i++) {
                     pTmp = Pattern.compile("(?=(\\n.*){"+i+"})");
                     mTmp = pTmp.matcher( m.group() );
                     boolean grupo = false;  
@@ -165,7 +167,7 @@ public class ChuparDados {
 //                            System.out.println("["+mTmp.group(1).substring(t, mTmp.group(1).length()).trim()+"] ");
                             acido.setNomeComum(mTmp.group(1).substring(t, mTmp.group(1).length()).trim());
                         } catch (StringIndexOutOfBoundsException e) {
-                            System.out.println("[]");
+//                            System.out.println("[]");
                         }
                         
                         dao.insert( acido );
@@ -184,15 +186,144 @@ public class ChuparDados {
     */
     public static void tratarTabelaTagnames(String arquivo) {
         try {
-            Pattern p = Pattern.compile("(^Quadro 6).+(:?(.|\\n).+$){111}", Pattern.MULTILINE);
+            int linhas = 111;
+            Pattern p = Pattern.compile("(^Quadro 6).+(:?(.|\\n).+$){"+linhas+"}", Pattern.MULTILINE);
             Matcher m = p.matcher(arquivo);
+            
+            /*
+             * Nota:
+             * Semantica do campoSensivel:
+             * key: valor unico entre os elementos da tabela
+             * value: Representa o limite da coluna, assim deve-se concatenar o seu valor
+             * ate encontrar esse valor limite... (null = campo nao contem valor)
+             */
+            HashMap<String, String> campoSensivel = new HashMap<>();
             
             Pattern pTmp = null;
             Matcher mTmp = null;
-            String grupoTmp = GRUPO_SATURADOS;
+            String grupoTmp = GRUPO_COMPOSICAO_CENTESIMAL;
+            
+            @Cleanup
+            final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+
+            @Cleanup
+            final EntityManager entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            AcidosGraxosDAO dao = new AcidosGraxosDAO(entityManager);
             
             if (m.find() == true) {
-                System.out.println(m.group());
+//                System.out.println(m.group());
+                for (int i = 2; i <= linhas; i++) {
+                    pTmp = Pattern.compile("(?=(\\n.*){"+i+"})");
+                    mTmp = pTmp.matcher( m.group() );
+                    boolean grupo = false;  
+                    if (mTmp.find() == true) {
+                        Tagnames tagnames = new Tagnames();
+//                        System.out.println( mTmp.group(1) );
+                        
+                        if ( GRUPO_COMPOSICAO_CENTESIMAL.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        if ( GRUPO_VITAMINAS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        if ( GRUPO_MINERAIS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        if ( GRUPO_AMINOACIDOS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        if ( GRUPO_ACIDOS_GRAXOS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        
+                        if (grupo) {
+                            grupoTmp = mTmp.group(1).trim();
+                            continue;
+                        }
+                        
+                        tagnames.setGrupo(grupoTmp);
+                        int j = 1;
+                        int t = 0;
+                        System.out.print("[Grupo="+tagnames.getGrupo()+"] ");
+                        
+                        /*
+                         * Primeira Coluna
+                         */
+                        while (!mTmp.group(1).substring(t, t+1).equals(" ")) 
+                            t++;
+                        
+                        campoSensivel.clear();
+                        campoSensivel.put("Lipídeos totais", "g");
+                        campoSensivel.put("Carboidrato", "g");
+                        campoSensivel.put("Fibra,", "g");
+                        campoSensivel.put("Cálcio,", "mg");
+                        campoSensivel.put("Ferro,", "mg");
+                        campoSensivel.put("Magnésio,", "mg");
+                        campoSensivel.put("Fósforo,", "mg");
+                        campoSensivel.put("Potássio,", "mg");
+                        campoSensivel.put("Sódio,", "mg");
+                        campoSensivel.put("Zinco", "mg");
+                        campoSensivel.put("Cobre,", "mg");
+                        campoSensivel.put("Manganês,", "mg");
+//                        campoSensivel.put("RE (equivalente de retinol)", "mg");
+                        campoSensivel.put("RAE", "μg");
+                        campoSensivel.put("Vitamina C", "mg");
+                        campoSensivel.put("<VITB6A>", "mg");
+                        campoSensivel.put("<ASP_G>", "g");
+                        campoSensivel.put("<GLU_G>", "g");
+                        campoSensivel.put("<FASAT>", "g");
+                        campoSensivel.put("<FAMS>", "g");
+                        campoSensivel.put("<F18D1CN9>", "g");
+                        campoSensivel.put("<FAPU>", "g");
+                        campoSensivel.put("<F18D2CN6>", "g");
+                        campoSensivel.put("<F18D3CN3>", "g");
+                        campoSensivel.put("<F18D4N3>", "g");
+                        campoSensivel.put("<F20D4N6>", "g");
+                        campoSensivel.put("<F20D5N3>", "g");
+                        campoSensivel.put("<F22D6N3>", "g");
+                        campoSensivel.put("<FATRN>", "g");
+                        campoSensivel.put("<F18D1T>", "g");
+                        campoSensivel.put("<F18D2TN9>", "g");
+                        
+                        // excecoes...
+                        if (mTmp.group(1).contains("<F18D2TN6>")) continue;
+                        if (mTmp.group(1).contains("<MG>")) t = 12;
+                        if (mTmp.group(1).contains("RE (equivalente de retinol)")) t = 28;
+                        if (mTmp.group(1).contains("RAE")) t = 29;
+                        
+                        t = identificarNomeComposto(campoSensivel, mTmp.group(1), t);
+                        System.out.print("["+mTmp.group(1).substring(j, t)+"] ");
+//                        tagnames.setNutriente( mTmp.group(1).substring(j, t) );
+                        
+                        /*
+                         * Segunda Coluna
+                         */
+                        j = ++t;
+                        while (!mTmp.group(1).substring(t, t+1).equals(" ")) 
+                            t++;    
+                        System.out.print("["+mTmp.group(1).substring(j, t).trim()+"] ");
+//                        tagnames.setUnidade(mTmp.group(1).substring(j, t));
+                        
+                        /*
+                         * Terceira Coluna
+                         */
+                        t++;
+                        try {
+                            System.out.println("["+mTmp.group(1).substring(t, mTmp.group(1).length()).trim()+"] ");
+//                            tagnames.setInfoods(mTmp.group(1).substring(t, mTmp.group(1).length()).trim());
+                        } catch (StringIndexOutOfBoundsException e) {
+                            System.out.println("[]");
+                        }
+                        
+                    }
+                } // for
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
