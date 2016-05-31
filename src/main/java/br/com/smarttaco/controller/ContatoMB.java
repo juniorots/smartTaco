@@ -30,7 +30,7 @@ public class ContatoMB implements Serializable {
             message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "É porque não dá mesmo!", 
                 "Ops... Identifiquei que você não entrou no sistema!!<br /> "
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                    + "Preciso que você faça isso, para enviar o e-mail!!");
+                    + "Preciso que você faça isso, para entrar em contato!!");
         } else {
             ArrayList<String> email = new ArrayList<String>();
             String tmp = "&nbsp;&nbsp;<strong><span style='background-color: #E6E6FA'>Email do remetente: "+
