@@ -39,11 +39,11 @@ public class UtilTest {
     public void tearDown() {
     }
 
-//    @Test
+    @Test
     public void model() {
     }
     
-    @Test
+//    @Test
     public void carregarDadosPdf(){
         List<Integer> paginas = new ArrayList<Integer>();
         try {
