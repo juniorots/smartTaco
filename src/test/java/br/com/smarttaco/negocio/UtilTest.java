@@ -50,7 +50,6 @@ public class UtilTest {
             for (int i = 19; i<= 164; i++) {
                 paginas.add(i);
             }
-//            paginas.add(19);
             Helena.executar("/home/junior/Downloads/taco.txt", paginas, "/home/junior/Downloads/taco_4_edicao_ampliada_e_revisada.pdf");
         } catch (Exception e) {
             e.printStackTrace();

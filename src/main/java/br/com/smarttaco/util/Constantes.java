@@ -62,4 +62,6 @@ public class Constantes {
     public static String ELIPSE_AMINOACIDOS = "Centesimal Aminoácidos";
     public static String ELIPSE_ELEMENTOS = "Centesimal, minerais, vitaminas e colesterol";
     public static String ELIPSE_CENTESIMAL_ACIDOS = "Centesimal Ácidos Graxos";
+    
+        public static String ELIPSE_LABORATORIOS = "Relação dos laboratórios";
 }

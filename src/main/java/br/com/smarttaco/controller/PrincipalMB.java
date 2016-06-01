@@ -9,10 +9,8 @@ package br.com.smarttaco.controller;
 import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.Util;
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.mindmap.DefaultMindmapNode;
 import org.primefaces.model.mindmap.MindmapNode;
@@ -38,11 +36,14 @@ public class PrincipalMB implements Serializable {
                 "FA8072", true);
         MindmapNode tabelasCentesimais = new DefaultMindmapNode(Constantes.ELIPSE_CENTESIMAIS, "Composição de alimentos por 100 gramas de parte comestível", 
                 "FFA500", true);
+        MindmapNode laboratorios = new DefaultMindmapNode(Constantes.ELIPSE_LABORATORIOS, "Estudos interlaboratoriais Cooperativos", 
+                "C1FFC1", true);
         
         raiz.addNode( acidosGraxos );
         raiz.addNode( tagnames );
         raiz.addNode( nomesCientificos );
         raiz.addNode( tabelasCentesimais );
+        raiz.addNode( laboratorios );
     }
     
     public void onNodeSelect(SelectEvent event) {

@@ -7,8 +7,11 @@
 package br.com.smarttaco.util;
 
 import br.com.smarttaco.base.AcidosGraxosDAO;
+import br.com.smarttaco.base.NomesCientificosDAO;
 import br.com.smarttaco.base.TagnamesDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
+import br.com.smarttaco.modelo.NomesCientificos;
+import static br.com.smarttaco.modelo.NomesCientificos_.grupo;
 import br.com.smarttaco.modelo.Tagnames;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,6 +42,17 @@ public class ChuparDados {
     private static final String GRUPO_AMINOACIDOS = "Aminoácidos";
     private static final String GRUPO_ACIDOS_ERRADO = "Ácdios graxos";
     private static final String GRUPO_ACIDOS_GRAXOS = "Ácidos graxos";
+    
+    // Grupos Nomes Cientificos
+    private static final String CEREAIS_DERIVADOS = "Cereais e derivados";
+    private static final String VERDURAS = "Verduras, hortaliças e derivados";
+    private static final String FRUTAS = "Frutas e derivados";
+    private static final String PESCADOS = "Pescados e frutos do mar";
+    private static final String CARNES = "Carnes e derivados";
+    private static final String MISCELANEAS = "Miscelâneas";
+    private static final String LEGUMINOSAS = "Leguminosas e derivados";
+    private static final String NOZES = "Nozes e Sementes";
+    
     
     /*
      * Responsavel por identificar os nomes compostos
@@ -378,4 +392,196 @@ public class ChuparDados {
             e.printStackTrace();
         }
     }
+    
+    /*
+    * Trabalhando com a tabela Quadro 7
+    */
+    public static void tratarTabelaCientificos(String arquivo) {
+        try {
+            int linhas = 194;
+            Pattern p = Pattern.compile("(^Quadro 7).+(:?(.|\\n).+$){"+linhas+"}", Pattern.MULTILINE);
+            Matcher m = p.matcher(arquivo);
+            
+            /*
+             * Nota:
+             * Semantica do campoSensivel:
+             * key: valor unico entre os elementos da tabela
+             * value: Representa o limite da coluna, assim deve-se concatenar o seu valor
+             * ate encontrar esse valor limite... (null = campo nao contem valor)
+             */
+            HashMap<String, String> campoSensivel = new HashMap<>();
+            
+            @Cleanup
+            final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+
+            @Cleanup
+            final EntityManager entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            NomesCientificosDAO dao = new NomesCientificosDAO(entityManager);
+            
+            Pattern pTmp = null;
+            Matcher mTmp = null;
+            String grupoTmp = CEREAIS_DERIVADOS;
+            
+            if (m.find() == true) {
+                for (int i = 2; i <= linhas; i++) {
+                    pTmp = Pattern.compile("(?=(\\n.*){"+i+"})");
+                    mTmp = pTmp.matcher( m.group() );
+                    boolean grupo = false; 
+                    
+                    if (mTmp.find() == true) {
+    //                System.out.println( m.group() );
+
+                        NomesCientificos cientifico = new NomesCientificos();
+
+                        if ( CEREAIS_DERIVADOS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.print("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        if ( VERDURAS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.print("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        if ( FRUTAS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.print("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        if ( PESCADOS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.print("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        
+                        if ( CARNES.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.print("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        
+                        if ( MISCELANEAS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.print("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        
+                        if ( LEGUMINOSAS.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.print("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+                        
+                        if ( NOZES.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
+//                            System.out.print("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
+                            grupo = true;
+                        }
+
+                        if (grupo) {
+                            grupoTmp = mTmp.group(1).trim();
+                            continue;
+                        }
+
+                        cientifico.setGrupo(grupoTmp);
+                        int j = 1;
+                        int t = 0;
+                        
+                        /*
+                         * Primeira Coluna
+                         */
+                        while (!mTmp.group(1).substring(t, t+1).equals(" ")) 
+                            t++;
+                        
+                        campoSensivel.clear();
+                        campoSensivel.put("cabotian", "Cucurbita");
+                        campoSensivel.put("menina", "Cucurbita");
+                        campoSensivel.put("moranga", "Cucurbita");
+                        campoSensivel.put("pescoço", "Cucurbita");
+                        campoSensivel.put("italiana", "Cucurbita");
+                        campoSensivel.put("paulista", "Cucurbita");
+                        campoSensivel.put("porró", "Allium");
+                        campoSensivel.put("baroa", "Chaerophyllum");
+                        campoSensivel.put("Batata, doce", "Ipomoea");
+                        campoSensivel.put("inglesa", "Solanum");
+                        campoSensivel.put("Broto", "Vigna");
+                        campoSensivel.put("manteiga", "Brassica");
+                        campoSensivel.put("Zelândia", "Tetragonia");
+                        campoSensivel.put("folha", "Brassica");
+                        campoSensivel.put("Tomate, salada", "Lycopersicum");
+                        campoSensivel.put("Banana, da terra", "Musa");
+                        campoSensivel.put("Banana, figo", "Musa");
+                        campoSensivel.put("Banana, maçã", "Musa");
+                        campoSensivel.put("Banana, nanica", "Musa");
+                        campoSensivel.put("ouro", "Musa");
+                        campoSensivel.put("pacova", "Musa");
+                        campoSensivel.put("Banana, prata", "Musa");
+                        campoSensivel.put("Cajá", "Spondias");
+                        campoSensivel.put("chocolate", "Diospyros");
+                        campoSensivel.put("pão", "Artocarpus");
+                        campoSensivel.put("Baía", "Citrus");
+                        campoSensivel.put("var. da Terra", "Citrus");
+                        campoSensivel.put("var. Lima", "Citrus");
+                        campoSensivel.put("var. Pêra", "Citrus");
+                        campoSensivel.put("var. Valência", "Citrus");
+                        campoSensivel.put("var. Cravo", "Citrus");
+                        campoSensivel.put("Galego", "Citrus");
+                        campoSensivel.put("Tahiti", "Citrus");
+                        campoSensivel.put("argentina", "Malus");
+                        campoSensivel.put("cv. Fuji", "Malus");
+                        campoSensivel.put("var. Murcote", "Citrus");
+                        campoSensivel.put("var. Rio", "Citrus");
+                        campoSensivel.put("cv. Aurora", "Prunus");
+                        campoSensivel.put("var. Poncã", "Citrus");
+                        campoSensivel.put("Rio Grande", "Penaeus");
+                        campoSensivel.put("Sete Barbas", "Xiphopenaeus");
+                        campoSensivel.put("Corvina de água doce", "Plagioscions");
+                        campoSensivel.put("Corvina do mar", "Micropogonias");
+                        campoSensivel.put("Corvina grande", "Micropogonias");
+                        campoSensivel.put("Dourada", "Brachyplatystoma");
+                        campoSensivel.put("branca", "Cynoscion");
+                        campoSensivel.put("açúcar", "Saccharum");
+                        campoSensivel.put("fradinho", "Vigna");
+                        
+                        t = identificarNomeComposto(campoSensivel, mTmp.group(1), t);
+//                        System.out.print("["+mTmp.group(1).substring(j, t)+"] ");
+                        cientifico.setAlimento(mTmp.group(1).substring(j, t));
+                        
+                        /*
+                         * Segunda Coluna
+                         */
+                        t++;
+                        try {
+//                            System.out.println("["+mTmp.group(1).substring(t, mTmp.group(1).length()).trim()+"] ");
+                            cientifico.setNomeCientifico(mTmp.group(1).substring(t, mTmp.group(1).length()).trim());
+                        } catch (StringIndexOutOfBoundsException e) {
+//                            System.out.println("[]");
+                        }
+                        
+                        dao.insert( cientifico );
+                        
+                        // Pulando algumas linhas em branco...
+                        if (i == 4 )
+                            i++;
+                        if (i == 46 )
+                            i += 4;
+                        if (i == 64 )
+                            i += 2;
+                        if (i == 96 )
+                            i += 4;
+                        if (i == 133 )
+                            i++;
+                        if (i == 148 )
+                            i += 4;
+                        if (i == 164 )
+                            i++;
+                        if (i == 169 )
+                            i++;
+                        if (i == 173 )
+                            i++;
+                        if (i == 183 )
+                            i++;
+                    } 
+                    
+                } // for
+                entityManager.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+            
 }

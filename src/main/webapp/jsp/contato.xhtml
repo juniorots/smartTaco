@@ -20,6 +20,7 @@
                         <f:selectItem itemLabel="Reclamação" itemValue="Reclamação" />
                         <f:selectItem itemLabel="Sugestão" itemValue="Sugestão" />
                         <f:selectItem itemLabel="Interesse na publicidade" itemValue="Interesse na publicidade" />
+                        <f:selectItem itemLabel="Outros..." itemValue="Outros..." />
                     </p:selectOneMenu>
                 </h:panelGrid>
                 
@@ -27,13 +28,13 @@
                     <p:outputLabel for="mensagem" value="Diz Ai!! " styleClass="fontePadrao"/>
                     <p:inputTextarea rows="10" cols="50" counter="display" id="mensagem" value="#{contatoMB.mensagem}"
                                      required="true" requiredMessage="Campo de preenchimento obrigatório."
-                                     maxlength="1000" counterTemplate="Restam {0} letra(s)." autoResize="false" />
+                                     maxlength="1000" counterTemplate="{0}" autoResize="false" />
                     <br/>
                     <h:outputText id="display" styleClass="fontePadrao"/>
                 </h:panelGrid>
                 
                 <h:panelGrid cellpadding="10" cellspacing="5" columns="2" style="margin-left: 20px">
-                    <p:commandButton value="Enviar notificação" id="btnEnviar" actionListener="#{contatoMB.enviarNotificacao}" ajax="false"/>
+                    <p:commandButton value="Notificar..." id="btnEnviar" actionListener="#{contatoMB.enviarNotificacao}" ajax="false"/>
                 </h:panelGrid>
             </h:form>
         </ui:define>
