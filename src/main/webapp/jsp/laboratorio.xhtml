@@ -71,6 +71,33 @@
                         color: #006400; /* DarkGreen */
                     }
                 </style>
+                
+                <ace:notificationPanel id="notificationPanel"
+                                   visible="#{cabecalhoMB.visible}"
+                                   position="top"
+                                   effect="slide"
+                                   effectSpeed="slow"
+                                   style="height: 115px;">
+                    <ace:ajax event="close" execute="@this" render="@form" 
+                          listener="#{cabecalhoMB.closeListener}"/>
+                    <f:facet name="close">
+                        <h:graphicImage id='imgClose' value='/resources/images/close2.png'/>
+                    </f:facet>  
+
+                    <h:panelGrid columns="2" cellspacing="20">
+                       <h:graphicImage id="img" value="#{cabecalhoMB.urlImagem}"
+                          alt="#{cabecalhoMB.titleImagem}"
+                          style="text-align: right;"/> 
+                       <h:outputText id="txt" value="#{cabecalhoMB.descricao}" 
+                                     style="text-align: left; display: block; font-size: 14px;"
+                                     class="fontePadrao"/>
+                    </h:panelGrid>
+                </ace:notificationPanel>
+        
+        &nbsp;&nbsp;<h:commandLink action="#{cabecalhoMB.gerarDescricao('teste')}">
+                <h:graphicImage id='img2' value='/resources/images/search16.png'/>
+        </h:commandLink>
+                
                 <div class="titulo">Relação dos laboratórios</div>
 
                 <div class="botoes">
@@ -84,7 +111,7 @@
                 <div class="tabelaFoco">
                     <ace:dataTable id="dataTable"
                                    value="#{laboratorioMB.listaItens}" 
-                                   var="laboratorio"
+                                   var="linha"
                                    rows="9"
                                    stateMap="#{laboratorioMB.stateMap}"
                                    selectionMode="single"
@@ -96,12 +123,12 @@
                                    reorderableColumns="true">
                         <c:forEach items="#{laboratorioMB.listaColuna}" var="item">
                             <ace:column 
-                                sortBy="#{laboratorio[item.value]}"
-                                filterBy="#{laboratorio[item.value]}"
+                                sortBy="#{linha[item.value]}"
+                                filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
                                 style="text-align: left; width:100px;"
                                 headerText="#{item.headerText}">
-                                <h:outputText id="#{item.value}" value="#{laboratorio[item.value]}"/>
+                                    #{linha[item.value]}
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>

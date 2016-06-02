@@ -72,6 +72,29 @@
                         font-size: 25px;
                     }
                 </style>
+                
+                <ace:notificationPanel id="notificationPanel"
+                                   visible="#{cabecalhoMB.visible}"
+                                   position="top"
+                                   effect="slide"
+                                   effectSpeed="slow"
+                                   style="height: 115px;">
+                    <ace:ajax event="close" execute="@this" render="@form" 
+                          listener="#{cabecalhoMB.closeListener}"/>
+                    <f:facet name="close">
+                        <h:graphicImage id='imgClose' value='/resources/images/close2.png'/>
+                    </f:facet>  
+
+                    <h:panelGrid columns="2" cellspacing="20">
+                       <h:graphicImage id="img" value="#{cabecalhoMB.urlImagem}"
+                          alt="#{cabecalhoMB.titleImagem}"
+                          style="text-align: right;"/> 
+                       <h:outputText id="txt" value="#{cabecalhoMB.descricao}" 
+                                     style="text-align: left; display: block; font-size: 14px;"
+                                     class="fontePadrao"/>
+                    </h:panelGrid>
+                </ace:notificationPanel>
+                
                 <div class="titulo">Nomes científicos dos alimentos</div>
 
                 <div class="botoes">
@@ -112,7 +135,7 @@
                                 filterMatchMode="contains"
                                 style="text-align: left; width:100px;"
                                 headerText="#{item.headerText}">
-                                <h:outputText id="#{item.value}" value="#{linha[item.value]}"/>
+                                    #{linha[item.value]}
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>

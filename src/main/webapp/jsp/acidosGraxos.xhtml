@@ -71,6 +71,29 @@
                         color: #0000CD; /* MediumBlue */
                     }
                 </style>
+                
+                <ace:notificationPanel id="notificationPanel"
+                                   visible="#{cabecalhoMB.visible}"
+                                   position="top"
+                                   effect="slide"
+                                   effectSpeed="slow"
+                                   style="height: 115px;">
+                    <ace:ajax event="close" execute="@this" render="@form" 
+                          listener="#{cabecalhoMB.closeListener}"/>
+                    <f:facet name="close">
+                        <h:graphicImage id='imgClose' value='/resources/images/close2.png'/>
+                    </f:facet>  
+
+                    <h:panelGrid columns="2" cellspacing="20">
+                       <h:graphicImage id="img" value="#{cabecalhoMB.urlImagem}"
+                          alt="#{cabecalhoMB.titleImagem}"
+                          style="text-align: right;"/> 
+                       <h:outputText id="txt" value="#{cabecalhoMB.descricao}" 
+                                     style="text-align: left; display: block; font-size: 14px;"
+                                     class="fontePadrao"/>
+                    </h:panelGrid>
+                </ace:notificationPanel>
+                
                 <div class="titulo">Ácidos Graxos</div>
 
                 <div class="botoes">
@@ -84,7 +107,7 @@
                 <div class="tabelaFoco">
                     <ace:dataTable id="dataTable"
                                    value="#{acidosGraxosMB.listaItens}" 
-                                   var="acido"
+                                   var="linha"
                                    rows="9"
                                    stateMap="#{acidosGraxosMB.stateMap}"
                                    selectionMode="single"
@@ -96,21 +119,21 @@
                                    reorderableColumns="true">
                         <ace:row 
                             condition="group" 
-                            groupBy="#{acido.grupo}" 
+                            groupBy="#{linha.grupo}" 
                             pos="before" 
                             styleClass="group-header">
                             <ace:column colspan="${acidosGraxosMB.totalColunas}">
-                                <h:outputText value="#{acido.grupo}"/>
+                                <h:outputText value="#{linha.grupo}"/>
                             </ace:column>
                         </ace:row>
                         <c:forEach items="#{acidosGraxosMB.listaColuna}" var="item">
                             <ace:column 
-                                sortBy="#{acido[item.value]}"
-                                filterBy="#{acido[item.value]}"
+                                sortBy="#{linha[item.value]}"
+                                filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
                                 style="text-align: left; width:100px;"
                                 headerText="#{item.headerText}">
-                                <h:outputText id="#{item.value}" value="#{acido[item.value]}"/>
+                                    #{linha[item.value]}
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>
