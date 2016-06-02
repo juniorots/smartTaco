@@ -88,6 +88,10 @@ public class PrincipalMB implements Serializable {
         if ( Constantes.ELIPSE_AMINOACIDOS.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.COMPOSICAO_AMINOACIDOS );
         }
+        
+        if ( Constantes.ELIPSE_LABORATORIOS.equalsIgnoreCase( label ) ) {
+            Util.forward( Constantes.RELACAO_LABORATORIO );
+        }
     }
 
     public void onNodeDblselect(SelectEvent event) {

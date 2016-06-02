@@ -7,7 +7,7 @@
 package br.com.smarttaco.negocio;
 
 import br.com.smarttaco.util.EnviarEmail;
-import br.com.smarttaco.util.Helena;
+import br.com.smarttaco.util.HelenaBarbosa;
 import br.com.smarttaco.util.Util;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class UtilTest {
             for (int i = 19; i<= 164; i++) {
                 paginas.add(i);
             }
-            Helena.executar("/home/junior/Downloads/taco.txt", paginas, "/home/junior/Downloads/taco_4_edicao_ampliada_e_revisada.pdf");
+            HelenaBarbosa.executar("/home/junior/Downloads/taco.txt", paginas, "/home/junior/Downloads/taco_4_edicao_ampliada_e_revisada.pdf");
         } catch (Exception e) {
             e.printStackTrace();
         }

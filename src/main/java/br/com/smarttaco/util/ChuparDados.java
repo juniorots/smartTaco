@@ -7,11 +7,12 @@
 package br.com.smarttaco.util;
 
 import br.com.smarttaco.base.AcidosGraxosDAO;
+import br.com.smarttaco.base.LaboratorioDAO;
 import br.com.smarttaco.base.NomesCientificosDAO;
 import br.com.smarttaco.base.TagnamesDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
+import br.com.smarttaco.modelo.Laboratorio;
 import br.com.smarttaco.modelo.NomesCientificos;
-import static br.com.smarttaco.modelo.NomesCientificos_.grupo;
 import br.com.smarttaco.modelo.Tagnames;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -198,8 +199,8 @@ public class ChuparDados {
     }
     
     /*
-    * Trabalhando com a tabela Quadro 6
-    */
+     * Trabalhando com a tabela Quadro 6
+     */
     public static void tratarTabelaTagnames(String arquivo) {
         try {
             int linha = 111;
@@ -394,8 +395,8 @@ public class ChuparDados {
     }
     
     /*
-    * Trabalhando com a tabela Quadro 7
-    */
+     * Trabalhando com a tabela Quadro 7
+     */
     public static void tratarTabelaCientificos(String arquivo) {
         try {
             int linhas = 194;
@@ -583,5 +584,99 @@ public class ChuparDados {
             e.printStackTrace();
         }
     }
+        
+    /*
+     * Trabalhando com a tabela Quadro 8
+     */
+    public static void tratarTabelaLaboratorio(String arquivo) {
+        try {
+            int linhas = 22;
+            Pattern p = Pattern.compile("(^Quadro 8).+(:?(.|\\n).+$){"+linhas+"}", Pattern.MULTILINE);
+            Matcher m = p.matcher(arquivo);
             
+            /*
+             * Nota:
+             * Semantica do campoSensivel:
+             * key: valor unico entre os elementos da tabela
+             * value: Representa o limite da coluna, assim deve-se concatenar o seu valor
+             * ate encontrar esse valor limite... (null = campo nao contem valor)
+             */
+            HashMap<String, String> campoSensivel = new HashMap<>();
+            
+            @Cleanup
+            final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+
+            @Cleanup
+            final EntityManager entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            LaboratorioDAO dao = new LaboratorioDAO(entityManager);
+            
+            Pattern pTmp = null;
+            Matcher mTmp = null;
+            
+            
+            if (m.find() == true) {
+//                System.out.println( m.group() );
+                for (int i = 3; i <= linhas; i++) {
+                    pTmp = Pattern.compile("(?=(\\n.*){"+i+"})");
+                    mTmp = pTmp.matcher( m.group() );
+                    
+                    if (mTmp.find() == true) {
+                        Laboratorio laboratorio = new Laboratorio();
+                        int j = 1;
+                        int t = 0;
+//                        laboratorio.setGrupo("");
+                        
+                        campoSensivel.clear();
+                        campoSensivel.put("UNB", "DF");
+                        campoSensivel.put("CEPPA", "PR");
+                        campoSensivel.put("Embrapa", "RJ");
+                        campoSensivel.put("CIENTEC", "RS");
+                        campoSensivel.put("FUNED", "MG");
+                        campoSensivel.put("IAL", "SP");
+                        campoSensivel.put("IPEN", "SP");
+                        campoSensivel.put("ITAL", "SP");
+                        campoSensivel.put("INPA", "AM");
+                        campoSensivel.put("UNICAMP", "SP");
+                        campoSensivel.put("DCA", "SP");
+                        campoSensivel.put("USP", "SP");
+                        campoSensivel.put("UFBA", "BA");
+                        campoSensivel.put("UFPE", "PE");
+                        campoSensivel.put("UFSC", "SC");
+                        campoSensivel.put("UNIFESP", "SP");
+                        campoSensivel.put("UFV", "MG");
+                        campoSensivel.put("UFMT", "MT");
+                        campoSensivel.put("UFPR", "PR");
+                        campoSensivel.put("UFF", "RJ");
+                        
+                        /*
+                         * Primeira Coluna
+                         */
+                        while (!mTmp.group(1).substring(t, t+1).equals(" ")) 
+                            t++;
+                        
+                        t = identificarNomeComposto(campoSensivel, mTmp.group(1), t);
+//                        System.out.print("["+mTmp.group(1).substring(j, t)+"] ");
+                        laboratorio.setNoLaboratorio( mTmp.group(1).substring(j, t) );
+                        
+                        /*
+                         * Segunda Coluna
+                         */
+                        t++;
+                        
+                        try {
+//                            System.out.println("["+mTmp.group(1).substring(t, mTmp.group(1).length()).trim()+"] ");
+                            laboratorio.setEstado(mTmp.group(1).substring(t, mTmp.group(1).length()).trim());
+                        } catch (StringIndexOutOfBoundsException e) {
+//                            System.out.println("[]");
+                        }
+                        dao.insert( laboratorio );
+                    }
+                } // for
+                entityManager.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author Jose Alves
  */
-public class Helena {
+public class HelenaBarbosa {
     
     public static void tratarArquivo(String arquivo) {
         File file = new File(arquivo);
@@ -55,6 +55,7 @@ public class Helena {
 //            ChuparDados.tratarTabelaNomesSistematicos( conteudoArquivo.toString() );
 //            ChuparDados.tratarTabelaTagnames( conteudoArquivo.toString() );
 //            ChuparDados.tratarTabelaCientificos( conteudoArquivo.toString() );
+//            ChuparDados.tratarTabelaLaboratorio( conteudoArquivo.toString() );
             
             fin.close();
         } catch (Exception e) {
@@ -93,7 +94,7 @@ public class Helena {
         try {
             deletarArquivo(arquivo);
             pdf2txt(pdf, paginas, arquivo);
-            Helena.tratarArquivo(arquivo);
+            HelenaBarbosa.tratarArquivo(arquivo);
         } catch (Exception e) {
             e.printStackTrace();
         }
