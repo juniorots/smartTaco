@@ -6,6 +6,8 @@
 
 package br.com.smarttaco.util;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Jose Alves
@@ -65,5 +67,37 @@ public class Constantes {
     public static String ELIPSE_ELEMENTOS = "Centesimal, minerais, vitaminas e colesterol";
     public static String ELIPSE_CENTESIMAL_ACIDOS = "Centesimal Ácidos Graxos";
     
-        public static String ELIPSE_LABORATORIOS = "Relação dos laboratórios";
+    public static String ELIPSE_LABORATORIOS = "Relação dos laboratórios";
+    
+    public final static HashMap<String, String> notas = new HashMap<>();
+    
+    static {
+        notas.put("1", "RE (equivalente de retinol) = 1 μg de retinol + 1/6 μg de trans "
+                + "beta-caroteno + 1/12 μg de cis beta-caroteno " +
+                "1/12 μg de outros trans carotenóides pró-vitamínicos A + 1/24 de outros cis "
+                + "carotenóides pró-vitamínicos A");
+        
+        notas.put("2", "RAE (equivalente de atividade de retinol) = 1 μg de retinol + 1/12 μg "
+                + "de trans beta-caroteno + 1/24 μg de cis " +
+                "beta-caroteno + 1/24 μg de outros trans carotenóides pró-vitamínicos A + 1/48 de "
+                + "outros cis carotenóides pró-" +
+                "vitamínicos A (25, 26)");
+        
+        notas.put("3", "Os tagnames dos aminoácidos seguiram o padrão do USDA (8)");
+        
+        notas.put("4", "As análises estão sendo reavaliadas");
+        
+        notas.put("5", "Valores em branco nesta tabela: análises não solicitadas");
+        
+        notas.put("6", "Valores correspondentes à somatória do resultado analítico do "
+                + "retinol mais o valor calculado com base no teor de carotenóides "
+                + "segundo o livro Fontes brasileiras de carotenóides: tabela brasileira" +
+                "de composição de carotenóides em alimentos (25)");
+        
+        notas.put("7", "Valores retirados do livro Fontes brasileiras de "
+                + "carotenóides: tabela brasileira de composição de "
+                + "carotenóides em alimentos (25)");
+        
+        notas.put("8", "Não inclui os ácidos graxos trans");
+    }
 }

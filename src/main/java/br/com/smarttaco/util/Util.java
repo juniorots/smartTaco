@@ -46,8 +46,33 @@ public class Util {
         sb.append( formato.format(data) );
         return sb.toString();
     }
+   
+    /**
+     * Montando o link para especificacao de nota de rodape
+     * @param descricao
+     * @param codMensagem
+     * @return 
+     */
+    public static String montarLink ( String desricao, String... codMensagem ) {
+        StringBuilder retorno = new StringBuilder();
+        
+        
+        return retorno.toString();
+    }
     
-        /*
+    /**
+     * Especificado para montar a nota de rodape...
+     * @param codigoMensagem
+     * @return 
+     */
+    public static String montarDescricaoLink( String codigoMensagem ) {
+        StringBuilder retorno = new StringBuilder();
+        retorno.append(Constantes.notas.get(codigoMensagem.trim()));
+        retorno.append("\n");
+        return retorno.toString();
+    }
+    
+   /*
     * Verificando se o usuario esta logado no sistema.
     */
     public static boolean isUsuarioLogado() {

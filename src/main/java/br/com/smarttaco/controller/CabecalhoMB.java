@@ -6,7 +6,9 @@
 
 package br.com.smarttaco.controller;
 
+import br.com.smarttaco.util.Util;
 import java.io.Serializable;
+import java.util.StringTokenizer;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
@@ -32,11 +34,13 @@ public class CabecalhoMB implements Serializable {
          visible = false; 
     }
 
-    public void gerarDescricao(String codigo) {
+    public void gerarDescricao( String codigos ) {
         visible = !visible;
-        descricao = "RAE (equivalente de atividade de retinol) = 1 μg de retinol + 1/12 μg de trans beta-caroteno + 1/24 μg de cis\n" +
-"beta-caroteno + 1/24 μg de outros trans carotenóides pró-vitamínicos A + 1/48 de outros cis carotenóides pró-\n" +
-"vitamínicos A (25, 26).";
+        StringTokenizer tmp = new StringTokenizer(codigos, ",");
+        setDescricao("");
+        while ( tmp.hasMoreElements() ) {
+            setDescricao( getDescricao() + Util.montarDescricaoLink( tmp.nextToken() ));
+        }
     }
 
     public boolean isVisible() {
