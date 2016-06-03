@@ -39,7 +39,7 @@ public class CabecalhoMB implements Serializable {
         StringTokenizer tmp = new StringTokenizer(codigos, ",");
         setDescricao("");
         while ( tmp.hasMoreElements() ) {
-            setDescricao( getDescricao() + Util.montarDescricaoLink( tmp.nextToken() ));
+            setDescricao( getDescricao() + Util.montarDescricaoLink( tmp.nextToken().replaceAll(" ", "") ));
         }
     }
 

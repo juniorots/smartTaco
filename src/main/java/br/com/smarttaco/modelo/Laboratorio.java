@@ -7,6 +7,7 @@
 package br.com.smarttaco.modelo;
 
 import br.com.smarttaco.framework.persistence.DomainObject;
+import br.com.smarttaco.util.Util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class Laboratorio extends DomainObject {
     private String grupo;
     
     public String getNoLaboratorioLabel() {
-        return "Laboratório";
+        return Util.montarLink("frmLaboratorio", "Laboratório", "1");
     }
     
     public String getEstadoLabel() {

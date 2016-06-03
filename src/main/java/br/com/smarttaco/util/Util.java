@@ -53,10 +53,36 @@ public class Util {
      * @param codMensagem
      * @return 
      */
-    public static String montarLink ( String desricao, String... codMensagem ) {
+    public static String montarLink ( String formulario, String descricao, 
+            String... codMensagem ) {
         StringBuilder retorno = new StringBuilder();
+        String tmp = "";
+
+        for (String cod : codMensagem) {
+            tmp += cod;
+            if(codMensagem.length > 1) 
+                cod += ",";
+        }
         
-        
+        retorno.append(descricao);
+        retorno.append("&nbsp;&nbsp;");
+//        retorno.append(
+//    "       <h:commandLink action=\"#{cabecalhoMB.gerarDescricao('frmLaboratorio')}\">\n" +
+//    "          <h:graphicImage id='img2' value='/resources/images/search16.png'/>\n" +
+//    "       </h:commandLink>"
+//        );
+        retorno.append(
+                "<a id=\"frmLaboratorio:_t33\" style=\"text-decoration:none;\""
+                + "onclick=\"mojarra.jsfcljs(document.getElementById('frmLaboratorio'),"
+                + "{'frmLaboratorio:_t33':'frmLaboratorio:_t33'},'');"
+                + "return false\" href=\"#\" style=\"\">\n" 
+                + "<img id=\"frmLaboratorio:img2\" "
+                + "src=\"/smarttaco/resources/images/search16.png\">\n" 
+                +"</a>"
+        );
+//        retorno.append("<a onclick=\"#{cabecalhoMB.gerarDescricao('1')>");
+//        retorno.append("<img src=\"/smarttaco/resources/images/search16.png\"/>");
+//        retorno.append("</a>");
         return retorno.toString();
     }
     
@@ -68,7 +94,6 @@ public class Util {
     public static String montarDescricaoLink( String codigoMensagem ) {
         StringBuilder retorno = new StringBuilder();
         retorno.append(Constantes.notas.get(codigoMensagem.trim()));
-        retorno.append("\n");
         return retorno.toString();
     }
     
