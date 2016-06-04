@@ -53,8 +53,7 @@ public class Util {
      * @param codMensagem
      * @return 
      */
-    public static String montarLink ( String formulario, String descricao, 
-            String... codMensagem ) {
+    public static String montarLink ( String descricao, String... codMensagem ) {
         StringBuilder retorno = new StringBuilder();
         String tmp = "";
 
@@ -65,24 +64,8 @@ public class Util {
         }
         
         retorno.append(descricao);
-        retorno.append("&nbsp;&nbsp;");
-//        retorno.append(
-//    "       <h:commandLink action=\"#{cabecalhoMB.gerarDescricao('frmLaboratorio')}\">\n" +
-//    "          <h:graphicImage id='img2' value='/resources/images/search16.png'/>\n" +
-//    "       </h:commandLink>"
-//        );
-        retorno.append(
-                "<a id=\"frmLaboratorio:_t33\" style=\"text-decoration:none;\""
-                + "onclick=\"mojarra.jsfcljs(document.getElementById('frmLaboratorio'),"
-                + "{'frmLaboratorio:_t33':'frmLaboratorio:_t33'},'');"
-                + "return false\" href=\"#\" style=\"\">\n" 
-                + "<img id=\"frmLaboratorio:img2\" "
-                + "src=\"/smarttaco/resources/images/search16.png\">\n" 
-                +"</a>"
-        );
-//        retorno.append("<a onclick=\"#{cabecalhoMB.gerarDescricao('1')>");
-//        retorno.append("<img src=\"/smarttaco/resources/images/search16.png\"/>");
-//        retorno.append("</a>");
+        retorno.append("  ");
+        retorno.append("<nota>"+ tmp +"</nota>");
         return retorno.toString();
     }
     

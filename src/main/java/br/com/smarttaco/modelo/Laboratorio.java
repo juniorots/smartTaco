@@ -6,10 +6,13 @@
 
 package br.com.smarttaco.modelo;
 
+import br.com.smarttaco.controller.CabecalhoMB;
 import br.com.smarttaco.framework.persistence.DomainObject;
 import br.com.smarttaco.util.Util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.persistence.Entity;
 
 /**
@@ -24,7 +27,7 @@ public class Laboratorio extends DomainObject {
     private String grupo;
     
     public String getNoLaboratorioLabel() {
-        return Util.montarLink("frmLaboratorio", "Laboratório", "1");
+        return Util.montarLink("Laboratório", "1");
     }
     
     public String getEstadoLabel() {
@@ -66,6 +69,16 @@ public class Laboratorio extends DomainObject {
                 try {
                     Method method = Laboratorio.class.getMethod( montarNomeMetodo( atributo.getName() ) );
                     valor = (String) method.invoke( new Laboratorio() );
+                    
+                    if ( valor.contains("<nota>") ) {
+                        Pattern p = Pattern.compile("(?<=\\<nota\\>)(\\s*.*\\s*)(?=\\<\\/nota\\>)");
+                        Matcher m = p.matcher(valor);    
+                        
+                        CabecalhoMB.getIntance().getTextoLegivel().put(valor, valor.substring(0, valor.indexOf("<") ) ); 
+                        if ( m.find() == true ) {
+                            CabecalhoMB.getIntance().getCodigoNota().put(valor, m.group(1) );
+                        }
+                    }
                 } catch (Exception e) {
                     valor = "error...";
                     e.printStackTrace();

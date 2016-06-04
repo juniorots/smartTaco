@@ -93,11 +93,7 @@
                                      class="fontePadrao"/>
                     </h:panelGrid>
                 </ace:notificationPanel>
-        
-        &nbsp;&nbsp;<h:commandLink action="#{cabecalhoMB.gerarDescricao('4')}">
-                <h:graphicImage id='img2' value='/resources/images/search16.png'/>
-        </h:commandLink>
-                
+
                 <div class="titulo">Relação dos laboratórios</div>
 
                 <div class="botoes">
@@ -126,8 +122,22 @@
                                 sortBy="#{linha[item.value]}"
                                 filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
-                                style="text-align: left; width:100px;"
-                                headerText="#{item.headerText}">
+                                style="text-align: left; width:100px;">
+                                    <f:facet name="header">
+                                        <c:choose>
+                                            <c:when test="${laboratorioMB.cabecalho.contemTag(item.headerText)}">
+                                                #{laboratorioMB.cabecalho.gerarTextoLegivel(item.headerText)}   
+                                                <h:commandLink 
+                                                    action="#{cabecalhoMB.gerarDescricao(
+                                                              laboratorioMB.cabecalho.gerarCodigoNota(item.headerText))}">
+                                                    <h:graphicImage id='#{item.value}' value='/resources/images/search16.png'/>
+                                                </h:commandLink>
+                                            </c:when>
+                                            <c:otherwise>
+                                                #{item.headerText}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </f:facet>
                                     #{linha[item.value]}
                             </ace:column>
                         </c:forEach>

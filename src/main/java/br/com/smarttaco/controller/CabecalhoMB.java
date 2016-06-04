@@ -8,6 +8,7 @@ package br.com.smarttaco.controller;
 
 import br.com.smarttaco.util.Util;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,15 +26,35 @@ public class CabecalhoMB implements Serializable {
     private String urlImagem = "/resources/images/book64.png";
     private String titleImagem = "Notas descritivas";
     private String descricao;
+    private HashMap<String, String> textoLegivel = new HashMap<>();
+    private HashMap<String, String> codigoNota = new HashMap<>();
 
+    private static CabecalhoMB cabecalho;
+    
     public void showAppropriateButton(ActionEvent e) {
         visible = !visible;
+    }
+    
+    public static CabecalhoMB getIntance() {
+        if ( Util.isEmpty( cabecalho ) ) {
+            cabecalho = new CabecalhoMB();
+        }
+        return cabecalho;
     }
 
     public void closeListener(AjaxBehaviorEvent event) {
          visible = false; 
     }
 
+    public boolean contemTag(String arg) {
+        if ( !Util.isEmpty(arg) ) {
+            return arg.contains("<nota>");
+        } else {
+            return false;
+        }
+            
+    }
+    
     public void gerarDescricao( String codigos ) {
         visible = !visible;
         StringTokenizer tmp = new StringTokenizer(codigos, ",");
@@ -41,6 +62,35 @@ public class CabecalhoMB implements Serializable {
         while ( tmp.hasMoreElements() ) {
             setDescricao( getDescricao() + Util.montarDescricaoLink( tmp.nextToken().replaceAll(" ", "") ));
         }
+    }
+
+    /**
+     * Procurara por texto legivel ao usuario
+     * @param arg
+     * @return 
+     */
+    public String gerarTextoLegivel(String arg) {
+        return textoLegivel.get(arg);
+    }
+    
+    public String gerarCodigoNota(String arg) {
+        return codigoNota.get(arg);
+    }
+    
+    public HashMap<String, String> getTextoLegivel() {
+        return textoLegivel;
+    }
+
+    public void setTextoLegivel(HashMap<String, String> textoLegivel) {
+        this.textoLegivel = textoLegivel;
+    }
+
+    public HashMap<String, String> getCodigoNota() {
+        return codigoNota;
+    }
+
+    public void setCodigoNota(HashMap<String, String> codigoNota) {
+        this.codigoNota = codigoNota;
     }
 
     public boolean isVisible() {

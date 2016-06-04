@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
@@ -30,7 +30,8 @@ import org.icefaces.ace.model.table.RowStateMap;
  * @author Jose Alves
  */
 @ManagedBean
-@SessionScoped
+//@SessionScoped
+@RequestScoped
 public class LaboratorioMB implements Serializable {
     
     private List<Laboratorio> listaItens = new ArrayList<Laboratorio>();
@@ -43,6 +44,7 @@ public class LaboratorioMB implements Serializable {
     
     private RowStateMap stateMap = new RowStateMap();
     private Laboratorio obj = new Laboratorio();
+    private CabecalhoMB cabecalho = CabecalhoMB.getIntance();
     
     private int totalColunas;
     
@@ -59,10 +61,15 @@ public class LaboratorioMB implements Serializable {
         try {
             for ( Field atributo: classe.getDeclaredFields() ) {
                 if (!"grupo".equalsIgnoreCase( atributo.getName() )) {
-                    this.checkBoxes.add (new SelectItem(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
+                    String tmp = obj.getLabelCorrente( atributo.getName() );
+                    if ( tmp.contains( "<" ) ) {
+                        tmp = tmp.substring(0, tmp.indexOf("<") ).trim();
+                    }
+                    this.checkBoxes.add (new SelectItem(atributo.getName(), tmp ) );
 
                     if ( i < Constantes.LIMITE_COLUNAS) {
-                        this.listaColuna.add (new ColunaDinamica(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
+                        this.listaColuna.add (new ColunaDinamica(atributo.getName(), 
+                                obj.getLabelCorrente( atributo.getName() ) ) );
                         this.selectedCheckBoxes.add( atributo.getName() );
                     }
                     i++;
@@ -121,6 +128,14 @@ public class LaboratorioMB implements Serializable {
         for (String s : removed) {
             removeColumn(s.toLowerCase());
         }
+    }
+
+    public CabecalhoMB getCabecalho() {
+        return cabecalho;
+    }
+
+    public void setCabecalho(CabecalhoMB cabecalho) {
+        this.cabecalho = cabecalho;
     }
 
     public int getTotalColunas() {
