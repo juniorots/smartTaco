@@ -117,6 +117,7 @@
                                    resizableColumns="true"
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
+                        <c:set var="cont" value="1"/>
                         <c:forEach items="#{laboratorioMB.listaColuna}" var="item">
                             <ace:column 
                                 sortBy="#{linha[item.value]}"
@@ -146,13 +147,14 @@
                                         <h:commandLink 
                                             action="#{cabecalhoMB.gerarDescricao(
                                                       laboratorioMB.cabecalho.gerarCodigoNota(linha[item.value]))}">
-                                            <h:graphicImage id='#{item.value}#{linha[item.value]}' value='/resources/images/search16.png'/>
+                                            <h:graphicImage id='#{item.value}#{cont}' value='/resources/images/search16.png'/>
                                         </h:commandLink>
                                     </c:when>
                                     <c:otherwise>
                                         #{linha[item.value]}
                                     </c:otherwise>
                                 </c:choose>
+                                <c:set var="cont" value="${cont+1}"/>
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>
