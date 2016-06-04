@@ -10,6 +10,8 @@ import br.com.smarttaco.util.Util;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
@@ -35,7 +37,7 @@ public class CabecalhoMB implements Serializable {
         visible = !visible;
     }
     
-    public static CabecalhoMB getIntance() {
+    public static CabecalhoMB getInstance() {
         if ( Util.isEmpty( cabecalho ) ) {
             cabecalho = new CabecalhoMB();
         }
@@ -73,8 +75,30 @@ public class CabecalhoMB implements Serializable {
         return textoLegivel.get(arg);
     }
     
+    /**
+     * Indexando as notas de comentario
+     * @param arg
+     * @return 
+     */
     public String gerarCodigoNota(String arg) {
         return codigoNota.get(arg);
+    }
+    
+    /**
+     * Identificando cada celula da tabela que devera
+     * conter nota de descricao
+     * @param arg 
+     */
+    public void indexarResultado(String arg) {
+        if (arg.contains("<nota>")) {
+            textoLegivel.put(arg, arg.substring(0, arg.indexOf("<")).trim());
+            Pattern p = Pattern.compile("(?<=\\<nota\\>)(\\s*.*\\s*)(?=\\<\\/nota\\>)");
+            Matcher m = p.matcher(arg);    
+
+            if ( m.find() == true ) {
+                CabecalhoMB.getInstance().getCodigoNota().put(arg, m.group(1) );
+            }
+        }
     }
     
     public HashMap<String, String> getTextoLegivel() {

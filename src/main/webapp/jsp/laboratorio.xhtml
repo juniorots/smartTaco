@@ -123,22 +123,36 @@
                                 filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
                                 style="text-align: left; width:100px;">
-                                    <f:facet name="header">
-                                        <c:choose>
-                                            <c:when test="${laboratorioMB.cabecalho.contemTag(item.headerText)}">
-                                                #{laboratorioMB.cabecalho.gerarTextoLegivel(item.headerText)}   
-                                                <h:commandLink 
-                                                    action="#{cabecalhoMB.gerarDescricao(
-                                                              laboratorioMB.cabecalho.gerarCodigoNota(item.headerText))}">
-                                                    <h:graphicImage id='#{item.value}' value='/resources/images/search16.png'/>
-                                                </h:commandLink>
-                                            </c:when>
-                                            <c:otherwise>
-                                                #{item.headerText}
-                                            </c:otherwise>
+                                <f:facet name="header">
+                                    <c:choose>
+                                        <c:when test="${laboratorioMB.cabecalho.contemTag(item.headerText)}">
+                                            #{laboratorioMB.cabecalho.gerarTextoLegivel(item.headerText)}   
+                                            <h:commandLink 
+                                                action="#{cabecalhoMB.gerarDescricao(
+                                                          laboratorioMB.cabecalho.gerarCodigoNota(item.headerText))}">
+                                                <h:graphicImage id='#{item.value}' value='/resources/images/search16.png'/>
+                                            </h:commandLink>
+                                        </c:when>
+                                        <c:otherwise>
+                                            #{item.headerText}
+                                        </c:otherwise>
                                         </c:choose>
-                                    </f:facet>
-                                    #{linha[item.value]}
+                                </f:facet>
+                                    
+                                <!-- Linhas da tabela -->
+                                <c:choose>
+                                    <c:when test="${laboratorioMB.cabecalho.contemTag(linha[item.value])}">
+                                        #{laboratorioMB.cabecalho.gerarTextoLegivel(linha[item.value])}   
+                                        <h:commandLink 
+                                            action="#{cabecalhoMB.gerarDescricao(
+                                                      laboratorioMB.cabecalho.gerarCodigoNota(linha[item.value]))}">
+                                            <h:graphicImage id='#{item.value}#{linha[item.value]}' value='/resources/images/search16.png'/>
+                                        </h:commandLink>
+                                    </c:when>
+                                    <c:otherwise>
+                                        #{linha[item.value]}
+                                    </c:otherwise>
+                                </c:choose>
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>

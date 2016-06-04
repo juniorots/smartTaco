@@ -74,9 +74,9 @@ public class Laboratorio extends DomainObject {
                         Pattern p = Pattern.compile("(?<=\\<nota\\>)(\\s*.*\\s*)(?=\\<\\/nota\\>)");
                         Matcher m = p.matcher(valor);    
                         
-                        CabecalhoMB.getIntance().getTextoLegivel().put(valor, valor.substring(0, valor.indexOf("<") ) ); 
+                        CabecalhoMB.getInstance().getTextoLegivel().put(valor, valor.substring(0, valor.indexOf("<") ) ); 
                         if ( m.find() == true ) {
-                            CabecalhoMB.getIntance().getCodigoNota().put(valor, m.group(1) );
+                            CabecalhoMB.getInstance().getCodigoNota().put(valor, m.group(1) );
                         }
                     }
                 } catch (Exception e) {

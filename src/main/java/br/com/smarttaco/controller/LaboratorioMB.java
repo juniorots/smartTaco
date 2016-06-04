@@ -44,7 +44,7 @@ public class LaboratorioMB implements Serializable {
     
     private RowStateMap stateMap = new RowStateMap();
     private Laboratorio obj = new Laboratorio();
-    private CabecalhoMB cabecalho = CabecalhoMB.getIntance();
+    private CabecalhoMB cabecalho = CabecalhoMB.getInstance();
     
     private int totalColunas;
     
@@ -92,6 +92,21 @@ public class LaboratorioMB implements Serializable {
         
         LaboratorioDAO dao = new LaboratorioDAO(entityManager);
         this.listaItens.addAll( dao.selectAll() );
+        
+        /* ESTE BLOCO DE CODIGO DEVERA SER REMOVIDOS APOS OS TESTES */
+        Laboratorio l = new Laboratorio();
+        l.setNoLaboratorio(Util.montarLink("Nome de laboratorio para efeito de teste...", "2"));
+        l.setEstado("DF");
+        this.listaItens.add(l);
+        /* ESTE BLOCO DE CODIGO DEVERA SER REMOVIDOS APOS OS TESTES */
+        
+        /*
+         * Identificando as marcacoes com <nota>N</nota>
+         */
+        for (Laboratorio tmp : listaItens) {
+            cabecalho.indexarResultado( tmp.getNoLaboratorio() );
+            cabecalho.indexarResultado( tmp.getEstado() );
+        }
     }
 
     /*
