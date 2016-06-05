@@ -72,7 +72,11 @@ public class CabecalhoMB implements Serializable {
      * @return 
      */
     public String gerarTextoLegivel(String arg) {
-        return textoLegivel.get(arg);
+        String retorno = arg;
+        if ( !Util.isEmpty( textoLegivel.get(arg) ) ) {
+            retorno = textoLegivel.get(arg);
+        }
+        return retorno;
     }
     
     /**

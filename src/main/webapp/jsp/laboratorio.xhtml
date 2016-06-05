@@ -123,10 +123,7 @@
                                 sortBy="#{linha[item.value]}"
                                 filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
-                                style="text-align: left; width:100px;
-                                #{laboratorioMB.cabecalho.contemTag(linha[item.value]) ? 
-                                  '.linhaLink{display: block !important;}': 
-                                  '.linhaNormal{display: block !important;}'}">
+                                style="text-align: left; width:100px;">
                                 <f:facet name="header">
                                     <c:choose>
                                         <c:when test="#{laboratorioMB.cabecalho.contemTag(item.headerText)}">
@@ -144,15 +141,14 @@
                                 </f:facet>
                                 <span id="area${cont}"></span>    
                                 <!-- Linhas da tabela -->
-                                <h:outputText class="linhaLink"
+                                <h:outputText 
                                     value="#{laboratorioMB.cabecalho.gerarTextoLegivel(linha[item.value])}"/>
-                                <h:commandLink class="linhaLink"
+                                <h:commandLink rendered="#{laboratorioMB.cabecalho.contemTag(linha[item.value])}"
                                     action="#{cabecalhoMB.gerarDescricao(
                                               laboratorioMB.cabecalho.gerarCodigoNota(linha[item.value]))}">
                                     <h:graphicImage id='#{item.value}#{cont}' 
                                                     value='/resources/images/search16.png'/>
                                 </h:commandLink>
-                                <h:outputText id="tmp${cont}" class="linhaNormal" value="#{linha[item.value]}" />
                                 <c:set var="cont" value="${cont+1}"/>
                             </ace:column>
                         </c:forEach>
