@@ -27,6 +27,8 @@ public class Constantes {
     public static String COMPOSICAO_AMINOACIDOS = "/jsp/composicaoAminoacidos.xhtml";
     
     public static String RELACAO_LABORATORIO = "/jsp/laboratorio.xhtml";
+    public static String GRUPO = "grupo";
+    public static String EXIBIR_LINHA = "exibirLinha";
     
     public static String HOST_NAME_GMAIL = "smtp.gmail.com";
     public static String HOST_NAME_HOTMAIL = "smtp.live.com";

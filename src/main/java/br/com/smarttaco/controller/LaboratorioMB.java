@@ -60,7 +60,7 @@ public class LaboratorioMB implements Serializable {
         int i = 0;
         try {
             for ( Field atributo: classe.getDeclaredFields() ) {
-                if (!"grupo".equalsIgnoreCase( atributo.getName() )) {
+                if (!Constantes.GRUPO.equalsIgnoreCase( atributo.getName() ) ) {
                     String tmp = obj.getLabelCorrente( atributo.getName() );
                     if ( tmp.contains( "<" ) ) {
                         tmp = tmp.substring(0, tmp.indexOf("<") ).trim();

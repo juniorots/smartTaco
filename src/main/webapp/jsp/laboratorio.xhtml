@@ -123,10 +123,13 @@
                                 sortBy="#{linha[item.value]}"
                                 filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
-                                style="text-align: left; width:100px;">
+                                style="text-align: left; width:100px;
+                                #{laboratorioMB.cabecalho.contemTag(linha[item.value]) ? 
+                                  '.linhaLink{display: block !important;}': 
+                                  '.linhaNormal{display: block !important;}'}">
                                 <f:facet name="header">
                                     <c:choose>
-                                        <c:when test="${laboratorioMB.cabecalho.contemTag(item.headerText)}">
+                                        <c:when test="#{laboratorioMB.cabecalho.contemTag(item.headerText)}">
                                             #{laboratorioMB.cabecalho.gerarTextoLegivel(item.headerText)}   
                                             <h:commandLink 
                                                 action="#{cabecalhoMB.gerarDescricao(
@@ -137,23 +140,19 @@
                                         <c:otherwise>
                                             #{item.headerText}
                                         </c:otherwise>
-                                        </c:choose>
+                                    </c:choose>
                                 </f:facet>
-                                    
+                                <span id="area${cont}"></span>    
                                 <!-- Linhas da tabela -->
-                                <c:choose>
-                                    <c:when test="${laboratorioMB.cabecalho.contemTag(linha[item.value])}">
-                                        #{laboratorioMB.cabecalho.gerarTextoLegivel(linha[item.value])}   
-                                        <h:commandLink 
-                                            action="#{cabecalhoMB.gerarDescricao(
-                                                      laboratorioMB.cabecalho.gerarCodigoNota(linha[item.value]))}">
-                                            <h:graphicImage id='#{item.value}#{cont}' value='/resources/images/search16.png'/>
-                                        </h:commandLink>
-                                    </c:when>
-                                    <c:otherwise>
-                                        #{linha[item.value]}
-                                    </c:otherwise>
-                                </c:choose>
+                                <h:outputText class="linhaLink"
+                                    value="#{laboratorioMB.cabecalho.gerarTextoLegivel(linha[item.value])}"/>
+                                <h:commandLink class="linhaLink"
+                                    action="#{cabecalhoMB.gerarDescricao(
+                                              laboratorioMB.cabecalho.gerarCodigoNota(linha[item.value]))}">
+                                    <h:graphicImage id='#{item.value}#{cont}' 
+                                                    value='/resources/images/search16.png'/>
+                                </h:commandLink>
+                                <h:outputText id="tmp${cont}" class="linhaNormal" value="#{linha[item.value]}" />
                                 <c:set var="cont" value="${cont+1}"/>
                             </ace:column>
                         </c:forEach>

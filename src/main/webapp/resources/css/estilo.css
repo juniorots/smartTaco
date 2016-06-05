@@ -207,3 +207,11 @@ body {
     width: 98%;
     color: #696969; /* DimGrey */
 }
+
+.linhaLink{
+    display: none;
+}
+
+.linhaNormal {
+    display: none;
+}
