@@ -13,6 +13,7 @@ import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.Util;
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -93,10 +94,10 @@ public class LaboratorioMB implements Serializable {
         LaboratorioDAO dao = new LaboratorioDAO(entityManager);
         this.listaItens.addAll( dao.selectAll() );
         
-        /* ESTE BLOCO DE CODIGO DEVERA SER REMOVIDOS APOS OS TESTES */
+        /* ESTE BLOCO DE CODIGO DEVERA SER REMOVIDOS POS OS TESTES */
         Laboratorio l = new Laboratorio();
         l.setNoLaboratorio(Util.montarLink("Nome de laboratorio para efeito de teste...", "2"));
-        l.setEstado("DF");
+        l.setEstado(Util.montarLink("", "5"));
         this.listaItens.add(l);
         /* ESTE BLOCO DE CODIGO DEVERA SER REMOVIDOS APOS OS TESTES */
         
@@ -104,8 +105,17 @@ public class LaboratorioMB implements Serializable {
          * Identificando as marcacoes com <nota>N</nota>
          */
         for (Laboratorio tmp : listaItens) {
-            cabecalho.indexarResultado( tmp.getNoLaboratorio() );
-            cabecalho.indexarResultado( tmp.getEstado() );
+            for ( Field atributo: classe.getDeclaredFields() ) {
+                try {
+                    Method method = Laboratorio.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
+                    cabecalho.indexarResultado( (String) method.invoke( tmp ) );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+//            cabecalho.indexarResultado( tmp.getNoLaboratorio() );
+//            cabecalho.indexarResultado( tmp.getEstado() );
+//            cabecalho.indexarResultado( tmp.getGrupo() );
         }
     }
 

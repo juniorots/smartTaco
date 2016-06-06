@@ -253,7 +253,7 @@ public class ChuparDados {
                         if ( mTmp.group(1).trim().contains( GRUPO_AMINOACIDOS ) ) {
 //                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
                             grupo = true;
-                            grupoTmp = GRUPO_AMINOACIDOS;
+                            grupoTmp = GRUPO_AMINOACIDOS + " - Os tagnames dos aminoácidos seguiram o padrão do USDA";
                         }
                         if ( GRUPO_ACIDOS_ERRADO.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
 //                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));

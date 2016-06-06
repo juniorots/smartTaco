@@ -8,7 +8,6 @@ package br.com.smarttaco.modelo;
 
 import br.com.smarttaco.controller.CabecalhoMB;
 import br.com.smarttaco.framework.persistence.DomainObject;
-import br.com.smarttaco.util.Util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.regex.Matcher;
@@ -27,7 +26,7 @@ public class Laboratorio extends DomainObject {
     private String grupo;
     
     public String getNoLaboratorioLabel() {
-        return Util.montarLink("Laboratório", "1");
+        return "Laboratório";
     }
     
     public String getEstadoLabel() {
@@ -89,6 +88,26 @@ public class Laboratorio extends DomainObject {
     }
     
     /*
+     * Conteudo completo do atributo...
+     */
+    public String getConteudoAtributo( String nome, Laboratorio lab ) {
+        Class<Laboratorio> classe = Laboratorio.class;
+        String valor = "";
+        for ( Field atributo: classe.getDeclaredFields() ) {
+            if ( nome.equalsIgnoreCase( atributo.getName() )) {
+                try {
+                    Method method = Laboratorio.class.getMethod( montarNomeMetodo( atributo.getName() ) );
+                    valor = (String) method.invoke( lab );
+                } catch (Exception e) {
+                    valor = "error...";
+                    e.printStackTrace();
+                }
+            }
+        }
+        return valor;
+    }
+    
+    /*
      * Captando o nome definitivo do atributo
      */
     public String getNomeAtributo(String nome) {
@@ -108,6 +127,16 @@ public class Laboratorio extends DomainObject {
     private String montarNomeMetodo( String nome ) {
         return "get"+ nome.substring(0, 1).toUpperCase()+
             nome.substring(1, nome.length() )+"Label";
+    }
+    
+    /**
+     * Nome simples de metodo...
+     * @param nome
+     * @return 
+     */
+    public String montarNomeSimplesMetodo( String nome ) {
+        return "get"+ nome.substring(0, 1).toUpperCase()+
+            nome.substring(1, nome.length() );
     }
     
 }

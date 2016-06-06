@@ -93,7 +93,6 @@
                                      class="fontePadrao"/>
                     </h:panelGrid>
                 </ace:notificationPanel>
-
                 <div class="titulo">Relação dos laboratórios</div>
 
                 <div class="botoes">
@@ -118,6 +117,7 @@
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
                         <c:set var="cont" value="1"/>
+                        
                         <c:forEach items="#{laboratorioMB.listaColuna}" var="item">
                             <ace:column 
                                 sortBy="#{linha[item.value]}"
@@ -127,10 +127,10 @@
                                 <f:facet name="header">
                                     <c:choose>
                                         <c:when test="#{laboratorioMB.cabecalho.contemTag(item.headerText)}">
-                                            #{laboratorioMB.cabecalho.gerarTextoLegivel(item.headerText)}   
+                                            #{laboratorioMB.cabecalho.gerarTextoLegivel(item.headerText)}&nbsp;
                                             <h:commandLink 
                                                 action="#{cabecalhoMB.gerarDescricao(
-                                                          laboratorioMB.cabecalho.gerarCodigoNota(item.headerText))}">
+                                                    laboratorioMB.cabecalho.gerarCodigoNota(item.headerText))}">
                                                 <h:graphicImage id='#{item.value}' value='/resources/images/search16.png'/>
                                             </h:commandLink>
                                         </c:when>
@@ -139,15 +139,14 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </f:facet>
-                                <span id="area${cont}"></span>    
                                 <!-- Linhas da tabela -->
                                 <h:outputText 
-                                    value="#{laboratorioMB.cabecalho.gerarTextoLegivel(linha[item.value])}"/>
+                                    value="#{laboratorioMB.cabecalho.gerarTextoLegivel(linha[item.value])}"/>&nbsp;
                                 <h:commandLink rendered="#{laboratorioMB.cabecalho.contemTag(linha[item.value])}"
                                     action="#{cabecalhoMB.gerarDescricao(
-                                              laboratorioMB.cabecalho.gerarCodigoNota(linha[item.value]))}">
+                                        laboratorioMB.cabecalho.gerarCodigoNota(linha[item.value]))}">
                                     <h:graphicImage id='#{item.value}#{cont}' 
-                                                    value='/resources/images/search16.png'/>
+                                        value='/resources/images/search16.png'/>
                                 </h:commandLink>
                                 <c:set var="cont" value="${cont+1}"/>
                             </ace:column>

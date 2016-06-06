@@ -62,9 +62,10 @@ public class Util {
             if(codMensagem.length > 1) 
                 cod += ",";
         }
-        
-        retorno.append(descricao);
-        retorno.append("  ");
+        if ( !Util.isEmpty(descricao) )
+            retorno.append(descricao);
+        else 
+            retorno.append("[vazio]");
         retorno.append("<nota>"+ tmp +"</nota>");
         return retorno.toString();
     }

@@ -75,6 +75,10 @@ public class CabecalhoMB implements Serializable {
         String retorno = arg;
         if ( !Util.isEmpty( textoLegivel.get(arg) ) ) {
             retorno = textoLegivel.get(arg);
+            
+            if ( textoLegivel.get(arg).contains( "[vazio]" ) ) {
+                retorno = "";
+            }
         }
         return retorno;
     }
