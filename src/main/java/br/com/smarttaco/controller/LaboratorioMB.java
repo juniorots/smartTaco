@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
@@ -31,8 +31,7 @@ import org.icefaces.ace.model.table.RowStateMap;
  * @author Jose Alves
  */
 @ManagedBean
-//@SessionScoped
-@RequestScoped
+@SessionScoped
 public class LaboratorioMB implements Serializable {
     
     private List<Laboratorio> listaItens = new ArrayList<Laboratorio>();
@@ -113,9 +112,6 @@ public class LaboratorioMB implements Serializable {
                     e.printStackTrace();
                 }
             }
-//            cabecalho.indexarResultado( tmp.getNoLaboratorio() );
-//            cabecalho.indexarResultado( tmp.getEstado() );
-//            cabecalho.indexarResultado( tmp.getGrupo() );
         }
     }
 

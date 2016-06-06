@@ -329,4 +329,14 @@ public class ComposicaoAminoacidos extends DomainObject {
         return "get"+ nome.substring(0, 1).toUpperCase()+
             nome.substring(1, nome.length() )+"Label";
     }
+    
+    /**
+     * Nome simples de metodo...
+     * @param nome
+     * @return 
+     */
+    public String montarNomeSimplesMetodo( String nome ) {
+        return "get"+ nome.substring(0, 1).toUpperCase()+
+            nome.substring(1, nome.length() );
+    }
 }

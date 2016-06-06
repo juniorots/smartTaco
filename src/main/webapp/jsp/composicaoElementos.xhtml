@@ -120,6 +120,7 @@
                                    rendererType="true"
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
+                        <c:set var="cont" value="1"/>
                         <ace:row 
                             condition="group" 
                             groupBy="#{linha.grupo}" 
@@ -135,9 +136,32 @@
                                 sortBy="#{linha[item.value]}"
                                 filterBy="#{linha[item.value]}"
                                 filterMatchMode="contains"
-                                style="text-align: left; width:100px;"
-                                headerText="#{item.headerText}">
-                                    #{linha[item.value]}
+                                style="text-align: left; width:100px;">
+                                <f:facet name="header">
+                                    <c:choose>
+                                        <c:when test="#{composicaoElementosMB.cabecalho.contemTag(item.headerText)}">
+                                            #{composicaoElementosMB.cabecalho.gerarTextoLegivel(item.headerText)}&nbsp;
+                                            <h:commandLink 
+                                                action="#{cabecalhoMB.gerarDescricao(
+                                                    composicaoElementosMB.cabecalho.gerarCodigoNota(item.headerText))}">
+                                                <h:graphicImage id='#{item.value}' value='/resources/images/search16.png'/>
+                                            </h:commandLink>
+                                        </c:when>
+                                        <c:otherwise>
+                                            #{item.headerText}
+                                        </c:otherwise>
+                                    </c:choose>
+                                </f:facet>
+                                <!-- Linhas da tabela -->
+                                <h:outputText 
+                                    value="#{composicaoElementosMB.cabecalho.gerarTextoLegivel(linha[item.value])}"/>&nbsp;
+                                <h:commandLink rendered="#{composicaoElementosMB.cabecalho.contemTag(linha[item.value])}"
+                                    action="#{cabecalhoMB.gerarDescricao(
+                                        composicaoElementosMB.cabecalho.gerarCodigoNota(linha[item.value]))}">
+                                    <h:graphicImage id='#{item.value}#{cont}' 
+                                        value='/resources/images/search16.png'/>
+                                </h:commandLink>
+                                <c:set var="cont" value="${cont+1}"/>
                             </ace:column>
                         </c:forEach>
                     </ace:dataTable>

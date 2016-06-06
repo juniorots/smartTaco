@@ -138,5 +138,4 @@ public class Laboratorio extends DomainObject {
         return "get"+ nome.substring(0, 1).toUpperCase()+
             nome.substring(1, nome.length() );
     }
-    
 }

@@ -9,10 +9,12 @@ package br.com.smarttaco.controller;
 import br.com.smarttaco.base.NomesCientificosDAO;
 import br.com.smarttaco.modelo.NomesCientificos;
 import br.com.smarttaco.modelo.ColunaDinamica;
+import br.com.smarttaco.modelo.Laboratorio;
 import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.Util;
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -43,6 +45,7 @@ public class NomesCientificosMB implements Serializable {
     
     private RowStateMap stateMap = new RowStateMap();
     private NomesCientificos obj = new NomesCientificos();
+    private CabecalhoMB cabecalho = CabecalhoMB.getInstance();
     
     private int totalColunas;
     
@@ -85,6 +88,20 @@ public class NomesCientificosMB implements Serializable {
         
         NomesCientificosDAO dao = new NomesCientificosDAO(entityManager);
         this.listaItens.addAll( dao.selectAll() );
+        
+        /*
+         * Identificando as marcacoes com <nota>N</nota>
+         */
+        for (NomesCientificos tmp : listaItens) {
+            for ( Field atributo: classe.getDeclaredFields() ) {
+                try {
+                    Method method = Laboratorio.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
+                    cabecalho.indexarResultado( (String) method.invoke( tmp ) );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     /*
@@ -129,6 +146,14 @@ public class NomesCientificosMB implements Serializable {
 
     public void setTotalColunas(int totalColunas) {
         this.totalColunas = totalColunas;
+    }
+
+    public CabecalhoMB getCabecalho() {
+        return cabecalho;
+    }
+
+    public void setCabecalho(CabecalhoMB cabecalho) {
+        this.cabecalho = cabecalho;
     }
 
     public RowStateMap getStateMap() {

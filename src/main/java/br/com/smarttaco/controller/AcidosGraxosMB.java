@@ -9,10 +9,12 @@ package br.com.smarttaco.controller;
 import br.com.smarttaco.base.AcidosGraxosDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
 import br.com.smarttaco.modelo.ColunaDinamica;
+import br.com.smarttaco.modelo.Laboratorio;
 import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.Util;
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -43,6 +45,7 @@ public class AcidosGraxosMB implements Serializable {
     
     private RowStateMap stateMap = new RowStateMap();
     private AcidoGraxo obj = new AcidoGraxo();
+    private CabecalhoMB cabecalho = CabecalhoMB.getInstance();
     
     private int totalColunas;
     
@@ -58,11 +61,16 @@ public class AcidosGraxosMB implements Serializable {
         int i = 0;
         try {
             for ( Field atributo: classe.getDeclaredFields() ) {
-                if (!"grupo".equalsIgnoreCase( atributo.getName() )) {
-                    this.checkBoxes.add (new SelectItem(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
+                if (!Constantes.GRUPO.equalsIgnoreCase( atributo.getName() ) ) {
+                    String tmp = obj.getLabelCorrente( atributo.getName() );
+                    if ( tmp.contains( "<" ) ) {
+                        tmp = tmp.substring(0, tmp.indexOf("<") ).trim();
+                    }
+                    this.checkBoxes.add (new SelectItem(atributo.getName(), tmp ) );
 
                     if ( i < Constantes.LIMITE_COLUNAS) {
-                        this.listaColuna.add (new ColunaDinamica(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
+                        this.listaColuna.add (new ColunaDinamica(atributo.getName(), 
+                                obj.getLabelCorrente( atributo.getName() ) ) );
                         this.selectedCheckBoxes.add( atributo.getName() );
                     }
                     i++;
@@ -85,6 +93,20 @@ public class AcidosGraxosMB implements Serializable {
         
         AcidosGraxosDAO dao = new AcidosGraxosDAO(entityManager);
         this.listaItens.addAll( dao.selectAll() );
+        
+        /*
+         * Identificando as marcacoes com <nota>N</nota>
+         */
+        for (AcidoGraxo tmp : listaItens) {
+            for ( Field atributo: classe.getDeclaredFields() ) {
+                try {
+                    Method method = Laboratorio.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
+                    cabecalho.indexarResultado( (String) method.invoke( tmp ) );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     /*
@@ -129,6 +151,14 @@ public class AcidosGraxosMB implements Serializable {
 
     public void setTotalColunas(int totalColunas) {
         this.totalColunas = totalColunas;
+    }
+
+    public CabecalhoMB getCabecalho() {
+        return cabecalho;
+    }
+
+    public void setCabecalho(CabecalhoMB cabecalho) {
+        this.cabecalho = cabecalho;
     }
 
     public RowStateMap getStateMap() {
