@@ -11,6 +11,7 @@ import br.com.smarttaco.base.LaboratorioDAO;
 import br.com.smarttaco.base.NomesCientificosDAO;
 import br.com.smarttaco.base.TagnamesDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
+import br.com.smarttaco.modelo.ComposicaoElementos;
 import br.com.smarttaco.modelo.Laboratorio;
 import br.com.smarttaco.modelo.NomesCientificos;
 import br.com.smarttaco.modelo.Tagnames;
@@ -22,6 +23,8 @@ import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import jxl.Sheet;
+import jxl.Workbook;
 import lombok.Cleanup;
 
 /**
@@ -678,5 +681,22 @@ public class ChuparDados {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public static void tratarTabelaComposicaoElementos(Workbook book) {
+        Sheet sheet = book.getSheet(0);
+        
+        int linhas = sheet.getRows();
+        
+        for (int i = 0; i < linhas; i++) {
+            ComposicaoElementos ce = new ComposicaoElementos();
+            ce.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
+            System.out.println( ce.getNumeroAlimento() );
+            
+            ce.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
+            System.out.println( ce.getDescricaoAlimento() );
+            
+        }
+        
     }
 }

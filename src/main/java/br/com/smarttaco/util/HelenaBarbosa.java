@@ -19,6 +19,9 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.List;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.read.biff.BiffException;
 
 /**
  *
@@ -97,6 +100,22 @@ public class HelenaBarbosa {
             HelenaBarbosa.tratarArquivo(arquivo);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Tratando entrada em formato .xls
+     */
+    public static void executarExcel(final String arquivo) {
+        try {
+            WorkbookSettings set = new WorkbookSettings();
+            set.setEncoding("UTF-8");
+            Workbook book = Workbook.getWorkbook( new File(arquivo), set );
+            ChuparDados.tratarTabelaComposicaoElementos(book);
+        } catch (IOException io) {
+            io.printStackTrace();
+        } catch (BiffException be){
+            be.printStackTrace();
         }
     }
     

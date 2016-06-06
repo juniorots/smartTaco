@@ -47,6 +47,16 @@ public class Util {
         return sb.toString();
     }
    
+    /*
+     * Verificando existencia de valor vazio para montar o link
+     */
+    public static String linkTacoVazio(String arg) {
+        if ( Util.isEmpty(arg) ) {
+            arg = montarLink(arg, "5");
+        }
+        return arg;
+    }
+    
     /**
      * Montando o link para especificacao de nota de rodape
      * @param descricao
