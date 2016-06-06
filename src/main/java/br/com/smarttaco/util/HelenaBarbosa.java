@@ -109,7 +109,7 @@ public class HelenaBarbosa {
     public static void executarExcel(final String arquivo) {
         try {
             WorkbookSettings set = new WorkbookSettings();
-            set.setEncoding("UTF-8");
+            set.setEncoding("ISO-8859-1");
             Workbook book = Workbook.getWorkbook( new File(arquivo), set );
             ChuparDados.tratarTabelaComposicaoElementos(book);
         } catch (IOException io) {
