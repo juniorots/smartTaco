@@ -61,11 +61,17 @@ public class NomesCientificosMB implements Serializable {
         int i = 0;
         try {
             for ( Field atributo: classe.getDeclaredFields() ) {
-                if (!"grupo".equalsIgnoreCase( atributo.getName() )) {
-                    this.checkBoxes.add (new SelectItem(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
+                if (!Constantes.GRUPO.equalsIgnoreCase( atributo.getName() ) ) {
+                    String tmp = obj.getLabelCorrente( atributo.getName() );
+                    cabecalho.indexarResultado( tmp );
+                    if ( tmp.contains( "<" ) ) {
+                        tmp = tmp.substring(0, tmp.indexOf("<") ).trim();
+                    }
+                    this.checkBoxes.add (new SelectItem(atributo.getName(), tmp ) );
 
                     if ( i < Constantes.LIMITE_COLUNAS) {
-                        this.listaColuna.add (new ColunaDinamica(atributo.getName(), obj.getLabelCorrente( atributo.getName() ) ) );
+                        this.listaColuna.add (new ColunaDinamica(atributo.getName(), 
+                                obj.getLabelCorrente( atributo.getName() ) ) );
                         this.selectedCheckBoxes.add( atributo.getName() );
                     }
                     i++;

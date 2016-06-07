@@ -57,6 +57,14 @@ public class ChuparDados {
     private static final String LEGUMINOSAS = "Leguminosas e derivados";
     private static final String NOZES = "Nozes e Sementes";
     
+    // Grupo Composicao Elementos
+    private static final String GORDURAS = "Gorduras e óleos";
+    private static final String LEITE = "Leite e derivados";
+    private static final String BEBIDAS = "Bebidas (alcoólicas e não alcoólicas)";
+    private static final String OVOS = "Ovos e derivados";
+    private static final String ACUCARADOS = "Produtos açucarados";
+    private static final String INDUSTRIALIZADOS = "Outros alimentos industrializados";
+    private static final String PREPARADOS = "Alimentos preparados";
     
     /*
      * Responsavel por identificar os nomes compostos
@@ -84,6 +92,62 @@ public class ChuparDados {
             }
         }
         return retorno;
+    }
+    
+    /**
+     * Tratando os grupos das tabelas centesimais
+     * @param tipo
+     * @return 
+     */
+    private static boolean identificarGrupo(String tipo, String grupo) {
+        if ( "elementos".equalsIgnoreCase(tipo) ) {
+            if ( CEREAIS_DERIVADOS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            } 
+            if ( VERDURAS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( FRUTAS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( PESCADOS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( CARNES.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( MISCELANEAS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( LEGUMINOSAS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( NOZES.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( GORDURAS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( LEITE.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( BEBIDAS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( OVOS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( ACUCARADOS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( INDUSTRIALIZADOS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+            if ( PREPARADOS.equalsIgnoreCase( grupo ) ) {
+                return true;
+            }
+        } 
+        return false;
     }
     
     /*
@@ -687,14 +751,119 @@ public class ChuparDados {
         Sheet sheet = book.getSheet(0);
         
         int linhas = sheet.getRows();
-        
-        for (int i = 0; i < linhas; i++) {
+        String tmpGrupo = CEREAIS_DERIVADOS;
+        for (int i = 3; i < linhas; i++) {
             ComposicaoElementos ce = new ComposicaoElementos();
-            ce.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
-            System.out.println( ce.getNumeroAlimento() );
             
-            ce.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
-            System.out.println( ce.getDescricaoAlimento() );
+            if ( identificarGrupo("elementos", (String) sheet.getCell(0, i).getContents() ) ) {
+                tmpGrupo = (String) sheet.getCell(0, i).getContents();
+                continue;
+            } 
+
+            ce.setGrupo( tmpGrupo );
+            
+            ce.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
+            System.out.println( "["+ ce.getNumeroAlimento() +"]" );
+            
+//            ce.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
+//            System.out.print( "["+ ce.getDescricaoAlimento() +"]" );
+            
+            // pulando conteudo desnecessario! :-)
+            if ( i == 34 ) 
+                i += 3;
+            if ( i == 69 ) {
+                i += 5;
+                tmpGrupo = VERDURAS;
+            }
+            if ( i == 104 ) 
+                i += 3;
+            if ( i == 139 ) 
+                i += 3;
+            if ( i == 174 ) 
+                i += 3;
+            if ( i == 182 ) {
+                i++;
+                tmpGrupo = FRUTAS;
+            }
+            if ( i == 209 ) 
+                i += 3;
+            if ( i == 244 ) 
+                i += 3;
+            if ( i == 279 ) 
+                i += 3;
+            if ( i == 289 ) {
+                i += 2;
+                tmpGrupo = GORDURAS;
+            }
+            if ( i == 305 ) {
+                i += 3;
+                tmpGrupo = PESCADOS;
+            }
+            if ( i == 314 ) 
+                i += 3;
+            if ( i == 349 ) 
+                i += 3;
+            if ( i == 364 ) {
+                i += 2;
+                tmpGrupo = CARNES;
+            }
+            if ( i == 384 ) 
+                i += 3;
+            if ( i == 419 ) 
+                i += 3;
+            if ( i == 454 ) 
+                i += 3;
+            if ( i == 489 ) 
+                i += 3;
+            if ( i == 501 ) {
+                i += 2;
+                tmpGrupo = LEITE;
+            }
+            if ( i == 523 ) 
+                i += 3;
+            if ( i == 530 ) {
+                i += 2;
+                tmpGrupo = BEBIDAS;
+            }
+            if ( i == 546 ) {
+                i += 2;
+                tmpGrupo = OVOS;
+            }
+            if ( i == 555 ) {
+                i += 1;
+                tmpGrupo = ACUCARADOS;
+            }
+            if ( i == 558 ) 
+                i += 3;
+            if ( i == 579 ) {
+                i += 2;
+                tmpGrupo = MISCELANEAS;
+            }
+            if ( i == 590 ) {
+                i += 2;
+                tmpGrupo = INDUSTRIALIZADOS;
+            }
+            if ( i == 593 ) 
+                i += 3;
+            if ( i == 600 ) { 
+                i += 3;
+                tmpGrupo = PREPARADOS;
+            }
+            if ( i == 628 ) 
+                i += 3;
+            if ( i == 638 ) { 
+                i += 2;
+                tmpGrupo = LEGUMINOSAS;
+            }
+            if ( i == 661 ) 
+                i += 3;
+            if ( i == 673 ) {
+                i += 2;
+                tmpGrupo = NOZES;
+            }
+            if ( i == 686 ) {
+                break;
+            }
             
         }
         

@@ -63,6 +63,7 @@ public class AcidosGraxosMB implements Serializable {
             for ( Field atributo: classe.getDeclaredFields() ) {
                 if (!Constantes.GRUPO.equalsIgnoreCase( atributo.getName() ) ) {
                     String tmp = obj.getLabelCorrente( atributo.getName() );
+                    cabecalho.indexarResultado( tmp );
                     if ( tmp.contains( "<" ) ) {
                         tmp = tmp.substring(0, tmp.indexOf("<") ).trim();
                     }

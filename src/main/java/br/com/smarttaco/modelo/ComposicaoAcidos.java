@@ -7,6 +7,7 @@
 package br.com.smarttaco.modelo;
 
 import br.com.smarttaco.framework.persistence.DomainObject;
+import br.com.smarttaco.util.Util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import javax.persistence.Entity;
@@ -121,11 +122,11 @@ public class ComposicaoAcidos extends DomainObject {
     }
     
     public String getPoliInsaturadosLabel() {
-        return "Poli-insaturados (g)";
+        return Util.montarLink("Poli-insaturados (g)", "8");
     }
     
     public String getMonoInsaturadosLabel() {
-        return "Monoinsaturados (g)";
+        return Util.montarLink("Monoinsaturados (g)", "8");
     }
     
     public String getSaturadosLabel() {
