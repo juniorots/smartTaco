@@ -949,28 +949,36 @@ public class ChuparDados {
                 i += 3;
             }
             
-//            if ( i == 314 ) 
-//                i += 3;
-//            if ( i == 349 ) 
-//                i += 3;
-//            if ( i == 364 ) {
-//                i += 2;
-//                tmpGrupo = CARNES;
-//            }
-//            if ( i == 384 ) 
-//                i += 3;
-//            if ( i == 419 ) 
-//                i += 3;
-//            if ( i == 454 ) 
-//                i += 3;
-//            if ( i == 489 ) 
-//                i += 3;
-//            if ( i == 501 ) {
-//                i += 2;
-//                tmpGrupo = LEITE;
-//            }
-//            if ( i == 523 ) 
-//                i += 3;
+            if ( i == 279 ) 
+                i += 3;
+            if ( i == 314 ) 
+                i += 3;
+            if ( i == 346 ) {
+                i += 5;
+                tmpGrupo = LEITE;
+            }
+            if ( i == 372 ) {
+                i += 2;
+                tmpGrupo = OVOS;
+            }
+            if ( i == 380 ) {
+                i += 5;
+                tmpGrupo = ACUCARADOS;
+            }
+            if ( i == 395 ) {
+                i += 2;
+                tmpGrupo = MISCELANEAS;
+            }
+            if ( i == 400 ) {
+                i += 2;
+                tmpGrupo = INDUSTRIALIZADOS;
+            }
+            if ( i == 407 ) {
+                i += 2;
+                tmpGrupo = PREPARADOS;
+            }
+            if ( i == 416 ) 
+                i += 3;
 //            if ( i == 530 ) {
 //                i += 2;
 //                tmpGrupo = BEBIDAS;
