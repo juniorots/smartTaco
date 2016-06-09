@@ -8,12 +8,14 @@ package br.com.smarttaco.util;
 
 import br.com.smarttaco.base.AcidosGraxosDAO;
 import br.com.smarttaco.base.ComposicaoAcidosDAO;
+import br.com.smarttaco.base.ComposicaoAminoacidosDAO;
 import br.com.smarttaco.base.ComposicaoElementosDAO;
 import br.com.smarttaco.base.LaboratorioDAO;
 import br.com.smarttaco.base.NomesCientificosDAO;
 import br.com.smarttaco.base.TagnamesDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
 import br.com.smarttaco.modelo.ComposicaoAcidos;
+import br.com.smarttaco.modelo.ComposicaoAminoacidos;
 import br.com.smarttaco.modelo.ComposicaoElementos;
 import br.com.smarttaco.modelo.Laboratorio;
 import br.com.smarttaco.modelo.NomesCientificos;
@@ -69,7 +71,7 @@ public class ChuparDados {
     private static final String INDUSTRIALIZADOS = "Outros alimentos industrializados";
     private static final String PREPARADOS = "Alimentos preparados";
     
-    /*
+    /**
      * Responsavel por identificar os nomes compostos
      */
     private static int identificarNomeComposto( HashMap<String, String> lista, String linha,
@@ -154,7 +156,7 @@ public class ChuparDados {
         return false;
     }
     
-    /*
+    /**
     * Trabalhando com a tabela Quadro 5
     */
     public static void tratarTabelaNomesSistematicos(String arquivo) {
@@ -269,7 +271,7 @@ public class ChuparDados {
         }
     }
     
-    /*
+    /**
      * Trabalhando com a tabela Quadro 6
      */
     public static void tratarTabelaTagnames(String arquivo) {
@@ -465,7 +467,7 @@ public class ChuparDados {
         }
     }
     
-    /*
+    /**
      * Trabalhando com a tabela Quadro 7
      */
     public static void tratarTabelaCientificos(String arquivo) {
@@ -656,7 +658,7 @@ public class ChuparDados {
         }
     }
         
-    /*
+    /**
      * Trabalhando com a tabela Quadro 8
      */
     public static void tratarTabelaLaboratorio(String arquivo) {
@@ -751,6 +753,10 @@ public class ChuparDados {
         }
     }
     
+    /**
+     * Tratando a tabela centesimal de composicao de elementos...
+     * @param book 
+     */
     public static void tratarTabelaComposicaoElementos(Workbook book) {
         Sheet sheet = book.getSheet(0);
         
@@ -884,6 +890,10 @@ public class ChuparDados {
 //        entityManager.getTransaction().commit();
     }
     
+    /**
+     * Tratando a tabela centesimal de acidos graxos
+     * @param book 
+     */
     public static void tratarTabelaComposicaoAcidos(Workbook book) {
         Sheet sheet = book.getSheet(1);
         
@@ -995,6 +1005,49 @@ public class ChuparDados {
             if ( i == 493 ) {
                 break;
             }
+        } // for
+//        entityManager.getTransaction().commit();
+    }
+    
+    /**
+     * Tratando a tabela centesimal de aminoacidos...
+     * @param book 
+     */
+    public static void tratarTabelaComposicaoAminoacidos(Workbook book) {
+        Sheet sheet = book.getSheet(2);
+        
+        int linhas = sheet.getRows();
+        String tmpGrupo = "";
+        
+         @Cleanup
+            final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+
+        @Cleanup
+        final EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        ComposicaoAminoacidosDAO dao = new ComposicaoAminoacidosDAO(entityManager);
+        
+        for (int i = 3; i < linhas; i++) {
+            ComposicaoAminoacidos ca = new ComposicaoAminoacidos();
+            
+            if ( identificarGrupo("acidos", (String) sheet.getCell(0, i).getContents() ) ) {
+                tmpGrupo = (String) sheet.getCell(0, i).getContents();
+                continue;
+            } 
+
+            ca.setGrupo( tmpGrupo );
+            
+            ca.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
+            System.out.println( "["+ ca.getNumeroAlimento() +"]" );
+            
+//            ca.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
+//            System.out.print( "["+ ca.getDescricaoAlimento() +"]" );
+            
+//            dao.insert( ca );
+            
+            // pulando conteudo desnecessario! :-)
+            if ( i == 28 ) 
+                break;
         } // for
 //        entityManager.getTransaction().commit();
     }

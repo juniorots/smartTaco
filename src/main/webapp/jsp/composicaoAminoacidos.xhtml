@@ -121,16 +121,6 @@
                                    paginatorPosition="bottom"
                                    reorderableColumns="true">
                         <c:set var="cont" value="1"/>
-                        <ace:row 
-                            condition="group" 
-                            groupBy="#{linha.grupo}" 
-                            pos="before" 
-                            styleClass="group-header"
-                            style="width: auto;">
-                            <ace:column colspan="${composicaoAminoacidosMB.totalColunas}">
-                                <h:outputText value="#{linha.grupo}"/>
-                            </ace:column>
-                        </ace:row>
                         <c:forEach items="#{composicaoAminoacidosMB.listaColuna}" var="item">
                             <ace:column 
                                 sortBy="#{linha[item.value]}"

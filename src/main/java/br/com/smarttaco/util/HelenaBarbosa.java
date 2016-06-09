@@ -55,10 +55,10 @@ public class HelenaBarbosa {
             }
             
             // Filtrando...
-//            ChuparDados.tratarTabelaNomesSistematicos( conteudoArquivo.toString() );
-//            ChuparDados.tratarTabelaTagnames( conteudoArquivo.toString() );
-//            ChuparDados.tratarTabelaCientificos( conteudoArquivo.toString() );
-//            ChuparDados.tratarTabelaLaboratorio( conteudoArquivo.toString() );
+            ChuparDados.tratarTabelaNomesSistematicos( conteudoArquivo.toString() );
+            ChuparDados.tratarTabelaTagnames( conteudoArquivo.toString() );
+            ChuparDados.tratarTabelaCientificos( conteudoArquivo.toString() );
+            ChuparDados.tratarTabelaLaboratorio( conteudoArquivo.toString() );
             
             fin.close();
         } catch (Exception e) {
@@ -113,8 +113,9 @@ public class HelenaBarbosa {
             Workbook book = Workbook.getWorkbook( new File(arquivo), set );
             
             // filtrando...
-//            ChuparDados.tratarTabelaComposicaoElementos(book);
-            ChuparDados.tratarTabelaComposicaoAcidos(book);
+            ChuparDados.tratarTabelaComposicaoElementos(book);
+//            ChuparDados.tratarTabelaComposicaoAcidos(book);
+//            ChuparDados.tratarTabelaComposicaoAminoacidos(book);
         } catch (IOException io) {
             io.printStackTrace();
         } catch (BiffException be){
