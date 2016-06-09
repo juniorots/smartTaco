@@ -768,7 +768,7 @@ public class ChuparDados {
         for (int i = 3; i < linhas; i++) {
             ComposicaoElementos ce = new ComposicaoElementos();
             
-            if ( identificarGrupo("acidos", (String) sheet.getCell(0, i).getContents() ) ) {
+            if ( identificarGrupo("elementos", (String) sheet.getCell(0, i).getContents() ) ) {
                 tmpGrupo = (String) sheet.getCell(0, i).getContents();
                 continue;
             } 
@@ -901,7 +901,7 @@ public class ChuparDados {
         for (int i = 3; i < linhas; i++) {
             ComposicaoAcidos ca = new ComposicaoAcidos();
             
-            if ( identificarGrupo("elementos", (String) sheet.getCell(0, i).getContents() ) ) {
+            if ( identificarGrupo("acidos", (String) sheet.getCell(0, i).getContents() ) ) {
                 tmpGrupo = (String) sheet.getCell(0, i).getContents();
                 continue;
             } 
@@ -979,50 +979,22 @@ public class ChuparDados {
             }
             if ( i == 416 ) 
                 i += 3;
-//            if ( i == 530 ) {
-//                i += 2;
-//                tmpGrupo = BEBIDAS;
-//            }
-//            if ( i == 546 ) {
-//                i += 2;
-//                tmpGrupo = OVOS;
-//            }
-//            if ( i == 555 ) {
-//                i += 1;
-//                tmpGrupo = ACUCARADOS;
-//            }
-//            if ( i == 558 ) 
-//                i += 3;
-//            if ( i == 579 ) {
-//                i += 2;
-//                tmpGrupo = MISCELANEAS;
-//            }
-//            if ( i == 590 ) {
-//                i += 2;
-//                tmpGrupo = INDUSTRIALIZADOS;
-//            }
-//            if ( i == 593 ) 
-//                i += 3;
-//            if ( i == 600 ) { 
-//                i += 3;
-//                tmpGrupo = PREPARADOS;
-//            }
-//            if ( i == 628 ) 
-//                i += 3;
-//            if ( i == 638 ) { 
-//                i += 2;
-//                tmpGrupo = LEGUMINOSAS;
-//            }
-//            if ( i == 661 ) 
-//                i += 3;
-//            if ( i == 673 ) {
-//                i += 2;
-//                tmpGrupo = NOZES;
-//            }
-//            if ( i == 686 ) {
-//                break;
-//            }
-            
+            if ( i == 444 ) {
+                i += 2;
+                tmpGrupo = LEGUMINOSAS;
+            }
+            if ( i == 451 ) {
+                i += 3;
+            }
+            if ( i == 478 ) {
+                i += 2;
+                tmpGrupo = NOZES;
+            }
+            if ( i == 486 ) 
+                i += 3;
+            if ( i == 493 ) {
+                break;
+            }
         } // for
 //        entityManager.getTransaction().commit();
     }
