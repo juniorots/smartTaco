@@ -111,7 +111,10 @@ public class HelenaBarbosa {
             WorkbookSettings set = new WorkbookSettings();
             set.setEncoding("ISO-8859-1");
             Workbook book = Workbook.getWorkbook( new File(arquivo), set );
-            ChuparDados.tratarTabelaComposicaoElementos(book);
+            
+            // filtrando...
+//            ChuparDados.tratarTabelaComposicaoElementos(book);
+            ChuparDados.tratarTabelaComposicaoAcidos(book);
         } catch (IOException io) {
             io.printStackTrace();
         } catch (BiffException be){

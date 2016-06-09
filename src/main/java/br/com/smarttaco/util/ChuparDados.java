@@ -7,10 +7,13 @@
 package br.com.smarttaco.util;
 
 import br.com.smarttaco.base.AcidosGraxosDAO;
+import br.com.smarttaco.base.ComposicaoAcidosDAO;
+import br.com.smarttaco.base.ComposicaoElementosDAO;
 import br.com.smarttaco.base.LaboratorioDAO;
 import br.com.smarttaco.base.NomesCientificosDAO;
 import br.com.smarttaco.base.TagnamesDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
+import br.com.smarttaco.modelo.ComposicaoAcidos;
 import br.com.smarttaco.modelo.ComposicaoElementos;
 import br.com.smarttaco.modelo.Laboratorio;
 import br.com.smarttaco.modelo.NomesCientificos;
@@ -100,7 +103,8 @@ public class ChuparDados {
      * @return 
      */
     private static boolean identificarGrupo(String tipo, String grupo) {
-        if ( "elementos".equalsIgnoreCase(tipo) ) {
+        if ( "elementos".equalsIgnoreCase(tipo) 
+                || "acidos".equalsIgnoreCase(tipo) ) {
             if ( CEREAIS_DERIVADOS.equalsIgnoreCase( grupo ) ) {
                 return true;
             } 
@@ -752,10 +756,19 @@ public class ChuparDados {
         
         int linhas = sheet.getRows();
         String tmpGrupo = CEREAIS_DERIVADOS;
+        
+         @Cleanup
+            final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+
+        @Cleanup
+        final EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        ComposicaoElementosDAO dao = new ComposicaoElementosDAO(entityManager);
+        
         for (int i = 3; i < linhas; i++) {
             ComposicaoElementos ce = new ComposicaoElementos();
             
-            if ( identificarGrupo("elementos", (String) sheet.getCell(0, i).getContents() ) ) {
+            if ( identificarGrupo("acidos", (String) sheet.getCell(0, i).getContents() ) ) {
                 tmpGrupo = (String) sheet.getCell(0, i).getContents();
                 continue;
             } 
@@ -765,8 +778,10 @@ public class ChuparDados {
             ce.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
             System.out.println( "["+ ce.getNumeroAlimento() +"]" );
             
-//            ce.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
-//            System.out.print( "["+ ce.getDescricaoAlimento() +"]" );
+            ce.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
+            System.out.print( "["+ ce.getDescricaoAlimento() +"]" );
+            
+//            dao.insert( ce );
             
             // pulando conteudo desnecessario! :-)
             if ( i == 34 ) 
@@ -865,7 +880,142 @@ public class ChuparDados {
                 break;
             }
             
-        }
+        } // for
+//        entityManager.getTransaction().commit();
+    }
+    
+    public static void tratarTabelaComposicaoAcidos(Workbook book) {
+        Sheet sheet = book.getSheet(1);
         
+        int linhas = sheet.getRows();
+        String tmpGrupo = CEREAIS_DERIVADOS;
+        
+         @Cleanup
+            final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+
+        @Cleanup
+        final EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        ComposicaoAcidosDAO dao = new ComposicaoAcidosDAO(entityManager);
+        
+        for (int i = 3; i < linhas; i++) {
+            ComposicaoAcidos ca = new ComposicaoAcidos();
+            
+            if ( identificarGrupo("elementos", (String) sheet.getCell(0, i).getContents() ) ) {
+                tmpGrupo = (String) sheet.getCell(0, i).getContents();
+                continue;
+            } 
+
+            ca.setGrupo( tmpGrupo );
+            
+            ca.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
+            System.out.println( "["+ ca.getNumeroAlimento() +"]" );
+            
+//            ca.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
+//            System.out.print( "["+ ca.getDescricaoAlimento() +"]" );
+            
+//            dao.insert( ca );
+            
+            // pulando conteudo desnecessario! :-)
+            if ( i == 34 ) 
+                i += 3;
+            if ( i == 63 ) {
+                i += 1;
+                tmpGrupo = VERDURAS;
+            }
+            if ( i == 69 ) 
+                i += 3;
+            if ( i == 104 ) 
+                i += 3;
+            if ( i == 111 ) 
+                i += 2;
+            if ( i == 138 ) {
+                i += 5;
+                tmpGrupo = GORDURAS;
+            }
+            if ( i == 156 ) {
+                i += 2;
+                tmpGrupo = PESCADOS;
+            }
+            if ( i == 174 ) 
+                i += 3;
+            if ( i == 209 ) 
+                i += 3;
+            if ( i == 214 ) {
+                i += 2;
+                tmpGrupo = CARNES;
+            }
+            if ( i == 244 ) {
+                i += 3;
+            }
+            
+//            if ( i == 314 ) 
+//                i += 3;
+//            if ( i == 349 ) 
+//                i += 3;
+//            if ( i == 364 ) {
+//                i += 2;
+//                tmpGrupo = CARNES;
+//            }
+//            if ( i == 384 ) 
+//                i += 3;
+//            if ( i == 419 ) 
+//                i += 3;
+//            if ( i == 454 ) 
+//                i += 3;
+//            if ( i == 489 ) 
+//                i += 3;
+//            if ( i == 501 ) {
+//                i += 2;
+//                tmpGrupo = LEITE;
+//            }
+//            if ( i == 523 ) 
+//                i += 3;
+//            if ( i == 530 ) {
+//                i += 2;
+//                tmpGrupo = BEBIDAS;
+//            }
+//            if ( i == 546 ) {
+//                i += 2;
+//                tmpGrupo = OVOS;
+//            }
+//            if ( i == 555 ) {
+//                i += 1;
+//                tmpGrupo = ACUCARADOS;
+//            }
+//            if ( i == 558 ) 
+//                i += 3;
+//            if ( i == 579 ) {
+//                i += 2;
+//                tmpGrupo = MISCELANEAS;
+//            }
+//            if ( i == 590 ) {
+//                i += 2;
+//                tmpGrupo = INDUSTRIALIZADOS;
+//            }
+//            if ( i == 593 ) 
+//                i += 3;
+//            if ( i == 600 ) { 
+//                i += 3;
+//                tmpGrupo = PREPARADOS;
+//            }
+//            if ( i == 628 ) 
+//                i += 3;
+//            if ( i == 638 ) { 
+//                i += 2;
+//                tmpGrupo = LEGUMINOSAS;
+//            }
+//            if ( i == 661 ) 
+//                i += 3;
+//            if ( i == 673 ) {
+//                i += 2;
+//                tmpGrupo = NOZES;
+//            }
+//            if ( i == 686 ) {
+//                break;
+//            }
+            
+        } // for
+//        entityManager.getTransaction().commit();
     }
 }
