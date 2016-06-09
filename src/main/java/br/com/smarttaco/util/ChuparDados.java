@@ -782,12 +782,89 @@ public class ChuparDados {
             ce.setGrupo( tmpGrupo );
             
             ce.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
-            System.out.println( "["+ ce.getNumeroAlimento() +"]" );
+//            System.out.println( "["+ ce.getNumeroAlimento() +"]" );
             
             ce.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
-            System.out.print( "["+ ce.getDescricaoAlimento() +"]" );
+//            System.out.print( "["+ ce.getDescricaoAlimento() +"]" );
             
-//            dao.insert( ce );
+            ce.setUmidade(Util.linkTacoVazio( (String) sheet.getCell(2, i).getContents() ) );
+//            System.out.print( "["+ ce.getUmidade() +"]" );
+            
+            ce.setEnergia(Util.linkTacoVazio( (String) sheet.getCell(3, i).getContents() ) +" (kcal)" );
+            ce.setEnergia( ce.getEnergia() + " / " +
+                    Util.linkTacoVazio( (String) sheet.getCell(4, i).getContents() ) +" (kj)" );
+//            System.out.print( "["+ ce.getEnergia() +"]" );
+            
+            ce.setProteina(Util.linkTacoVazio( (String) sheet.getCell(5, i).getContents() ) );
+//            System.out.print( "["+ ce.getProteina() +"]" );
+            
+            ce.setLipideos(Util.linkTacoVazio( (String) sheet.getCell(6, i).getContents() ) );
+//            System.out.print( "["+ ce.getLipideos() +"]" );
+            
+            ce.setColesterol(Util.linkTacoVazio( (String) sheet.getCell(7, i).getContents() ) );
+//            System.out.print( "["+ ce.getColesterol() +"]" );
+            
+            ce.setCarboidrato(Util.linkTacoVazio( (String) sheet.getCell(8, i).getContents() ) );
+//            System.out.print( "["+ ce.getCarboidrato() +"]" );
+            
+            ce.setFibraAlimentar(Util.linkTacoVazio( (String) sheet.getCell(9, i).getContents() ) );
+//            System.out.print( "["+ ce.getFibraAlimentar() +"]" );
+            
+            ce.setCinzas(Util.linkTacoVazio( (String) sheet.getCell(10, i).getContents() ) );
+//            System.out.print( "["+ ce.getCinzas() +"]" );
+            
+            ce.setCalcio(Util.linkTacoVazio( (String) sheet.getCell(11, i).getContents() ) );
+//            System.out.print( "["+ ce.getCalcio() +"]" );
+            
+            ce.setMagnesio(Util.linkTacoVazio( (String) sheet.getCell(12, i).getContents() ) );
+//            System.out.print( "["+ ce.getMagnesio() +"]" );
+            
+            ce.setManganes(Util.linkTacoVazio( (String) sheet.getCell(14, i).getContents() ) );
+//            System.out.print( "["+ ce.getManganes() +"]" );
+            
+            ce.setFosforo(Util.linkTacoVazio( (String) sheet.getCell(15, i).getContents() ) );
+//            System.out.print( "["+ ce.getFosforo() +"]" );
+            
+            ce.setFerro(Util.linkTacoVazio( (String) sheet.getCell(16, i).getContents() ) );
+//            System.out.print( "["+ ce.getFerro() +"]" );
+            
+            ce.setSodio(Util.linkTacoVazio( (String) sheet.getCell(17, i).getContents() ) );
+//            System.out.print( "["+ ce.getSodio() +"]" );
+            
+            ce.setPotassio(Util.linkTacoVazio( (String) sheet.getCell(18, i).getContents() ) );
+//            System.out.print( "["+ ce.getPotassio() +"]" );
+            
+            ce.setCobre(Util.linkTacoVazio( (String) sheet.getCell(19, i).getContents() ) );
+//            System.out.print( "["+ ce.getCobre() +"]" );
+            
+            ce.setZinco(Util.linkTacoVazio( (String) sheet.getCell(20, i).getContents() ) );
+//            System.out.print( "["+ ce.getZinco() +"]" );
+            
+            ce.setRetinol(Util.linkTacoVazio( (String) sheet.getCell(21, i).getContents() ) );
+//            System.out.print( "["+ ce.getRetinol() +"]" );
+            
+            ce.setRe(Util.linkTacoVazio( (String) sheet.getCell(22, i).getContents() ) );
+//            System.out.print( "["+ ce.getRe() +"]" );
+            
+            ce.setRae(Util.linkTacoVazio( (String) sheet.getCell(23, i).getContents() ) );
+//            System.out.print( "["+ ce.getRae() +"]" );
+            
+            ce.setTiamina(Util.linkTacoVazio( (String) sheet.getCell(24, i).getContents() ) );
+//            System.out.print( "["+ ce.getTiamina() +"]" );
+            
+            ce.setRiboflavina(Util.linkTacoVazio( (String) sheet.getCell(25, i).getContents() ) );
+//            System.out.print( "["+ ce.getRiboflavina() +"]" );
+            
+            ce.setPiridoxina(Util.linkTacoVazio( (String) sheet.getCell(26, i).getContents() ) );
+//            System.out.print( "["+ ce.getPiridoxina() +"]" );
+            
+            ce.setNiacina(Util.linkTacoVazio( (String) sheet.getCell(27, i).getContents() ) );
+//            System.out.print( "["+ ce.getNiacina() +"]" );
+            
+            ce.setVitaminaC(Util.linkTacoVazio( (String) sheet.getCell(28, i).getContents() ) );
+//            System.out.println( "["+ ce.getVitaminaC() +"]" );
+            
+            dao.insert( ce );
             
             // pulando conteudo desnecessario! :-)
             if ( i == 34 ) 
@@ -887,7 +964,7 @@ public class ChuparDados {
             }
             
         } // for
-//        entityManager.getTransaction().commit();
+        entityManager.getTransaction().commit();
     }
     
     /**
@@ -921,9 +998,75 @@ public class ChuparDados {
             ca.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
             System.out.println( "["+ ca.getNumeroAlimento() +"]" );
             
-//            ca.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
-//            System.out.print( "["+ ca.getDescricaoAlimento() +"]" );
+            ca.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
+            System.out.print( "["+ ca.getDescricaoAlimento() +"]" );
             
+            ca.setSaturados( Util.linkTacoVazio( (String) sheet.getCell(2, i).getContents() ) );
+            System.out.print( "["+ ca.getSaturados() +"]" );
+            
+            ca.setMonoInsaturados(Util.linkTacoVazio( (String) sheet.getCell(3, i).getContents() ) );
+            System.out.print( "["+ ca.getMonoInsaturados() +"]" );
+            
+            ca.setPoliInsaturados(Util.linkTacoVazio( (String) sheet.getCell(4, i).getContents() ) );
+            System.out.print( "["+ ca.getPoliInsaturados() +"]" );
+            
+            ca.setDoze(Util.linkTacoVazio( (String) sheet.getCell(5, i).getContents() ) );
+            System.out.print( "["+ ca.getDoze() +"]" );
+            
+            ca.setQuatorze(Util.linkTacoVazio( (String) sheet.getCell(6, i).getContents() ) );
+            System.out.print( "["+ ca.getQuatorze() +"]" );
+            
+            ca.setDezesseis(Util.linkTacoVazio( (String) sheet.getCell(7, i).getContents() ) );
+            System.out.print( "["+ ca.getDezesseis() +"]" );
+            
+            ca.setDezoito(Util.linkTacoVazio( (String) sheet.getCell(8, i).getContents() ) );
+            System.out.print( "["+ ca.getDezoito() +"]" );
+            
+            ca.setVinte(Util.linkTacoVazio( (String) sheet.getCell(9, i).getContents() ) );
+            System.out.print( "["+ ca.getVinte() +"]" );
+            
+            ca.setVinteDois(Util.linkTacoVazio( (String) sheet.getCell(10, i).getContents() ) );
+            System.out.print( "["+ ca.getVinteDois() +"]" );
+            
+            ca.setVinteQuatro(Util.linkTacoVazio( (String) sheet.getCell(11, i).getContents() ) );
+            System.out.print( "["+ ca.getVinteQuatro() +"]" );
+            
+            ca.setQuatorzeUm(Util.linkTacoVazio( (String) sheet.getCell(13, i).getContents() ) );
+            System.out.print( "["+ ca.getQuatorzeUm() +"]" );
+            
+            ca.setDezesseisUm(Util.linkTacoVazio( (String) sheet.getCell(14, i).getContents() ) );
+            System.out.print( "["+ ca.getDezesseisUm() +"]" );
+            
+            ca.setDezoitoUm(Util.linkTacoVazio( (String) sheet.getCell(15, i).getContents() ) );
+            System.out.print( "["+ ca.getDezoitoUm() +"]" );
+            
+            ca.setVinteUm(Util.linkTacoVazio( (String) sheet.getCell(16, i).getContents() ) );
+            System.out.print( "["+ ca.getVinteUm() +"]" );
+            
+            ca.setDezoitoDois(Util.linkTacoVazio( (String) sheet.getCell(17, i).getContents() ) );
+            System.out.print( "["+ ca.getDezoitoDois() +"]" );
+            
+            ca.setDezoitoTres(Util.linkTacoVazio( (String) sheet.getCell(18, i).getContents() ) );
+            System.out.print( "["+ ca.getDezoitoTres() +"]" );
+            
+            ca.setVinteQuatroSegundo(Util.linkTacoVazio( (String) sheet.getCell(19, i).getContents() ) );
+            System.out.print( "["+ ca.getVinteQuatroSegundo() +"]" );
+            
+            ca.setVinteCinco(Util.linkTacoVazio( (String) sheet.getCell(20, i).getContents() ) );
+            System.out.print( "["+ ca.getVinteCinco() +"]" );
+            
+            ca.setVinteDoisCinco(Util.linkTacoVazio( (String) sheet.getCell(21, i).getContents() ) );
+            System.out.print( "["+ ca.getVinteDoisCinco() +"]" );
+            
+            ca.setVinteDoisSeis(Util.linkTacoVazio( (String) sheet.getCell(22, i).getContents() ) );
+            System.out.print( "["+ ca.getVinteDoisSeis() +"]" );
+            
+            ca.setDezoitoUmT(Util.linkTacoVazio( (String) sheet.getCell(23, i).getContents() ) );
+            System.out.print( "["+ ca.getDezoitoUmT() +"]" );
+            
+            ca.setDezoitoDoisT(Util.linkTacoVazio( (String) sheet.getCell(24, i).getContents() ) );
+            System.out.println( "["+ ca.getDezoitoDoisT() +"]" );
+
 //            dao.insert( ca );
             
             // pulando conteudo desnecessario! :-)
