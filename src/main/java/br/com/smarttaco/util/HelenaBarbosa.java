@@ -113,8 +113,8 @@ public class HelenaBarbosa {
             Workbook book = Workbook.getWorkbook( new File(arquivo), set );
             
             // filtrando...
-//            ChuparDados.tratarTabelaComposicaoElementos(book);
-//            ChuparDados.tratarTabelaComposicaoAcidos(book);
+            ChuparDados.tratarTabelaComposicaoElementos(book);
+            ChuparDados.tratarTabelaComposicaoAcidos(book);
             ChuparDados.tratarTabelaComposicaoAminoacidos(book);
         } catch (IOException io) {
             io.printStackTrace();

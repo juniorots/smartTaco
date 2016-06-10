@@ -6,6 +6,7 @@
 
 package br.com.smarttaco.controller;
 
+import br.com.smarttaco.base.ComposicaoAcidosDAO;
 import br.com.smarttaco.modelo.ComposicaoAcidos;
 import br.com.smarttaco.modelo.ColunaDinamica;
 import br.com.smarttaco.modelo.Laboratorio;
@@ -20,6 +21,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import lombok.Cleanup;
 import org.icefaces.ace.model.table.RowStateMap;
 
 /**
@@ -78,20 +83,17 @@ public class ComposicaoAcidosMB implements Serializable {
         }
         
         /*
-         * Trabalhando no conteudo
+         * Trabalhando no conteudo...
          */
-        this.listaItens = new ArrayList();
-        for (int j = 1; j <= 200; j++) {
-            ComposicaoAcidos tmp = new ComposicaoAcidos();
-            tmp.setDescricaoAlimento("Linha "+j);
-            
-            if ( j < 30) {
-                tmp.setGrupo("Alfa");
-            } else {
-                tmp.setGrupo("Lambda");
-            }
-            this.listaItens.add(tmp);
-        }
+        @Cleanup
+        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+        
+        @Cleanup
+        final EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        ComposicaoAcidosDAO dao = new ComposicaoAcidosDAO(entityManager);
+        this.listaItens.addAll( dao.selectAll() );
         
         
         /*

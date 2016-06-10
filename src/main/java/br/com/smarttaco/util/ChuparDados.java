@@ -996,78 +996,78 @@ public class ChuparDados {
             ca.setGrupo( tmpGrupo );
             
             ca.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
-            System.out.println( "["+ ca.getNumeroAlimento() +"]" );
+//            System.out.println( "["+ ca.getNumeroAlimento() +"]" );
             
             ca.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
-            System.out.print( "["+ ca.getDescricaoAlimento() +"]" );
+//            System.out.print( "["+ ca.getDescricaoAlimento() +"]" );
             
             ca.setSaturados( Util.linkTacoVazio( (String) sheet.getCell(2, i).getContents() ) );
-            System.out.print( "["+ ca.getSaturados() +"]" );
+//            System.out.print( "["+ ca.getSaturados() +"]" );
             
             ca.setMonoInsaturados(Util.linkTacoVazio( (String) sheet.getCell(3, i).getContents() ) );
-            System.out.print( "["+ ca.getMonoInsaturados() +"]" );
+//            System.out.print( "["+ ca.getMonoInsaturados() +"]" );
             
             ca.setPoliInsaturados(Util.linkTacoVazio( (String) sheet.getCell(4, i).getContents() ) );
-            System.out.print( "["+ ca.getPoliInsaturados() +"]" );
+//            System.out.print( "["+ ca.getPoliInsaturados() +"]" );
             
             ca.setDoze(Util.linkTacoVazio( (String) sheet.getCell(5, i).getContents() ) );
-            System.out.print( "["+ ca.getDoze() +"]" );
+//            System.out.print( "["+ ca.getDoze() +"]" );
             
             ca.setQuatorze(Util.linkTacoVazio( (String) sheet.getCell(6, i).getContents() ) );
-            System.out.print( "["+ ca.getQuatorze() +"]" );
+//            System.out.print( "["+ ca.getQuatorze() +"]" );
             
             ca.setDezesseis(Util.linkTacoVazio( (String) sheet.getCell(7, i).getContents() ) );
-            System.out.print( "["+ ca.getDezesseis() +"]" );
+//            System.out.print( "["+ ca.getDezesseis() +"]" );
             
             ca.setDezoito(Util.linkTacoVazio( (String) sheet.getCell(8, i).getContents() ) );
-            System.out.print( "["+ ca.getDezoito() +"]" );
+//            System.out.print( "["+ ca.getDezoito() +"]" );
             
             ca.setVinte(Util.linkTacoVazio( (String) sheet.getCell(9, i).getContents() ) );
-            System.out.print( "["+ ca.getVinte() +"]" );
+//            System.out.print( "["+ ca.getVinte() +"]" );
             
             ca.setVinteDois(Util.linkTacoVazio( (String) sheet.getCell(10, i).getContents() ) );
-            System.out.print( "["+ ca.getVinteDois() +"]" );
+//            System.out.print( "["+ ca.getVinteDois() +"]" );
             
             ca.setVinteQuatro(Util.linkTacoVazio( (String) sheet.getCell(11, i).getContents() ) );
-            System.out.print( "["+ ca.getVinteQuatro() +"]" );
+//            System.out.print( "["+ ca.getVinteQuatro() +"]" );
             
             ca.setQuatorzeUm(Util.linkTacoVazio( (String) sheet.getCell(13, i).getContents() ) );
-            System.out.print( "["+ ca.getQuatorzeUm() +"]" );
+//            System.out.print( "["+ ca.getQuatorzeUm() +"]" );
             
             ca.setDezesseisUm(Util.linkTacoVazio( (String) sheet.getCell(14, i).getContents() ) );
-            System.out.print( "["+ ca.getDezesseisUm() +"]" );
+//            System.out.print( "["+ ca.getDezesseisUm() +"]" );
             
             ca.setDezoitoUm(Util.linkTacoVazio( (String) sheet.getCell(15, i).getContents() ) );
-            System.out.print( "["+ ca.getDezoitoUm() +"]" );
+//            System.out.print( "["+ ca.getDezoitoUm() +"]" );
             
             ca.setVinteUm(Util.linkTacoVazio( (String) sheet.getCell(16, i).getContents() ) );
-            System.out.print( "["+ ca.getVinteUm() +"]" );
+//            System.out.print( "["+ ca.getVinteUm() +"]" );
             
             ca.setDezoitoDois(Util.linkTacoVazio( (String) sheet.getCell(17, i).getContents() ) );
-            System.out.print( "["+ ca.getDezoitoDois() +"]" );
+//            System.out.print( "["+ ca.getDezoitoDois() +"]" );
             
             ca.setDezoitoTres(Util.linkTacoVazio( (String) sheet.getCell(18, i).getContents() ) );
-            System.out.print( "["+ ca.getDezoitoTres() +"]" );
+//            System.out.print( "["+ ca.getDezoitoTres() +"]" );
             
             ca.setVinteQuatroSegundo(Util.linkTacoVazio( (String) sheet.getCell(19, i).getContents() ) );
-            System.out.print( "["+ ca.getVinteQuatroSegundo() +"]" );
+//            System.out.print( "["+ ca.getVinteQuatroSegundo() +"]" );
             
             ca.setVinteCinco(Util.linkTacoVazio( (String) sheet.getCell(20, i).getContents() ) );
-            System.out.print( "["+ ca.getVinteCinco() +"]" );
+//            System.out.print( "["+ ca.getVinteCinco() +"]" );
             
             ca.setVinteDoisCinco(Util.linkTacoVazio( (String) sheet.getCell(21, i).getContents() ) );
-            System.out.print( "["+ ca.getVinteDoisCinco() +"]" );
+//            System.out.print( "["+ ca.getVinteDoisCinco() +"]" );
             
             ca.setVinteDoisSeis(Util.linkTacoVazio( (String) sheet.getCell(22, i).getContents() ) );
-            System.out.print( "["+ ca.getVinteDoisSeis() +"]" );
+//            System.out.print( "["+ ca.getVinteDoisSeis() +"]" );
             
             ca.setDezoitoUmT(Util.linkTacoVazio( (String) sheet.getCell(23, i).getContents() ) );
-            System.out.print( "["+ ca.getDezoitoUmT() +"]" );
+//            System.out.print( "["+ ca.getDezoitoUmT() +"]" );
             
             ca.setDezoitoDoisT(Util.linkTacoVazio( (String) sheet.getCell(24, i).getContents() ) );
-            System.out.println( "["+ ca.getDezoitoDoisT() +"]" );
+//            System.out.println( "["+ ca.getDezoitoDoisT() +"]" );
 
-//            dao.insert( ca );
+            dao.insert( ca );
             
             // pulando conteudo desnecessario! :-)
             if ( i == 34 ) 
@@ -1149,7 +1149,7 @@ public class ChuparDados {
                 break;
             }
         } // for
-//        entityManager.getTransaction().commit();
+        entityManager.getTransaction().commit();
     }
     
     /**
