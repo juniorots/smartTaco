@@ -102,7 +102,7 @@ public class ComposicaoAcidosMB implements Serializable {
         for (ComposicaoAcidos tmp : listaItens) {
             for ( Field atributo: classe.getDeclaredFields() ) {
                 try {
-                    Method method = Laboratorio.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
+                    Method method = ComposicaoAcidos.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
                     cabecalho.indexarResultado( (String) method.invoke( tmp ) );
                 } catch (Exception e) {
                     e.printStackTrace();

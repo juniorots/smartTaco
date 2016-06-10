@@ -101,7 +101,7 @@ public class ComposicaoElementosMB implements Serializable {
         for (ComposicaoElementos tmp : listaItens) {
             for ( Field atributo: classe.getDeclaredFields() ) {
                 try {
-                    Method method = Laboratorio.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
+                    Method method = ComposicaoElementos.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
                     cabecalho.indexarResultado( (String) method.invoke( tmp ) );
                 } catch (Exception e) {
                     e.printStackTrace();
