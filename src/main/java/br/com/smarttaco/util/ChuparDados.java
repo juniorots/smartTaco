@@ -1181,17 +1181,71 @@ public class ChuparDados {
             ca.setGrupo( tmpGrupo );
             
             ca.setNumeroAlimento( Util.linkTacoVazio( (String) sheet.getCell(0, i).getContents() ) );
-            System.out.println( "["+ ca.getNumeroAlimento() +"]" );
+//            System.out.println( "["+ ca.getNumeroAlimento() +"]" );
             
-//            ca.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
+            ca.setDescricaoAlimento( Util.linkTacoVazio( (String) sheet.getCell(1, i).getContents() ) );
 //            System.out.print( "["+ ca.getDescricaoAlimento() +"]" );
             
-//            dao.insert( ca );
+            ca.setTriptofano( Util.linkTacoVazio( (String) sheet.getCell(2, i).getContents() ) );
+//            System.out.print( "["+ ca.getTriptofano() +"]" );
+            
+            ca.setTreonina( Util.linkTacoVazio( (String) sheet.getCell(3, i).getContents() ) );
+//            System.out.print( "["+ ca.getTreonina() +"]" );
+            
+            ca.setIsoleucina( Util.linkTacoVazio( (String) sheet.getCell(4, i).getContents() ) );
+//            System.out.print( "["+ ca.getIsoleucina() +"]" );
+            
+            ca.setLeucina( Util.linkTacoVazio( (String) sheet.getCell(5, i).getContents() ) );
+//            System.out.print( "["+ ca.getLeucina() +"]" );
+            
+            ca.setLisina( Util.linkTacoVazio( (String) sheet.getCell(6, i).getContents() ) );
+//            System.out.print( "["+ ca.getLisina() +"]" );
+            
+            ca.setMetionina( Util.linkTacoVazio( (String) sheet.getCell(7, i).getContents() ) );
+//            System.out.print( "["+ ca.getMetionina() +"]" );
+            
+            ca.setCistina( Util.linkTacoVazio( (String) sheet.getCell(8, i).getContents() ) );
+//            System.out.print( "["+ ca.getCistina() +"]" );
+            
+            ca.setFenilalanina( Util.linkTacoVazio( (String) sheet.getCell(9, i).getContents() ) );
+//            System.out.print( "["+ ca.getFenilalanina() +"]" );
+            
+            ca.setTirosina( Util.linkTacoVazio( (String) sheet.getCell(10, i).getContents() ) );
+//            System.out.print( "["+ ca.getTirosina() +"]" );
+            
+            ca.setValina( Util.linkTacoVazio( (String) sheet.getCell(12, i).getContents() ) );
+//            System.out.print( "["+ ca.getValina() +"]" );
+            
+            ca.setArginina( Util.linkTacoVazio( (String) sheet.getCell(13, i).getContents() ) );
+//            System.out.print( "["+ ca.getArginina() +"]" );
+            
+            ca.setHistidina( Util.linkTacoVazio( (String) sheet.getCell(14, i).getContents() ) );
+//            System.out.print( "["+ ca.getHistidina() +"]" );
+            
+            ca.setAlanina( Util.linkTacoVazio( (String) sheet.getCell(15, i).getContents() ) );
+//            System.out.print( "["+ ca.getAlanina() +"]" );
+            
+            ca.setAcidoAspartico( Util.linkTacoVazio( (String) sheet.getCell(16, i).getContents() ) );
+//            System.out.print( "["+ ca.getAcidoAspartico() +"]" );
+            
+            ca.setAcidoGlutamico( Util.linkTacoVazio( (String) sheet.getCell(17, i).getContents() ) );
+//            System.out.print( "["+ ca.getAcidoGlutamico() +"]" );
+            
+            ca.setGlicina( Util.linkTacoVazio( (String) sheet.getCell(18, i).getContents() ) );
+//            System.out.print( "["+ ca.getGlicina() +"]" );
+            
+            ca.setProlina( Util.linkTacoVazio( (String) sheet.getCell(19, i).getContents() ) );
+//            System.out.print( "["+ ca.getProlina() +"]" );
+            
+            ca.setSerina( Util.linkTacoVazio( (String) sheet.getCell(20, i).getContents() ) );
+//            System.out.println( "["+ ca.getSerina() +"]" );
+            
+            dao.insert( ca );
             
             // pulando conteudo desnecessario! :-)
             if ( i == 28 ) 
                 break;
         } // for
-//        entityManager.getTransaction().commit();
+        entityManager.getTransaction().commit();
     }
 }

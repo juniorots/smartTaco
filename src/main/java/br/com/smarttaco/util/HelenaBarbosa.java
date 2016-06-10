@@ -114,8 +114,8 @@ public class HelenaBarbosa {
             
             // filtrando...
 //            ChuparDados.tratarTabelaComposicaoElementos(book);
-            ChuparDados.tratarTabelaComposicaoAcidos(book);
-//            ChuparDados.tratarTabelaComposicaoAminoacidos(book);
+//            ChuparDados.tratarTabelaComposicaoAcidos(book);
+            ChuparDados.tratarTabelaComposicaoAminoacidos(book);
         } catch (IOException io) {
             io.printStackTrace();
         } catch (BiffException be){
