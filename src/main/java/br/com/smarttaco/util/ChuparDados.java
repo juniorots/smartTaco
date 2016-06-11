@@ -48,7 +48,7 @@ public class ChuparDados {
     private static final String GRUPO_COMPOSICAO_CENTESIMAL = "Composição Centesimal";
     private static final String GRUPO_MINERAIS = "Minerais";
     private static final String GRUPO_VITAMINAS = "Vitaminas";
-    private static final String GRUPO_AMINOACIDOS = "Aminoácidos";
+    private static final String GRUPO_AMINOACIDOS = "Aminoácidos ³";
     private static final String GRUPO_ACIDOS_ERRADO = "Ácdios graxos";
     private static final String GRUPO_ACIDOS_GRAXOS = "Ácidos graxos";
     

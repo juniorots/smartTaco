@@ -9,7 +9,6 @@ package br.com.smarttaco.controller;
 import br.com.smarttaco.base.NomesCientificosDAO;
 import br.com.smarttaco.modelo.NomesCientificos;
 import br.com.smarttaco.modelo.ColunaDinamica;
-import br.com.smarttaco.modelo.Laboratorio;
 import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.Util;
 import java.io.Serializable;
@@ -101,7 +100,7 @@ public class NomesCientificosMB implements Serializable {
         for (NomesCientificos tmp : listaItens) {
             for ( Field atributo: classe.getDeclaredFields() ) {
                 try {
-                    Method method = Laboratorio.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
+                    Method method = NomesCientificos.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
                     cabecalho.indexarResultado( (String) method.invoke( tmp ) );
                 } catch (Exception e) {
                     e.printStackTrace();

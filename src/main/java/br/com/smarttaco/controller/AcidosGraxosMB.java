@@ -9,7 +9,6 @@ package br.com.smarttaco.controller;
 import br.com.smarttaco.base.AcidosGraxosDAO;
 import br.com.smarttaco.modelo.AcidoGraxo;
 import br.com.smarttaco.modelo.ColunaDinamica;
-import br.com.smarttaco.modelo.Laboratorio;
 import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.Util;
 import java.io.Serializable;
@@ -101,7 +100,7 @@ public class AcidosGraxosMB implements Serializable {
         for (AcidoGraxo tmp : listaItens) {
             for ( Field atributo: classe.getDeclaredFields() ) {
                 try {
-                    Method method = Laboratorio.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
+                    Method method = AcidoGraxo.class.getMethod( tmp.montarNomeSimplesMetodo( atributo.getName() ) );
                     cabecalho.indexarResultado( (String) method.invoke( tmp ) );
                 } catch (Exception e) {
                     e.printStackTrace();

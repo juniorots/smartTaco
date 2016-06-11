@@ -76,7 +76,7 @@ public class Util {
             retorno.append(descricao);
         else 
             retorno.append("[vazio]");
-        retorno.append("<nota>"+ tmp +"</nota>");
+        retorno.append(" <nota>"+ tmp +"</nota>");
         return retorno.toString();
     }
     
