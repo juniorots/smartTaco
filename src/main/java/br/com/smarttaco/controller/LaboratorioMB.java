@@ -94,13 +94,6 @@ public class LaboratorioMB implements Serializable {
         LaboratorioDAO dao = new LaboratorioDAO(entityManager);
         this.listaItens.addAll( dao.selectAll() );
         
-        /* ESTE BLOCO DE CODIGO DEVERA SER REMOVIDOS POS OS TESTES */
-        Laboratorio l = new Laboratorio();
-        l.setNoLaboratorio(Util.montarLink("Nome de laboratorio para efeito de teste...", "2"));
-        l.setEstado(Util.montarLink("", "5"));
-        this.listaItens.add(l);
-        /* ESTE BLOCO DE CODIGO DEVERA SER REMOVIDOS APOS OS TESTES */
-        
         /*
          * Identificando as marcacoes com <nota>N</nota>
          */

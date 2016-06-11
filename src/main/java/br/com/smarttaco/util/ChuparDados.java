@@ -1162,8 +1162,8 @@ public class ChuparDados {
         int linhas = sheet.getRows();
         String tmpGrupo = "";
         
-         @Cleanup
-            final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+        @Cleanup
+        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
 
         @Cleanup
         final EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -1247,5 +1247,33 @@ public class ChuparDados {
                 break;
         } // for
         entityManager.getTransaction().commit();
+    }
+    
+    /**
+     * Inserindo as notas nas tabelas específicas...
+     */
+    public static void inserirNota() {
+        @Cleanup
+        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+
+        @Cleanup
+        final EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        TagnamesDAO dao = new TagnamesDAO(entityManager);
+        
+        Tagnames tag = new Tagnames();
+        tag.setNutriente( "RE (equivalente de retinol)" );
+        tag = dao.findByStringField("nutriente", tag.getNutriente(), true, 0, 1).get(0);
+        tag.setNutriente(Util.montarLink("RE (equivalente de retinol)", "1"));
+        
+        tag = new Tagnames();
+        tag.setNutriente( "RAE (equivalente de atividade de retinol)" );
+        tag = dao.findByStringField("nutriente", tag.getNutriente(), true, 0, 1).get(0);
+        tag.setNutriente(Util.montarLink("RAE (equivalente de atividade de retinol)", "2"));
+        
+        dao.update( tag );
+        
+        entityManager.getTransaction().commit();
+        
     }
 }
