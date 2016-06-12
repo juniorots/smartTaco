@@ -1260,18 +1260,348 @@ public class ChuparDados {
         final EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         TagnamesDAO dao = new TagnamesDAO(entityManager);
+        ComposicaoElementosDAO ceDao = new ComposicaoElementosDAO(entityManager);
         
         Tagnames tag = new Tagnames();
         tag.setNutriente( "RE (equivalente de retinol)" );
         tag = dao.findByStringField("nutriente", tag.getNutriente(), true, 0, 1).get(0);
-        tag.setNutriente(Util.montarLink("RE (equivalente de retinol)", "1"));
+        tag.setNutriente(Util.montarLink(tag.getNutriente(), "1"));
+        dao.update( tag );
         
         tag = new Tagnames();
         tag.setNutriente( "RAE (equivalente de atividade de retinol)" );
         tag = dao.findByStringField("nutriente", tag.getNutriente(), true, 0, 1).get(0);
-        tag.setNutriente(Util.montarLink("RAE (equivalente de atividade de retinol)", "2"));
-        
+        tag.setNutriente(Util.montarLink(tag.getNutriente(), "2"));
         dao.update( tag );
+        
+        ComposicaoElementos ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("29");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "6"));
+        ce.setRae( Util.montarLink( ce.getRae(), "6"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("33");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("43");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("44");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("45");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("65");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("66");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("67");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("75");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("76");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("78");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("79");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("84");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("96");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("104");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("109");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("110");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("115");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("116");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("119");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("143");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("144");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("145");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("149");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("155");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("156");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("157");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("158");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("159");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("160");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("169");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("170");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("185");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("186");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("187");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("188");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("200");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("217");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("225");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("226");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("228");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("232");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("235");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("236");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("240");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("241");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
+        
+        ce = new ComposicaoElementos();
+        ce.setNumeroAlimento("247");
+        ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
+        ce.setRe( Util.montarLink( ce.getRe(), "7"));
+        ce.setRae( Util.montarLink( ce.getRae(), "7"));
+        ceDao.update( ce );
         
         entityManager.getTransaction().commit();
         

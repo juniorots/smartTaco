@@ -53,6 +53,10 @@ public class Util {
     public static String linkTacoVazio(String arg) {
         if ( Util.isEmpty(arg) ) {
             arg = montarLink(arg, "5");
+        } else {
+            if ( "*".trim().equalsIgnoreCase( arg )) {
+                arg = montarLink(arg, "4");
+            }
         }
         return arg;
     }
