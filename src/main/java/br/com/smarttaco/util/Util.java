@@ -205,7 +205,7 @@ public class Util {
     public static boolean isEmpty(Object obj) {
         if (obj == null) {
             return true;
-        } else if (obj instanceof String && ((String) obj).equals("") ) {
+        } else if (obj instanceof String && ((String) obj).trim().equals("") ) {
             return true;
         } else if (obj instanceof Collection && ((Collection) obj).size() == 0)  {
             return true;

@@ -326,7 +326,7 @@ public class ChuparDados {
                         if ( mTmp.group(1).trim().contains( GRUPO_AMINOACIDOS ) ) {
 //                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
                             grupo = true;
-                            grupoTmp = GRUPO_AMINOACIDOS + " - Os tagnames dos aminoácidos seguiram o padrão do USDA";
+                            grupoTmp = "Aminoácidos - Os tagnames dos aminoácidos seguiram o padrão do USDA";
                         }
                         if ( GRUPO_ACIDOS_ERRADO.equalsIgnoreCase( mTmp.group(1).trim() ) ) {
 //                            System.out.println("IDENTIFICADO GRUPO! >> "+mTmp.group(1));
@@ -335,9 +335,8 @@ public class ChuparDados {
                         }
                         
                         if (grupo) {
-                            if ( !GRUPO_AMINOACIDOS.equalsIgnoreCase( grupoTmp ) 
-                                    && !GRUPO_ACIDOS_GRAXOS.equalsIgnoreCase( grupoTmp ))
-                                grupoTmp = mTmp.group(1).trim();
+//                            if ( !GRUPO_ACIDOS_GRAXOS.equalsIgnoreCase( grupoTmp ))
+//                                grupoTmp = mTmp.group(1).trim();
                             continue;
                         }
                         
@@ -1282,7 +1281,7 @@ public class ChuparDados {
         ceDao.update( ce );
         
         ce = new ComposicaoElementos();
-        ce.setNumeroAlimento("33");
+        ce.setNumeroAlimento("33");     
         ce = ceDao.findByStringField("numeroAlimento", ce.getNumeroAlimento(), true, 0, 1).get(0);
         ce.setRe( Util.montarLink( ce.getRe(), "7"));
         ce.setRae( Util.montarLink( ce.getRae(), "7"));
@@ -1604,6 +1603,5 @@ public class ChuparDados {
         ceDao.update( ce );
         
         entityManager.getTransaction().commit();
-        
     }
 }
