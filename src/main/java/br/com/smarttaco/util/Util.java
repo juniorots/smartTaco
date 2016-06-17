@@ -35,7 +35,7 @@ public class Util {
      * 
      * @return 
      */
-    public static String captarDataFormatada ( Date data, String padrao) {
+    public static String captarDataFormatada ( Date data, String padrao ) {
         StringBuilder sb = new StringBuilder();
         SimpleDateFormat formato = null;
         if ( isEmpty (padrao) ) {
