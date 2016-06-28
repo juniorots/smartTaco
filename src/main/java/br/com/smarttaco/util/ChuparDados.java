@@ -182,6 +182,11 @@ public class ChuparDados {
             entityManager.getTransaction().begin();
             AcidosGraxosDAO dao = new AcidosGraxosDAO(entityManager);
             
+            // Limpando sujeira
+            for (AcidoGraxo obj : dao.selectAll()) {
+                dao.delete(obj);
+            } 
+            
             Pattern pTmp = null;
             Matcher mTmp = null;
             String grupoTmp = GRUPO_SATURADOS;
@@ -300,6 +305,11 @@ public class ChuparDados {
             final EntityManager entityManager = entityManagerFactory.createEntityManager();
             entityManager.getTransaction().begin();
             TagnamesDAO dao = new TagnamesDAO(entityManager);
+            
+            // Limpando sujeira
+            for (Tagnames obj : dao.selectAll()) {
+                dao.delete(obj);
+            }
             
             if (m.find() == true) {
 //                System.out.println(m.group());
@@ -492,6 +502,11 @@ public class ChuparDados {
             entityManager.getTransaction().begin();
             NomesCientificosDAO dao = new NomesCientificosDAO(entityManager);
             
+            // Limpando sujeira
+            for (NomesCientificos obj : dao.selectAll()) {
+                dao.delete(obj);
+            }
+            
             Pattern pTmp = null;
             Matcher mTmp = null;
             String grupoTmp = CEREAIS_DERIVADOS;
@@ -683,6 +698,11 @@ public class ChuparDados {
             entityManager.getTransaction().begin();
             LaboratorioDAO dao = new LaboratorioDAO(entityManager);
             
+            // Limpando sujeira
+            for (Laboratorio obj : dao.selectAll()) {
+                dao.delete(obj);
+            }
+            
             Pattern pTmp = null;
             Matcher mTmp = null;
             
@@ -769,6 +789,11 @@ public class ChuparDados {
         final EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         ComposicaoElementosDAO dao = new ComposicaoElementosDAO(entityManager);
+        
+        // Limpando sujeira
+        for (ComposicaoElementos obj : dao.selectAll()) {
+            dao.delete(obj);
+        }
         
         for (int i = 3; i < linhas; i++) {
             ComposicaoElementos ce = new ComposicaoElementos();
@@ -984,6 +1009,11 @@ public class ChuparDados {
         entityManager.getTransaction().begin();
         ComposicaoAcidosDAO dao = new ComposicaoAcidosDAO(entityManager);
         
+        // Limpando sujeira
+        for (ComposicaoAcidos obj : dao.selectAll()) {
+            dao.delete(obj);
+        }
+        
         for (int i = 3; i < linhas; i++) {
             ComposicaoAcidos ca = new ComposicaoAcidos();
             
@@ -1168,6 +1198,11 @@ public class ChuparDados {
         final EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         ComposicaoAminoacidosDAO dao = new ComposicaoAminoacidosDAO(entityManager);
+        
+        // Limpando sujeira
+        for (ComposicaoAminoacidos obj : dao.selectAll()) {
+            dao.delete(obj);
+        }
         
         for (int i = 3; i < linhas; i++) {
             ComposicaoAminoacidos ca = new ComposicaoAminoacidos();
