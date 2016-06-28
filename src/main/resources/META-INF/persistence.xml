@@ -14,20 +14,20 @@
       <property name="hibernate.show_sql" value="true"/>
       
       <!-- Postgres - LOCAL 
-      -->
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/smarttaco"/>
       <property name="hibernate.connection.username" value="smarttaco"/>
       <property name="hibernate.connection.password" value="ablife"/>
+      -->
       
       <!-- Postgres - REMOTO 
+      -->
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       <property name="hibernate.connection.url" value="jdbc:postgresql://smarttaco.postgresql.dbaas.com.br:5432/smarttaco"/>
       <property name="hibernate.connection.username" value="smarttaco"/>
       <property name="hibernate.connection.password" value="sM4rtt4c012"/>
-      -->
       
       <!--
         <property name="hibernate.connection.username" value="USUARIO"/>
