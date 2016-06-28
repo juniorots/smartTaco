@@ -39,20 +39,20 @@ public class UtilTest {
     public void tearDown() {
     }
 
-    @Test
+//    @Test
     public void model() {
     }
     
-//    @Test
+    @Test
     public void carregarDadosPdf(){
         List<Integer> paginas = new ArrayList<Integer>();
         try {
             for (int i = 19; i<= 164; i++) {
                 paginas.add(i);
             }
-//            HelenaBarbosa.executar("/home/junior/Downloads/taco.txt", paginas, "/home/junior/Downloads/taco_4_edicao_ampliada_e_revisada.pdf");
-//            HelenaBarbosa.executarExcel( "/home/junior/Downloads/Taco_4a_edicao_2011.xls" );
-//            HelenaBarbosa.tratarNotas();
+            HelenaBarbosa.executar("/home/junior/Downloads/taco.txt", paginas, "/home/junior/Downloads/taco_4_edicao_ampliada_e_revisada.pdf");
+            HelenaBarbosa.executarExcel( "/home/junior/Downloads/Taco_4a_edicao_2011.xls" );
+            HelenaBarbosa.tratarNotas();
         } catch (Exception e) {
             e.printStackTrace();
         }
