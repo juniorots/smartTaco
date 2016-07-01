@@ -33,8 +33,8 @@ public class Constantes {
     public static String HOST_NAME_GMAIL = "smtp.gmail.com";
     public static String HOST_NAME_HOTMAIL = "smtp.live.com";
     public static String ADMINISTRADOR_1 = "juniorots@gmail.com";
-//    public static Integer PORTA_SMTP_GMAIL = 465;
-    public static Integer PORTA_SMTP_GMAIL = 587;
+    public static Integer PORTA_SMTP_GMAIL = 465;
+//    public static Integer PORTA_SMTP_GMAIL = 587;
 
    /*
     * Nota: tal usuario somente sera utilizado para envio automatico
