@@ -29,6 +29,7 @@ public class Usuario extends DomainObject {
     @NotNull
     private String senha;
     
+    @Transient
     private String confirmaSenha;
     
     private String telefone;
