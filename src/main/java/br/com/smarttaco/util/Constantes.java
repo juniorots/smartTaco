@@ -43,7 +43,9 @@ public class Constantes {
     *
     * Para configurar o servico de envio automatico de email, faca por meio do link abaixo:
     *
-    * https://www.google.com/settings/security/lesssecureapps
+    * https://www.google.com/settings/security/lesssecureapps -> permite aplicativos de terceiros logar na conta...
+    *
+    * https://accounts.google.com/DisplayUnlockCaptcha -> permite login em outros computadores...
     *
     */
 //    public static String EMAIL_REMETENTE_GMAIL = "dedoduro.default.user@gmail.com";
