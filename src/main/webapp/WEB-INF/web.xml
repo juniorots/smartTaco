@@ -6,11 +6,6 @@
     </context-param>
     
     <context-param>
-        <param-name>com.icesoft.faces.connectionTimeout</param-name>
-        <param-value>100000</param-value>
-    </context-param>
-    
-    <context-param>
         <param-name>com.icesoft.faces.synchronousUpdate</param-name>
         <param-value>true</param-value>
     </context-param>
