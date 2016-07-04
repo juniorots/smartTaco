@@ -40,9 +40,7 @@ public class ContatoMB implements Serializable {
             setMensagem( tmp+getMensagem()+"</span>");
             EnviarEmail.tratarEnvio(email, getAssunto(), getMensagem());
             setMensagem("");
-            
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", 
-                "OK!! Em breve entraremos em contato...");
+            Util.montarMensagem(FacesMessage.SEVERITY_INFO, "OK!! Em breve entraremos em contato...");
         }
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }

@@ -63,6 +63,14 @@ public class Util {
     }
     
     /*
+    * Montar mensagem no centro da tela
+    */
+    public static void montarMensagemModal(FacesMessage.Severity tipo, String titulo, String corpo) {
+        FacesMessage mensagem = new FacesMessage(tipo, titulo, corpo);
+        RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+    }
+    
+    /*
      * Verificando existencia de valor vazio para montar o link
      */
     public static String linkTacoVazio(String arg) {

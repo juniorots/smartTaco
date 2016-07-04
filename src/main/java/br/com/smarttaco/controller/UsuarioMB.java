@@ -196,12 +196,7 @@ public class UsuarioMB implements Serializable {
             setUsuario( retornoUsuario );
         } else {
             getUsuario().setEmail("");
-            
-            Util.montarMensagem(FacesMessage.SEVERITY_ERROR, "E-mail ou Senha inválidos.");
-            
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "E-mail ou Senha inválidos.") );
-//            context.getExternalContext().getFlash().setKeepMessages(true);
+            Util.montarMensagemModal(FacesMessage.SEVERITY_ERROR, "Vixi...", "E-mail ou Senha inválidos.");
         }
     }
     
