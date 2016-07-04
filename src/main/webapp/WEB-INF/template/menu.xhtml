@@ -6,7 +6,7 @@
        xmlns:ace="http://www.icefaces.org/icefaces/components"
        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:body>
-        <ace:growlMessages id="alert" position="top-right"/>
+        <ace:growlMessages id="alert" position="top-right" displayDuration="12000" />
         <style>
             .ui-datepicker {
                border: 0;
@@ -16,7 +16,17 @@
                 margin-top: 15px !important;
                 font-size: 13px !important;
                 font-weight: bold;
+                width: 500px !important;
+                height: 45px !important;
+                padding-top: 10px !important;
+                padding-left: 20px !important;
+                
                 color: #FFFFFF;
+            }
+            
+            .jGrowl-closer {
+                width: 500px !important;
+                padding-left: 20px !important;
             }
             
             .ui-selectonemenu-label {

@@ -5,7 +5,6 @@ import br.com.smarttaco.modelo.Usuario;
 import br.com.smarttaco.util.Constantes;
 import br.com.smarttaco.util.EnviarEmail;
 import br.com.smarttaco.util.Util;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,14 +14,10 @@ import java.util.Random;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.servlet.http.HttpServletRequest;
 import lombok.Cleanup;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -85,14 +80,15 @@ public class UsuarioMB implements Serializable {
         Usuario usAlterado = dao.update( getUsuario() );
         entityManager.getTransaction().commit();
         
-        mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", "Dados alterados com sucesso.");
+        Util.montarMensagem(FacesMessage.SEVERITY_INFO, "Dados alterados com sucesso.");
         usAlterado.setNomeTitulo( getUsuario().getNome() );
         Util.gravarUsuarioSessao( usAlterado );
         setUsuario ( Util.captarUsuarioSessao() );
         
-        RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+//        mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", "descritivo aqui...");
+//        RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
     }
-    
+
     /**
      * Responsavel por persistir as informacoes digitadas na base
      */
@@ -103,33 +99,30 @@ public class UsuarioMB implements Serializable {
         if ( !validarDados() ) return;
         
         if ( !continuarRegistro( getUsuario() ) ) {
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no cadastro. E-mail já registrado no sistema.", "");
-            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
-//            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            Util.montarMensagem(FacesMessage.SEVERITY_ERROR, "Falha no cadastro. E-mail já registrado no sistema.");
             return;
         }
         
         @Cleanup
-        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databaseDefault");
+        final EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("databaseDefault");
         
         @Cleanup
-        final EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
+        final EntityManager entManager = entityFactory.createEntityManager();
+        entManager.getTransaction().begin();
+        UsuarioDAO dao = new UsuarioDAO(entManager);
         
-        UsuarioDAO dao = new UsuarioDAO(entityManager);
         getUsuario().setSenha( Util.cifrar( getUsuario().getSenha() ) );
         Usuario usInserido = dao.insert( getUsuario() );
-        entityManager.getTransaction().commit();
+        entManager.getTransaction().commit();
         
         if ( !Util.isEmpty( usInserido.getId() ) ) {
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", "Usuário cadastrado com sucesso.");
+            Util.montarMensagem(FacesMessage.SEVERITY_INFO, "Usuário cadastrado com sucesso.");
             usInserido.setNomeTitulo( usInserido.getNome() );
             Util.gravarUsuarioSessao( usInserido );
             setUsuario( Util.captarUsuarioSessao() );
         } else {
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Hum...", "Falha no cadastro. Operação cancelada.");
+            Util.montarMensagem(FacesMessage.SEVERITY_ERROR, "Falha no cadastro. Operação cancelada.");
         }
-        RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
     }
     
     /*
@@ -137,15 +130,7 @@ public class UsuarioMB implements Serializable {
      */
     public boolean validarDados() {
         if ( !getUsuario().getSenha().equalsIgnoreCase( getUsuario().getConfirmaSenha() )) {
-            try {
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no processo. Senhas diferentes", "") );
-                context.getExternalContext().getFlash().setKeepMessages(true);
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-            } catch (IOException io) {
-                io.printStackTrace();
-            }
+            Util.montarMensagem(FacesMessage.SEVERITY_ERROR, "Falha no processo. Senhas diferentes");
             return false; // fail! :-(
         }
         
@@ -160,16 +145,7 @@ public class UsuarioMB implements Serializable {
      */
     public boolean validarEmail() {
         if ( !Util.validarEmail( getUsuario().getEmail() ) ) {
-            try {
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no processo. E-mail invalido", "") );
-                context.getExternalContext().getFlash().setKeepMessages(true);
-
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-            } catch (IOException io) {
-                io.printStackTrace();
-            }
+            Util.montarMensagem(FacesMessage.SEVERITY_ERROR, "Falha no processo. E-mail invalido");
             return false; // fail! :-(
         }
         return true; // acerto! :-)
@@ -190,12 +166,7 @@ public class UsuarioMB implements Serializable {
         entityManager.getTransaction().begin();
         
         UsuarioDAO dao = new UsuarioDAO(entityManager);
-        
-        if ( !Util.isEmpty( dao.findByStringField("email", usuario.getEmail(), true, 0, 1) ) ) {
-            return false;
-        }
-        
-        return true;
+        return Util.isEmpty( dao.findByStringField("email", usuario.getEmail(), true, 0, 1) );
     }
     
     /**
@@ -226,8 +197,7 @@ public class UsuarioMB implements Serializable {
         } else {
             getUsuario().setEmail("");
             
-            FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vixi...", "E-mail ou Senha inválidos.");
-            RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
+            Util.montarMensagem(FacesMessage.SEVERITY_ERROR, "E-mail ou Senha inválidos.");
             
 //            FacesContext context = FacesContext.getCurrentInstance();
 //            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "E-mail ou Senha inválidos.") );
@@ -274,14 +244,12 @@ public class UsuarioMB implements Serializable {
             
             EnviarEmail.recuperarSenha(emails, novaSenha);
             
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", "Uma senha automática fora enviado para o e-mail informado, <br />"
+            Util.montarMensagem(FacesMessage.SEVERITY_INFO, "Uma senha automática fora enviado para o e-mail informado, <br />"
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;após a sua validação procure alterá-la.");
         } else {
-            mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vixi...", "Informações inexistentes em nossa base de dados, favor tentar novamente.");            
+            Util.montarMensagem(FacesMessage.SEVERITY_ERROR, "Informações inexistentes em nossa base de dados, favor tentar novamente.");
         }
         usuario = new Usuario();
-        
-        RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
     }
     
     /**

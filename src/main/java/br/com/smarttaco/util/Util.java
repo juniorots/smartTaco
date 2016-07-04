@@ -48,6 +48,21 @@ public class Util {
     }
    
     /*
+     * Montando a mensagem estilo balao...
+     */
+    public static void montarMensagem(FacesMessage.Severity tipo, String mensagem) {
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(tipo, mensagem, "") );
+            context.getExternalContext().getFlash().setKeepMessages(true);
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /*
      * Verificando existencia de valor vazio para montar o link
      */
     public static String linkTacoVazio(String arg) {
