@@ -61,11 +61,11 @@
                     
                     <c:if test="#{empty usuarioMB.usuario.id}">
                          <p:commandButton value="Salvar" id="btnSalvar" actionListener="#{usuarioMB.salvarUsuario}" icon="ui-icon-disk" 
-                                     ajax="false" update="grid" process="nome email senha dtNascimento" validateClient="true"/>
+                                     ajax="true" update="grid" process="nome email senha dtNascimento" validateClient="true"/>
                     </c:if>
                     <c:if test="#{not empty usuarioMB.usuario.id}">
                         <p:commandButton value="Alterar" id="btnAlterar" actionListener="#{usuarioMB.alterarUsuario}" icon="ui-icon-check" 
-                                     ajax="false" update="grid" process="nome email senha dtNascimento" validateClient="true"/>
+                                     ajax="true" update="grid" process="nome email senha dtNascimento" validateClient="true"/>
                     </c:if>
                 </h:panelGrid>
             </h:form>
