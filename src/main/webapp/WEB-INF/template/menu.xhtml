@@ -70,9 +70,9 @@
                                          <p:password id="senha" value="#{usuarioMB.usuario.senha}" required="false" 
                                                      requiredMessage="Campo obrigatório" maxlength="50" tabindex="2"/>
                                      </fieldset>
-                                     <p:commandButton value="Entrar" id="login" actionListener="#{usuarioMB.validarUsuario}" 
-                                        ajax="false" style="width: 50%;" >
-                                     </p:commandButton>
+                                     <ace:pushButton id="btnEntrar" value="Entrar" action="#{usuarioMB.validarUsuario}" >
+                                        <ace:ajax execute="@all" render="@all"/>
+                                    </ace:pushButton>
                                  </fieldset>
                                  <span><a href="#{request.contextPath}/jsp/recuperarSenha.xhtml" class="linkJanelaLogin">Esqueci minha senha!</a></span>
                              </h:form>
