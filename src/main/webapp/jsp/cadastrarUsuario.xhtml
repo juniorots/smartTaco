@@ -60,12 +60,14 @@
                     <p:commandButton value="Limpar" id="btnLimpar" type="reset" ajax="false"/>
                     
                     <c:if test="#{empty usuarioMB.usuario.id}">
-                         <p:commandButton value="Salvar" id="btnSalvar" actionListener="#{usuarioMB.salvarUsuario}" icon="ui-icon-disk" 
-                                     ajax="false" update="grid" process="nome email senha dtNascimento" validateClient="true"/>
+                         <ace:pushButton id="btnSalvar" value="Salvar" action="#{usuarioMB.salvarUsuario}" >
+                             <ace:ajax execute="@all" render="@all"/>
+                         </ace:pushButton>
                     </c:if>
                     <c:if test="#{not empty usuarioMB.usuario.id}">
-                        <p:commandButton value="Alterar" id="btnAlterar" actionListener="#{usuarioMB.alterarUsuario}" icon="ui-icon-check" 
-                                     ajax="false" update="grid" process="nome email senha dtNascimento" validateClient="true"/>
+                         <ace:pushButton id="btnAlterar" value="Alterar" action="#{usuarioMB.alterarUsuario}" >
+                             <ace:ajax execute="@all" render="@all"/>
+                         </ace:pushButton>
                     </c:if>
                 </h:panelGrid>
             </h:form>

@@ -88,13 +88,11 @@ public class UsuarioMB implements Serializable {
 //        mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hum...", "descritivo aqui...");
 //        RequestContext.getCurrentInstance().showMessageInDialog(mensagem);
     }
-
+    
     /**
      * Responsavel por persistir as informacoes digitadas na base
      */
     public void salvarUsuario() {
-        
-        FacesMessage mensagem = null;
         
         if ( !validarDados() ) return;
         
