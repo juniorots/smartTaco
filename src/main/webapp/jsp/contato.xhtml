@@ -34,7 +34,9 @@
                 </h:panelGrid>
                 
                 <h:panelGrid cellpadding="10" cellspacing="5" columns="2" style="margin-left: 20px">
-                    <p:commandButton value="Notificar..." id="btnEnviar" actionListener="#{contatoMB.enviarNotificacao}" ajax="false"/>
+                    <ace:pushButton id="btnEnviar" value="Notificar..." action="#{contatoMB.enviarNotificacao}" >
+                        <ace:ajax execute="@all" render="@all"/>
+                    </ace:pushButton>
                 </h:panelGrid>
             </h:form>
         </ui:define>
