@@ -52,9 +52,6 @@ public class TagnamesMB implements Serializable {
     public TagnamesMB() {
         this.listaColuna = new ArrayList<ColunaDinamica>();
         
-        if ( Util.isEmpty( Util.captarUsuarioSessao() ) ) 
-            Util.forward( Constantes.INICIO_SISTEMA );
-        
         /*
          * Definindo a estrutura da tabela 
          */

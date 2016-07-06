@@ -51,9 +51,6 @@ public class NomesCientificosMB implements Serializable {
     public NomesCientificosMB() {
         this.listaColuna = new ArrayList<ColunaDinamica>();
         
-        if ( Util.isEmpty( Util.captarUsuarioSessao() ) ) 
-            Util.forward( Constantes.INICIO_SISTEMA );
-        
         /*
          * Definindo a estrutura da tabela 
          */

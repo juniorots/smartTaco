@@ -51,9 +51,6 @@ public class LaboratorioMB implements Serializable {
     public LaboratorioMB() {
         this.listaColuna = new ArrayList<ColunaDinamica>();
         
-        if ( Util.isEmpty( Util.captarUsuarioSessao() ) ) 
-            Util.forward( Constantes.INICIO_SISTEMA );
-        
         /*
          * Definindo a estrutura da tabela 
          */

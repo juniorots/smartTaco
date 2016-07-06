@@ -62,13 +62,17 @@ public class PrincipalMB implements Serializable {
                      "Centesimal Aminoácidos", "FFDEAD", true));
         }
         
-        if ( !Util.isUsuarioLogado() ) return;
         
         // select your destiny! MK
         if ( Constantes.ELIPSE_ACIDOS.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.ACIDOS_GRAXOS );
         }
         
+        if ( Constantes.ELIPSE_LABORATORIOS.equalsIgnoreCase( label ) ) {
+            Util.forward( Constantes.RELACAO_LABORATORIO );
+        }
+        
+        // Liberado somente apos o login...
         if ( Constantes.ELIPSE_TAGNAMES.equalsIgnoreCase( label ) ) {
             Util.forward( Constantes.TAGNAMES );
         } 
@@ -78,20 +82,20 @@ public class PrincipalMB implements Serializable {
         } 
         
         if ( Constantes.ELIPSE_ELEMENTOS.equalsIgnoreCase( label ) ) {
+            if ( !Util.isUsuarioLogado() ) return;
             Util.forward( Constantes.COMPOSICAO_ELEMENTOS );
         } 
         
         if ( Constantes.ELIPSE_CENTESIMAL_ACIDOS.equalsIgnoreCase( label ) ) {
+            if ( !Util.isUsuarioLogado() ) return;
             Util.forward( Constantes.COMPOSICAO_ACIDOS );
         } 
         
         if ( Constantes.ELIPSE_AMINOACIDOS.equalsIgnoreCase( label ) ) {
+            if ( !Util.isUsuarioLogado() ) return;
             Util.forward( Constantes.COMPOSICAO_AMINOACIDOS );
         }
         
-        if ( Constantes.ELIPSE_LABORATORIOS.equalsIgnoreCase( label ) ) {
-            Util.forward( Constantes.RELACAO_LABORATORIO );
-        }
     }
 
     public void onNodeDblselect(SelectEvent event) {
