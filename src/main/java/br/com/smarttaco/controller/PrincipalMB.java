@@ -53,13 +53,13 @@ public class PrincipalMB implements Serializable {
         if ( Constantes.ELIPSE_CENTESIMAIS.equalsIgnoreCase( label ) ) {
              node.getChildren().clear();
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_ELEMENTOS, 
-                     "Centesimal, minerais, vitaminas e colesterol", "FFDEAD", true));
+                     "Elementos", "FFDEAD", true));
              
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_CENTESIMAL_ACIDOS, 
-                     "Centesimal Ácidos graxos", "FFDEAD", true));
+                     "Ácidos", "FFDEAD", true));
              
              node.addNode(new DefaultMindmapNode(Constantes.ELIPSE_AMINOACIDOS, 
-                     "Centesimal Aminoácidos", "FFDEAD", true));
+                     "Aminoácidos", "FFDEAD", true));
         }
         
         

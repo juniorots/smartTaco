@@ -64,15 +64,24 @@ public class Constantes {
     
     public static String ELIPSE_TACO = "TACO";
     public static String ELIPSE_ACIDOS = "Ácidos Graxos";
-    public static String ELIPSE_TAGNAMES = "Tagnames segundo INFOODS e USDA";
-    public static String ELIPSE_CIENTIFICOS = "Nomes Científicos";
+    public static String ELIPSE_TAGNAMES = "Tagnames";
+    public static String ELIPSE_CIENTIFICOS = "Científicos";
+//    public static String ELIPSE_ACIDOS = "Ácidos Graxos";
+//    public static String ELIPSE_TAGNAMES = "Tagnames segundo INFOODS e USDA";
+//    public static String ELIPSE_CIENTIFICOS = "Nomes Científicos";
     
-    public static String ELIPSE_CENTESIMAIS = "Tabelas Centesimais";
-    public static String ELIPSE_AMINOACIDOS = "Centesimal Aminoácidos";
-    public static String ELIPSE_ELEMENTOS = "Centesimal, minerais, vitaminas e colesterol";
-    public static String ELIPSE_CENTESIMAL_ACIDOS = "Centesimal Ácidos Graxos";
+    public static String ELIPSE_CENTESIMAIS = "Centesimais";
+    public static String ELIPSE_AMINOACIDOS = "Aminoácidos";
+    public static String ELIPSE_ELEMENTOS = "Elementos";
+    public static String ELIPSE_CENTESIMAL_ACIDOS = "Ácidos Graxos";
     
-    public static String ELIPSE_LABORATORIOS = "Relação dos laboratórios";
+//    public static String ELIPSE_CENTESIMAIS = "Tabelas Centesimais";
+//    public static String ELIPSE_AMINOACIDOS = "Centesimal Aminoácidos";
+//    public static String ELIPSE_ELEMENTOS = "Centesimal, minerais, vitaminas e colesterol";
+//    public static String ELIPSE_CENTESIMAL_ACIDOS = "Centesimal Ácidos Graxos";
+    
+    public static String ELIPSE_LABORATORIOS = "Laboratórios";
+//    public static String ELIPSE_LABORATORIOS = "Relação dos laboratórios";
     
     public final static HashMap<String, String> notas = new HashMap<>();
     
