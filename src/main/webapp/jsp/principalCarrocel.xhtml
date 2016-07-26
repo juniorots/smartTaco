@@ -17,9 +17,8 @@
                     <icecore:config render="false"/>
                     
                     <p:ring id="tabelas" value="#{principalCarrocelMB.tabelas}" 
-                            var="tabela" styleClass="image-ring" easing="easeInOutBack"
-                            style="margin-left: 11px;width:98%;height:520px;border:1px solid black;">
-                        <p:graphicImage id="img" name="/resources/images/#{tabela.url}" />
+                            var="tabela" styleClass="image-ring" easing="easeInOutBack">
+                        <p:graphicImage value="/resources/images/#{tabela.url}" />
                     </p:ring>
                 </h:form>
             </div>
